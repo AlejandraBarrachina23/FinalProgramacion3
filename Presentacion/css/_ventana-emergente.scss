@@ -1,0 +1,54 @@
+.ventana-emergente{
+
+    display: flex;
+    flex-direction: column;
+    width:50%;
+    padding:2rem;
+    border:1px solid $colorGrisClaro;
+    margin:0 auto;
+    font-size:1.2rem;
+    display: none;
+          
+    p{
+
+        line-height: 1.8rem;
+        color:#797878;
+        
+    }
+
+
+
+    input,select{
+        
+        padding:0.8rem;
+        font-size:1.3rem;
+
+    }
+
+    h3{
+
+        margin:0;
+    }
+
+}
+
+
+
+.emergente-campos{
+
+    display: flex;
+    flex-direction: row;
+
+}
+
+.emergente-izquierda, .emergente-derecha{
+
+    display: flex;
+    flex-direction: column;
+    margin-right: 4rem;
+    margin-bottom: 2rem;
+}
+
+.foto{
+    height: 15rem;
+}

@@ -1,0 +1,54 @@
+.header-edicion{
+
+    height: 25vh;
+    background-image: url(../img/fondo-edicion.jpg);
+    
+}
+
+
+.edicion-servicios{
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+        
+    
+}
+
+.edicion-item{
+
+   display: flex;
+   box-shadow: 10px 11px 16px -4px rgba(0,0,0,0.15);
+   border:0.2px solid #e6e6e6;
+   align-items: center;
+   
+}
+
+.edicion-item-descripcion{
+
+    flex-basis:50%;
+    font-size:1.3rem;
+    padding: 0rem 4rem;
+    line-height: 1.7;
+    color:$colorGrisOscuro;
+        
+}
+
+.edicion-item-imagen{
+
+    flex-basis:50%;
+    position:relative;
+    
+    h3{
+
+        background-color:$colorVerdeClaro;
+        color:$colorGrisOscuro;
+        margin:0;
+        padding:1.5rem;
+        text-align:center;
+        opacity: 0.9;
+        position:absolute;
+        width:100%;
+        top:86%;
+    }
+}

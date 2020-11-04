@@ -1,0 +1,101 @@
+.formulario-usuario fieldset{
+
+    border-top:none;
+
+}
+
+.registro{
+
+    
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin:0 auto;
+    color:$colorGrisClaro;
+    margin-top:3rem;
+    align-items: center;
+
+
+    fieldset{
+
+        border-top:none;
+        box-shadow: 10px 11px 16px -4px rgba(0,0,0,0.15);
+        padding:3rem;
+    }
+
+    input{
+
+        width:100%;
+    }
+
+    .fieldset-datos{
+
+        display: flex;
+        flex-direction: column;
+        
+
+    }
+
+    h3{
+
+        padding:0rem 1rem;
+    }
+
+    .btn{
+        
+        width:95%;
+        margin-left:0.8rem;
+    }
+
+}
+
+.formulario-iniciar-sesion{
+
+
+    flex-basis: 35%;
+    min-width: 35rem;
+    margin: 4rem 0rem;
+    
+           
+    
+    p{
+
+        text-align: right;
+        padding:0rem 1rem;
+        margin:0;
+    }
+            
+}
+
+.formulario-registro{
+
+    flex-basis: 40%;
+    min-width: 35rem;
+   
+}
+
+.input-imagen{
+
+    border:1px solid $colorGrisOscuro;
+    
+    input{
+
+        border:none;
+        width:85%;
+        color:$colorGrisOscuro;
+    }
+
+    input:focus{
+
+        outline: none;
+      
+    }
+
+    i{
+
+        color:$colorGrisClaro;
+
+    }
+
+}
+

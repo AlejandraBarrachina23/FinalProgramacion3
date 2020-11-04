@@ -1,0 +1,82 @@
+.header-talleres{
+
+    background-image: url(../img/fondo-talleres.jpg);
+    height: 20vh;
+}
+
+.listado-autobiografias{
+
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+
+.libro-autobiografia-tapa{
+   
+    max-width: 15rem; 
+    padding:1rem;
+
+}
+
+.autobiografia-item{
+
+    display: flex;
+    
+
+    h3{
+
+        background-color:$colorVerdeClaro;
+        padding:1rem;
+            
+    }
+
+    p{
+
+        font-size:1.3rem;
+        margin:0;
+        
+        
+    }
+
+}
+
+.header-ghostwriter{
+
+    background-image: url(../img/fondo-ghostwriter.png);
+    height: 25vh;
+
+
+    
+}
+
+.descripcion-parrafos{
+
+    font-size:1.3rem;
+}
+
+@media (max-width:$breakPointTabletVertical){
+
+ 
+
+    .autobiografia-item{
+
+        padding:0rem;
+        margin:0rem;
+        margin-bottom:2rem;
+        justify-content: center;
+        width:85%;
+
+
+        h3{
+
+            width:100%;
+            margin:auto;
+            margin:1rem 0rem;
+                              
+        }
+
+    }
+  
+    
+}

@@ -1,0 +1,13 @@
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Prueba\bin\Debug\Prueba.exe.config
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Prueba\bin\Debug\Prueba.exe
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Prueba\bin\Debug\Prueba.pdb
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Prueba\bin\Debug\DAO.dll
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Prueba\bin\Debug\DAO.pdb
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Prueba\obj\Debug\Prueba.csprojAssemblyReference.cache
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Prueba\obj\Debug\Prueba.Form1.resources
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Prueba\obj\Debug\Prueba.Properties.Resources.resources
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Prueba\obj\Debug\Prueba.csproj.GenerateResource.cache
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Prueba\obj\Debug\Prueba.csproj.CoreCompileInputs.cache
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Prueba\obj\Debug\Prueba.csproj.CopyComplete
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Prueba\obj\Debug\Prueba.exe
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Prueba\obj\Debug\Prueba.pdb

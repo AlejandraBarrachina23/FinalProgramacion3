@@ -1,0 +1,159 @@
+
+.pie-de-pagina{
+
+    background-color: $colorVerde;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding:2rem;
+            
+}
+
+.logo img{
+
+    width:20rem;
+    margin:0 auto;    
+}
+
+footer{ 
+    
+    font-family: $fuentePrincipal;
+    color: $colorPrincipal;  
+
+    h3{
+
+        color:$colorPrincipal;
+        font-weight: 500;
+        font-family: $fuentePrincipal;
+        margin-bottom:0;
+        
+    }
+
+    .navegacion{
+
+    flex-basis:30rem;
+    
+        ul{
+
+            padding:0;
+            
+            
+            li{
+
+                display: inline-block;
+                width:8rem;
+                margin:0;
+                padding:0;
+                               
+
+                a{
+
+                    text-transform: none;
+                    font-family: $fuentePrincipal;
+                    font-size:1.2rem;
+                    font-weight: 300;
+                        
+                }
+            }
+        }
+    
+    }
+}
+
+
+.logo-f{
+
+    flex-basis:33.3%;
+    
+}
+.contacto-item{
+
+    display: flex;
+    align-items: center; 
+}
+
+.rs-footer{
+
+    text-align:center;
+    flex-basis: 33.3%; 
+
+    i{
+        background:none;
+        color:$colorPrincipal;
+        display: inline-block;
+        font-size:2.3rem;
+    }
+}
+
+.copyright{
+
+    border-top: 1px solid $colorPrincipal;
+    background-color:$colorVerde;
+    padding:1rem 2rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    font-size:1.3rem;
+}
+
+
+
+small{
+
+    a{
+        color:$colorPrincipal;
+        text-decoration:none;
+    }
+}
+
+
+@media (max-width:$breakPointTabletVertical){
+
+    .pie-de-pagina{
+        
+        display: block;
+    }
+    .logo img{
+
+        width:15rem;
+        
+    }
+
+    footer .navegacion{
+
+        h3{
+            text-align: center;
+            font-size:1.5rem;
+        }
+       
+        ul{
+
+            li{
+               
+                display: block;
+                width:100%;
+                padding:0.5rem;
+                text-align: center;
+                
+                
+                                
+            }
+        }
+
+    }
+
+    .rs-footer h3{
+        font-size:1.5rem;
+        padding:1rem;
+    }
+
+    .copyright{
+
+       flex-direction: column;
+       align-items: center;
+       border-top: 1px solid $colorPrincipal;
+       
+    }
+}
+
+

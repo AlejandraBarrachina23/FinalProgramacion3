@@ -1,0 +1,158 @@
+.header-nosotros{
+
+    height: 25vh;
+    background-image: url(../img/fondo-nosotros.png);
+
+}
+
+.carta-presentacion{
+
+    display: flex;
+    flex-direction: column;
+    box-shadow: 10px 11px 16px -4px rgba(0,0,0,0.15);
+    position: relative;
+    margin-top:5rem;
+       
+}
+
+.datos-autor-imagen{
+
+    background-image: url(../img/nosotros.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 30rem;
+
+}
+
+.datos-autor-contacto{
+
+    display: flex;
+    justify-content: space-around;   
+
+}
+
+.carta{
+
+    font-size:1.3rem;
+    line-height: 1.8;
+    flex-basis: calc(48% - 2rem);
+    background-color:$colorVerdeClaro;
+    padding:10rem;
+    
+
+    img{
+
+        max-width: 5rem;
+        
+    }
+}
+
+.datos-autor-descripcion{
+
+    background-color:$colorVerde;
+    color:#000;
+    width: 35%;
+    min-width:15rem;
+    font-size:1.3rem;
+    position:absolute;
+    top:6rem;
+    right: -2rem;
+    padding:2rem;
+    opacity: 0.9;
+    
+    
+    
+    h3{
+        
+        font-style: normal;
+        color:#000;
+        text-align:center;
+        margin:0;
+        padding-top:1rem;
+        
+    }
+
+    h4{
+       
+        margin:0;
+        text-align:center;
+        font-family: $fuenteTitulos;
+        font-weight: 600;
+        font-size:1rem;
+        
+    }
+
+
+    
+}
+
+.datos-autor-contacto{
+
+    display: flex;
+    
+
+    .redes-sociales, .datos-autor-c{
+      
+        h3{
+
+            font-size:1.2rem;
+            padding:1rem;
+        }
+        
+        i{
+
+            margin:0;
+            padding:0.6rem;
+            font-size:1.3rem;
+            width:2.5rem;
+            height: 2.5rem;
+            color:rgb(37, 37, 37);
+        }
+    }
+}
+
+@media (max-width:$breakPointTabletVertical){
+
+    .datos-autor-descripcion{
+
+        position:static;
+        width:100%;
+        padding:3rem;
+           
+    }
+
+    .carta{
+
+        padding:2.5rem 3rem;
+    }
+
+    
+.datos-autor-imagen{
+
+    height: 20rem;
+}
+
+.datos-autor-descripcion{
+
+    padding:1rem;
+}
+.datos-autor-contacto{
+
+    flex-direction: row;
+    justify-content: space-around;
+
+    .redes-sociales{
+
+        flex-basis: 40%;
+    }
+    
+    .datos-autor-c{
+
+        flex-basis: 40%;
+    }
+
+}
+
+
+    
+}

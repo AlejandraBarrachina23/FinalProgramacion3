@@ -1,0 +1,81 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteMaterAllPages.Master.cs" Inherits="Presentacion.Site2" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Ediciones Elemento</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/735f5623c2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+  
+    <!--Inicio header-->
+    <header class="header-contacto">
+        <div class="barra-navegacion-principal">
+            <nav class="contenedor-menu">
+                <div class="logo">
+                    <img src="img/logo-sin.svg" alt="">
+                    <i class="fas fa-bars" id="btn-responsive"></i>    
+                </div>        
+                <ul class="menu">
+                    <li><a href="#">Servicios</a>
+                            <ul class="submenu">
+                                <li><a href="ghostwriter.html">Ghostwriter</a></li>
+                                <li><a href="talleres.html">Talleres</a></li>
+                                <li><a href="edicion.html">Edición</a></li>
+                            </ul>
+                        </li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="libros.html">Libros</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="cuenta.html">Cuenta</a></li>
+                 </ul>
+                </nav>            
+        </div>     
+    </header>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <footer>
+    <div class="pie-de-pagina">
+        <div class="logo logo-f"><img src="img/logo-completo.svg" alt=""></div>
+        <div class="navegacion">
+            <h3>Navegación</h3>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="ghostwriter.html">Ghostwriter</a></li>
+                        <li><a href="talleres.html">Talleres</a></li>
+                        <li><a href="edicion.html">Edición</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="libros.html">Libros</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </nav>
+        </div>
+        <div class="redes-sociales rs-footer">
+                <h3>Redes Sociales</h3>
+                <a href="https://www.facebook.com/edicioneselemento/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/in/adriana-cabrera-16419139/?originalSubdomain=ar" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.bajalibros.com/AR" target="_blank"><i class="fab fa-amazon"></i></a>
+                <a href="https://www.instagram.com/ediciones.elemento/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="copyright">
+            <small>Copyright © 2020 - Ediciones Elementos</small>
+            <small><a href="https://github.com/AlejandraBarrachina23"><i class="fab fa-github"></i> Desarrollado por Alejandra Barrachina</a></small>
+        </div>
+</footer>
+   
+</body>
+</html>

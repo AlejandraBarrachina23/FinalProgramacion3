@@ -1,0 +1,6 @@
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\DAO\bin\Debug\DAO.dll
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\DAO\bin\Debug\DAO.pdb
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\DAO\obj\Debug\DAO.csprojAssemblyReference.cache
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\DAO\obj\Debug\DAO.dll
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\DAO\obj\Debug\DAO.pdb

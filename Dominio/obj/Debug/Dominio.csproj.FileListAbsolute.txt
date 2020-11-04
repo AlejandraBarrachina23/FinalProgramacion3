@@ -1,0 +1,6 @@
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Dominio\bin\Debug\Dominio.dll
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Dominio\bin\Debug\Dominio.pdb
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Dominio\obj\Debug\Dominio.csprojAssemblyReference.cache
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Dominio\obj\Debug\Dominio.dll
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Dominio\obj\Debug\Dominio.pdb

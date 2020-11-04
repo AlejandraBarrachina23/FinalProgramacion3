@@ -1,0 +1,11 @@
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Negocio\bin\Debug\Negocio.dll
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Negocio\bin\Debug\Negocio.pdb
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Negocio\bin\Debug\DAO.dll
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Negocio\bin\Debug\Dominio.dll
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Negocio\bin\Debug\DAO.pdb
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Negocio\bin\Debug\Dominio.pdb
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Negocio\obj\Debug\Negocio.csprojAssemblyReference.cache
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Negocio\obj\Debug\Negocio.dll
+D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\Negocio\obj\Debug\Negocio.pdb

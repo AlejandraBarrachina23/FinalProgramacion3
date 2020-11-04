@@ -1,0 +1,85 @@
+
+.imagen-fondo{
+
+    background-image: url(../img/fondo.png);
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position-y: center center;
+}
+
+.servicios{
+
+    max-width:45rem;
+    display: flex;
+    align-items: center;
+    padding:1rem;
+    cursor:pointer; 
+        
+}
+
+.servicios:hover{
+
+    box-shadow: 10px 11px 16px -4px rgba(0,0,0,0.15);
+    transition: box-shadow 1s;
+
+    i{
+        color:$colorGrisOscuro;
+        transition: color 0.5s;
+
+    }
+}
+
+.servicio-icono{
+
+    padding:2rem;
+    color:#000;
+
+    i{
+
+        color:$colorGrisClaro;
+        background-color: $colorVerdeClaro;
+        border-radius: 50%;
+        width:7rem;
+        height: 7rem;
+        padding:1.5rem;
+        font-size:4rem;
+    }
+
+
+}
+
+.servicio-descripcion{
+
+    h3{
+
+        text-transform: uppercase;
+        line-height: 0.5;
+        font-size:1.5rem;
+        
+    }
+
+    p{
+
+        font-family: $fuentePrincipal;
+        font-size: 1.2rem;
+        line-height: 1.7;
+        margin:0;
+        color:$colorGrisOscuro;
+
+    }
+
+}
+
+@media (max-width:$breakPointTabletVertical){
+
+    
+.imagen-fondo{
+
+    background-image: none;
+}
+
+
+
+}
+
+
