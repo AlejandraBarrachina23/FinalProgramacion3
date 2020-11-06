@@ -38,14 +38,21 @@
         </div>
             <form runat="server" action="" method="post">
             <asp:Label ID="lblIndex" runat="server" Text="indice"></asp:Label>
-            <asp:GridView ID="grillaLibros" runat="server" CssClass="tabla" AutoGenerateColumns="False" OnSelectedIndexChanged="grillaLibros_SelectedIndexChanged" AllowPaging="True" OnPageIndexChanging="grillaLibros_PageIndexChanging" PageSize="5" PagerStyle-CssClass="pgr" >
+            <asp:GridView ID="grillaLibros" runat="server" CssClass="tabla" AutoGenerateColumns="False" OnSelectedIndexChanged="grillaLibros_SelectedIndexChanged" AllowPaging="True" OnPageIndexChanging="grillaLibros_PageIndexChanging" PageSize="5" PagerStyle-CssClass="pgr" OnRowDeleting="grillaLibros_RowDeleting" OnRowEditing="grillaLibros_RowEditing" >
                 <Columns>
                     <asp:BoundField DataField="ISBN" HeaderText="ISBN" />
                     <asp:BoundField DataField="Titulo" HeaderText="Título" />
                     <asp:BoundField DataField="AnioEdicion" HeaderText="Año" />
                     <asp:BoundField DataField="CodigoAutor" HeaderText="Autor" />
-                    <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/edit.png" SelectText="" ShowSelectButton="True" HeaderText="Actualizar"/>
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                             <asp:LinkButton ID="btnEditar" CommandName="Editar" OnClick="btnEditar_Click" runat="server"><img src="img/edit.png" alt="edit" /></asp:LinkButton>
+                             <asp:LinkButton ID="btnEliminar" CommandName="Eliminar" runat="server"><img src="img/delete.png" alt="delete" /></asp:LinkButton>
+                             <asp:LinkButton ID="btnVer" CommandName="Ver" runat="server"><img src="img/ver.png" alt="view" /></asp:LinkButton>                            
+                        </ItemTemplate>                
+                    </asp:TemplateField>                    
                 </Columns>
+        <PagerStyle CssClass="pgr"></PagerStyle>
             </asp:GridView>
             <asp:Panel ID="modal" runat="server" CssClass="ventana-emergente">
                 <h3>Agregar un nuevo libro</h3>
@@ -67,8 +74,8 @@
                     <label for="">Sinopsis</label>
                     <asp:TextBox ID="tboxSinopsis" runat="server" TextMode="MultiLine"></asp:TextBox>
                     <label for="">Foto de la tapa</label>
-                    <asp:Image ID="imgPortada" runat="server" ImageUrl="~/img/imagen-no-disponible.png" Width="200"/>
-                    <asp:FileUpload ID="fupImagenPortada" runat="server" />
+                    <asp:Image ID="imgPortada" runat="server" Width="200" ImageUrl=""/>
+                    <asp:FileUpload ID="fupImagenPortada" runat="server"  />
                 </div>
                 <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" />
                 <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />

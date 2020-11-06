@@ -17,6 +17,6 @@ namespace Dominio
         public Autor CodigoAutor { get; set; }
         public Editorial CodigoEditorial { get; set; }
 
-        public byte[] Portada { get; set; }
+        public string Portada { get; set; }
     }
 }

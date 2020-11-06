@@ -74,6 +74,7 @@
     <Content Include="img\delete.png" />
     <Content Include="img\edit.png" />
     <Content Include="img\imagen-no-disponible.png" />
+    <Content Include="img\ver.png" />
     <Content Include="js\funciones.js" />
     <Content Include="talleres.aspx" />
     <Content Include="Web.config" />

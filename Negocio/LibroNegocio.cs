@@ -36,8 +36,7 @@ namespace Negocio
                 unLibro.CodigoAutor.Nombre = (string)AccederDatos.LectorDatos["Nombre"];
                 unLibro.CodigoAutor.Apellido = (string)AccederDatos.LectorDatos["Apellido"];
                 unLibro.CodigoFormato.CodigoFormato = (int)AccederDatos.LectorDatos["ID_Formato"];
-                //unLibro.Portada = (string)AccederDatos.LectorDatos["Portada"];
-
+                unLibro.Portada = (string)AccederDatos.LectorDatos["Portada"];
                 ListadoLibros.Add(unLibro);
             }
 
@@ -58,6 +57,16 @@ namespace Negocio
             AccederDatos.Comando.Parameters.AddWithValue("@Sinopsis", unLibro.Sinopsis);
             AccederDatos.Comando.Parameters.AddWithValue("@Fecha_Edicion", unLibro.AnioEdicion);
             AccederDatos.Comando.Parameters.AddWithValue("@Portada", unLibro.Portada);
+            AccederDatos.EjecutarAccion();
+            AccederDatos.CerrarConexion();
+        }
+
+        public void EliminarLibro(string ISBN)
+        {
+            AccederDatos.AbrirConexion();
+            AccederDatos.DefinirProcedimientoAlmacenado("SP_EliminarLibro");
+            AccederDatos.Comando.Parameters.Clear();
+            AccederDatos.Comando.Parameters.AddWithValue("@ISBN", ISBN);
             AccederDatos.EjecutarAccion();
             AccederDatos.CerrarConexion();
         }
