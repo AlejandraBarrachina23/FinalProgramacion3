@@ -18,8 +18,7 @@ namespace Negocio
             
             List<Libro> ListadoLibros = new List<Libro>();
             AccederDatos.AbrirConexion();
-            AccederDatos.DefinirTipoComando("select Libros.ISBN,Titulo,Sinopsis,ID_Formato, Fecha_Edicion, Portada,Autores.ID_Autor,Autores.Nombre,Autores.Apellido from Libros INNER JOIN LibrosxAutores ON LibrosxAutores.ISBN = Libros.ISBN INNER JOIN Autores " +
-                "ON Autores.ID_Autor = LibrosxAutores.ID_Autor");
+            AccederDatos.DefinirProcedimientoAlmacenado("SP_ListarLibros");
             AccederDatos.EjecutarConsulta();
 
             while (AccederDatos.LectorDatos.Read())
