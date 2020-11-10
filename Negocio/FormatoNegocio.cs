@@ -25,15 +25,11 @@ namespace Negocio
             while (AccederDatos.LectorDatos.Read())
             {
                 Formato unFormato = new Formato();
-    
-
                 unFormato.CodigoFormato = (int)AccederDatos.LectorDatos["ID_Formato"];
                 unFormato.Medidas = (string)AccederDatos.LectorDatos["Medidas_Formato"];
-
-
                 ListadoFormato.Add(unFormato);
             }
-
+            AccederDatos.CerrarConexion();
             return ListadoFormato;
 
         }

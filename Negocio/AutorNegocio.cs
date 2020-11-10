@@ -31,7 +31,7 @@ namespace Negocio
 
                 ListadoAutores.Add(unAutor);
             }
-
+            AccederDatos.CerrarConexion();
             return ListadoAutores;
 
 

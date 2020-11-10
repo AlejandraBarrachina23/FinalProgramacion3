@@ -20,17 +20,21 @@ namespace Presentacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             LibroNegocio unLibroNegocio = new LibroNegocio();
             FormatoNegocio unFormatoNegocio = new FormatoNegocio();
             AutorNegocio unAutorNegocio = new AutorNegocio();
+            EditorialNegocio unaEditorialNegocio = new EditorialNegocio();
+
             grillaLibros.DataSource = unLibroNegocio.ListadoLibros();
             grillaLibros.DataBind();
             ddlFormatos.DataSource = unFormatoNegocio.ListadoFormato();
             ddlFormatos.DataBind();
             ddlAutores.DataSource = unAutorNegocio.ListadoAutores();
             ddlAutores.DataBind();
+            ddlEditorial.DataSource = unaEditorialNegocio.ListarEditoriales();
+            ddlEditorial.DataBind();
             modal.Visible = false;
-
         }
 
         protected void btnEditar_Click(object sender, EventArgs e) {
@@ -40,7 +44,9 @@ namespace Presentacion
             LibroNegocio unLibroNegocio = new LibroNegocio();
 
             //precarga de datos
+
             Libro LibroSeleccionado = unLibroNegocio.ListadoLibros()[IndexRow];
+            
             tboxIsbn.Text = LibroSeleccionado.ISBN.ToString();
             tboxTitulo.Text = LibroSeleccionado.Titulo.ToString();
             tboxSinopsis.Text = LibroSeleccionado.Sinopsis;
@@ -60,15 +66,18 @@ namespace Presentacion
            
             //precarga de datos
             Libro LibroSeleccionado = unLibroNegocio.ListadoLibros()[IndexRow];
+
             tboxIsbn.Text = LibroSeleccionado.ISBN.ToString();
             tboxTitulo.Text = LibroSeleccionado.Titulo.ToString();
             tboxSinopsis.Text = LibroSeleccionado.Sinopsis;
             AnioEdicion.Text = LibroSeleccionado.AnioEdicion.ToString();
             ddlFormatos.SelectedIndex = (LibroSeleccionado.CodigoFormato.CodigoFormato - 1);
             ddlAutores.SelectedIndex = (LibroSeleccionado.CodigoAutor.CodigoAutor - 1);
+            imgPortada.ImageUrl = LibroSeleccionado.Portada;
             btnAceptar.Visible = false;
             btnModificar.Visible = true;
-
+            tboxIsbn.Enabled = false;
+                     
         }
 
         protected void grillaLibros_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -106,23 +115,22 @@ namespace Presentacion
 
         protected void ValidarTamanioImagen(double tamanioPermitido, double tamanioImagen) {
 
-            if (tamanioImagen > tamanioPermitido) throw new Exception("Tamaño de Imagen inválido. Ingrese una imagen menor a 2mb");
+            if (tamanioImagen > tamanioPermitido) {
+
+                throw new Exception("Tamaño de Imagen inválido. Ingrese una imagen menor a 2mb"); }
                
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            imgPortada.ImageUrl = "~/img/libro1.png";
-        }
-
-        protected void grillaLibros_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-                    
+            modal.Visible = false;
+            LimpiarCombobox();
+            LimpiarImagen();
+            LimpiarInput();
         }
 
         protected void grillaLibros_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-           
             LibroNegocio unLibroNegocio = new LibroNegocio();
             unLibroNegocio.EliminarLibro(tboxIsbn.Text);
         }
@@ -137,26 +145,73 @@ namespace Presentacion
         {
             LimpiarInput();
             LimpiarCombobox();
+            LimpiarImagen();
             modal.Visible = true;
             btnModificar.Visible = false;
             btnAceptar.Visible = true;
+        }
 
+        protected void btnAceptar_Click1(object sender, EventArgs e)
+        {
             /*HttpPostedFile -> La HttpFileCollection clase proporciona acceso a todos los archivos que se cargan 
-            desde un cliente como una colección de archivos. La HttpPostedFile clase proporciona propiedades y 
-            métodos para obtener información sobre un archivo individual y para leer y guardar el archivo.*/
+            desde un cliente como una colección de archivos.*/
+           
+            try
+            {
+                HttpPostedFile imagenCargada = fupImagenPortada.PostedFile;
+                int tamanioArchivo = imagenCargada.ContentLength;
+                string NombreArchivo = Path.GetFileName(imagenCargada.FileName);
+                string fileExtension = Path.GetExtension(NombreArchivo);
+                ValidarTamanioImagen(2e+6, tamanioArchivo);
+                //FORMATOS VALIDOS
+                if (fileExtension.ToLower() == ".jpg" || fileExtension.ToLower() == ".png" ||
+                    fileExtension.ToLower() == ".jpeg" || fileExtension.ToLower() == ".bmp")
+                {
+
+                    Libro unNuevoLibro = new Libro();
+                    LibroNegocio unLibroNegocio = new LibroNegocio();
+
+                    imagenCargada.SaveAs(Server.MapPath("~/img/portadas/") + unNuevoLibro.ISBN + fileExtension);
+                    imgPortada.ImageUrl = "~/img/portadas/" + unNuevoLibro.ISBN + fileExtension;
+
+                    // unNuevoLibro.setearLibro(tboxIsbn.Text, tboxTitulo.Text, ddlFormatos.SelectedIndex, tboxSinopsis.Text, Convert.ToInt32(AnioEdicion.Text), ddlAutores.SelectedItem, 2, imgPortada.ImageUrl);
+
+                    imgPortada.ImageUrl = unNuevoLibro.Portada;
+                    imgPortada.DataBind();
+                    unLibroNegocio.AgregarLibro(unNuevoLibro);
+
+                }
+
+                else
+                {
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                lblIndex.Text = ex.Message;
+            }
+           
+
+            
+        }
+
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
             HttpPostedFile imagenCargada = fupImagenPortada.PostedFile;
             int tamanioArchivo = imagenCargada.ContentLength;
             string NombreArchivo = Path.GetFileName(imagenCargada.FileName);
             string fileExtension = Path.GetExtension(NombreArchivo);
             ValidarTamanioImagen(2e+6, tamanioArchivo);
 
-            //FORMATOS VALIDOS
             if (fileExtension.ToLower() == ".jpg" || fileExtension.ToLower() == ".png" ||
                 fileExtension.ToLower() == ".jpeg" || fileExtension.ToLower() == ".bmp")
             {
 
                 Libro unNuevoLibro = new Libro();
                 LibroNegocio unLibroNegocio = new LibroNegocio();
+                
                 unNuevoLibro.CodigoFormato = new Formato();
                 unNuevoLibro.ISBN = tboxIsbn.Text;
                 unNuevoLibro.Titulo = tboxTitulo.Text;
@@ -164,24 +219,26 @@ namespace Presentacion
                 unNuevoLibro.Sinopsis = tboxSinopsis.Text;
                 unNuevoLibro.AnioEdicion = Convert.ToInt32(AnioEdicion.Text);
 
-                imagenCargada.SaveAs(Server.MapPath("~/img") + NombreArchivo + fileExtension);
-                imgPortada.ImageUrl = "~/img" + NombreArchivo + fileExtension;
-                unNuevoLibro.Portada = imgPortada.ImageUrl;
-                imgPortada.DataBind();
+                imagenCargada.SaveAs(Server.MapPath("~/img/portadas/") + unNuevoLibro.ISBN + fileExtension);
+                imgPortada.ImageUrl = "~/img/portadas/" + unNuevoLibro.ISBN+ fileExtension;
 
-                unLibroNegocio.AgregarLibro(unNuevoLibro);
+                unNuevoLibro.Portada = imgPortada.ImageUrl;
+                imgPortada.ImageUrl = unNuevoLibro.Portada;
+                imgPortada.DataBind();
+                
+                unLibroNegocio.ModificarLibro(unNuevoLibro);
 
             }
 
-            
+            else
+            {
 
-            else {
-
-                lblIndex.Text = "Ingrese un formato válido";
+                
             }
         }
 
-        private void LimpiarInput() {
+        private void LimpiarInput()
+        {
 
             foreach (TextBox tbox in modal.Controls.OfType<TextBox>())
             {
@@ -190,18 +247,18 @@ namespace Presentacion
 
         }
 
-        private void LimpiarCombobox() {
+        private void LimpiarCombobox()
+        {
 
-            foreach (DropDownList lista in modal.Controls.OfType<DropDownList>()) {
-
+            foreach (DropDownList lista in modal.Controls.OfType<DropDownList>())
+            {
                 lista.SelectedIndex = 0;
             }
         }
 
-
-        private void CrearImagen() { 
-        
-            
+        private void LimpiarImagen()
+        {
+            imgPortada.ImageUrl = "~/img/imagen-no-disponible.png";
         }
     }
 }

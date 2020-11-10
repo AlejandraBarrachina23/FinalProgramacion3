@@ -13,7 +13,6 @@ namespace Negocio
     {
 
         private AdministradorAccesoDatos AccederDatos = new AdministradorAccesoDatos();
-
          public List<Libro> ListadoLibros() {
             
             List<Libro> ListadoLibros = new List<Libro>();
@@ -26,7 +25,6 @@ namespace Negocio
                 Libro unLibro = new Libro();
                 unLibro.CodigoFormato = new Formato();
                 unLibro.CodigoAutor = new Autor();
-
                 unLibro.ISBN = (string)AccederDatos.LectorDatos["ISBN"];
                 unLibro.Titulo = (string)AccederDatos.LectorDatos["Titulo"];
                 unLibro.AnioEdicion = (int)AccederDatos.LectorDatos["Fecha_Edicion"];
@@ -42,7 +40,6 @@ namespace Negocio
             AccederDatos.CerrarConexion();
             return ListadoLibros;
             
-            
         }
 
         public void AgregarLibro(Libro unLibro)
@@ -53,6 +50,22 @@ namespace Negocio
             AccederDatos.Comando.Parameters.AddWithValue("@ISBN", unLibro.ISBN);
             AccederDatos.Comando.Parameters.AddWithValue("@Titulo", unLibro.Titulo);
             AccederDatos.Comando.Parameters.AddWithValue("@ID_Formato",3);
+            AccederDatos.Comando.Parameters.AddWithValue("@Sinopsis", unLibro.Sinopsis);
+            AccederDatos.Comando.Parameters.AddWithValue("@Fecha_Edicion", unLibro.AnioEdicion);
+            AccederDatos.Comando.Parameters.AddWithValue("@Portada", unLibro.Portada);
+            AccederDatos.EjecutarAccion();
+            AccederDatos.CerrarConexion();
+        }
+
+
+        public void ModificarLibro(Libro unLibro)
+        {
+            AccederDatos.AbrirConexion();
+            AccederDatos.DefinirProcedimientoAlmacenado("SP_ModificarLibro");
+            AccederDatos.Comando.Parameters.Clear();
+            AccederDatos.Comando.Parameters.AddWithValue("@ISBN", unLibro.ISBN);
+            AccederDatos.Comando.Parameters.AddWithValue("@Titulo", unLibro.Titulo);
+            AccederDatos.Comando.Parameters.AddWithValue("@ID_Formato", 3);
             AccederDatos.Comando.Parameters.AddWithValue("@Sinopsis", unLibro.Sinopsis);
             AccederDatos.Comando.Parameters.AddWithValue("@Fecha_Edicion", unLibro.AnioEdicion);
             AccederDatos.Comando.Parameters.AddWithValue("@Portada", unLibro.Portada);

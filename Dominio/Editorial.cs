@@ -8,7 +8,15 @@ namespace Dominio
 {
     public class Editorial
     {
-        int CodigoEditorial { get; set; }
-        string NombreEditorial { get; set; }
+        public int CodigoEditorial { get; set; }
+        public string NombreEditorial { get; set; }
+
+        public override string ToString()
+       
+        {
+            return NombreEditorial;
+        }
     }
+
+    
 }

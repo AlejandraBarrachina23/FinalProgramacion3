@@ -38,8 +38,8 @@
         </div>
             <form runat="server" action="" method="post">
             <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click"/>
-            <asp:Label ID="lblIndex" runat="server" Text="indice"></asp:Label>
-            <asp:GridView ID="grillaLibros" runat="server" CssClass="tabla" AutoGenerateColumns="False" OnSelectedIndexChanged="grillaLibros_SelectedIndexChanged" AllowPaging="True" OnPageIndexChanging="grillaLibros_PageIndexChanging" PageSize="5" PagerStyle-CssClass="pgr" OnRowDeleting="grillaLibros_RowDeleting" OnRowEditing="grillaLibros_RowEditing" OnRowCommand="grillaLibros_RowCommand" >
+            <asp:Label ID="lblIndex" runat="server" Text="indice" Autopostback="false"></asp:Label>
+            <asp:GridView ID="grillaLibros" runat="server" CssClass="tabla" AutoGenerateColumns="False" OnSelectedIndexChanged="grillaLibros_SelectedIndexChanged" AllowPaging="True" OnPageIndexChanging="grillaLibros_PageIndexChanging" PageSize="5" PagerStyle-CssClass="pgr" OnRowDeleting="grillaLibros_RowDeleting" OnRowCommand="grillaLibros_RowCommand" >
                 <Columns>
                     <asp:BoundField DataField="ISBN" HeaderText="ISBN" />
                     <asp:BoundField DataField="Titulo" HeaderText="Título" />
@@ -66,16 +66,18 @@
                     <asp:TextBox ID="AnioEdicion" runat="server"></asp:TextBox>
                     <label for="">Autor</label>
                     <asp:DropDownList ID="ddlAutores" runat="server"></asp:DropDownList>
+                     <label for="">Editorial</label>
+                    <asp:DropDownList ID="ddlEditorial" runat="server"></asp:DropDownList>
                 </div>
                 <div class="emergente-derecha">
                     <label for="">Sinopsis</label>
                     <asp:TextBox ID="tboxSinopsis" runat="server" TextMode="MultiLine"></asp:TextBox>
                     <label for="">Foto de la tapa</label>
-                    <asp:Image ID="imgPortada" runat="server" Width="200" ImageUrl=""/>
+                    <asp:Image ID="imgPortada" runat="server" Width="200" ImageUrl="~/img/imagen-no-disponible.png"/>
                     <asp:FileUpload ID="fupImagenPortada" runat="server"  />
                 </div>
-                <asp:Button ID="btnModificar" runat="server" Text="Modificar"/>
-                <asp:Button ID="btnAceptar" runat="server" Text="Agregar" Visible="false"/>
+                <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click"/>
+                <asp:Button ID="btnAceptar" runat="server" Text="Agregar" Visible="false" OnClick="btnAceptar_Click1"/>
                 <asp:Button ID="btnCancelar" runat="server" Text="Cancelar"/>
             </div>
             </asp:Panel>

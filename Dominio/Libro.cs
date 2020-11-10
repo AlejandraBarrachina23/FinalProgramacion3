@@ -18,5 +18,18 @@ namespace Dominio
         public Editorial CodigoEditorial { get; set; }
 
         public string Portada { get; set; }
+
+        public void setearLibro(string ISBN, string Titulo, Formato CodigoFormato, string Sinopsis,
+            int AnioEdicion, Autor CodigoAutor, Editorial CodigoEditorial, string Portada)
+        {
+            this.ISBN = ISBN;
+            this.Titulo = Titulo;
+            this.CodigoFormato = CodigoFormato;
+            this.Sinopsis = Sinopsis;
+            this.AnioEdicion = AnioEdicion;
+            this.CodigoAutor = CodigoAutor;
+            this.CodigoEditorial = CodigoEditorial;
+        }
     }
+
 }

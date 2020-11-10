@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutorNegocio.cs" />
+    <Compile Include="EditorialNegocio.cs" />
     <Compile Include="FormatoNegocio.cs" />
     <Compile Include="LibroNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
