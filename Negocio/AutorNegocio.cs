@@ -27,7 +27,8 @@ namespace Negocio
 
                 unAutor.CodigoAutor = (int)AccederDatos.LectorDatos["ID_Autor"];
                 unAutor.Nombre = (string)AccederDatos.LectorDatos["Nombre"];
-                unAutor.Apellido = (string)AccederDatos.LectorDatos["Apellido"];
+                unAutor.Nombre += " ";
+                unAutor.Nombre += (string)AccederDatos.LectorDatos["Apellido"];
 
                 ListadoAutores.Add(unAutor);
             }

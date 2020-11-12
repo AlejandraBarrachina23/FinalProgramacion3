@@ -23,16 +23,20 @@ namespace Negocio
             while (AccederDatos.LectorDatos.Read())
             {
                 Libro unLibro = new Libro();
-                unLibro.CodigoFormato = new Formato();
-                unLibro.CodigoAutor = new Autor();
+                unLibro.Formato = new Formato();
+                unLibro.Autor = new Autor();
+                unLibro.Editorial = new Editorial();
+
                 unLibro.ISBN = (string)AccederDatos.LectorDatos["ISBN"];
                 unLibro.Titulo = (string)AccederDatos.LectorDatos["Titulo"];
                 unLibro.AnioEdicion = (int)AccederDatos.LectorDatos["Fecha_Edicion"];
                 unLibro.Sinopsis = (string)AccederDatos.LectorDatos["Sinopsis"];
-                unLibro.CodigoAutor.CodigoAutor = (int)AccederDatos.LectorDatos["ID_Autor"];
-                unLibro.CodigoAutor.Nombre = (string)AccederDatos.LectorDatos["Nombre"];
-                unLibro.CodigoAutor.Apellido = (string)AccederDatos.LectorDatos["Apellido"];
-                unLibro.CodigoFormato.CodigoFormato = (int)AccederDatos.LectorDatos["ID_Formato"];
+                unLibro.Autor.CodigoAutor = (int)AccederDatos.LectorDatos["ID_Autor"];
+                unLibro.Autor.Nombre = (string)AccederDatos.LectorDatos["Nombre"];
+                unLibro.Autor.Apellido = (string)AccederDatos.LectorDatos["Apellido"];
+                unLibro.Formato.CodigoFormato = (int)AccederDatos.LectorDatos["ID_Formato"];
+                unLibro.Editorial.CodigoEditorial = (int)AccederDatos.LectorDatos["ID_Editorial"];
+                unLibro.Editorial.NombreEditorial = (string)AccederDatos.LectorDatos["Nombre_Editorial"];
                 unLibro.Portada = (string)AccederDatos.LectorDatos["Portada"];
                 ListadoLibros.Add(unLibro);
             }
@@ -49,14 +53,27 @@ namespace Negocio
             AccederDatos.Comando.Parameters.Clear();
             AccederDatos.Comando.Parameters.AddWithValue("@ISBN", unLibro.ISBN);
             AccederDatos.Comando.Parameters.AddWithValue("@Titulo", unLibro.Titulo);
-            AccederDatos.Comando.Parameters.AddWithValue("@ID_Formato",3);
+            AccederDatos.Comando.Parameters.AddWithValue("@ID_Formato",unLibro.Formato.CodigoFormato);
             AccederDatos.Comando.Parameters.AddWithValue("@Sinopsis", unLibro.Sinopsis);
             AccederDatos.Comando.Parameters.AddWithValue("@Fecha_Edicion", unLibro.AnioEdicion);
             AccederDatos.Comando.Parameters.AddWithValue("@Portada", unLibro.Portada);
+            AccederDatos.Comando.Parameters.AddWithValue("@Editorial", unLibro.Editorial.CodigoEditorial);
             AccederDatos.EjecutarAccion();
             AccederDatos.CerrarConexion();
+            AgregarLibroxAutor(unLibro);
         }
 
+        private void AgregarLibroxAutor(Libro unLibro) {
+
+            AccederDatos.AbrirConexion();
+            AccederDatos.DefinirProcedimientoAlmacenado("SP_AgregarLibroxAutor");
+            AccederDatos.Comando.Parameters.Clear();
+            AccederDatos.Comando.Parameters.AddWithValue("@ISBN", unLibro.ISBN);
+            AccederDatos.Comando.Parameters.AddWithValue("@Autor", unLibro.Autor.CodigoAutor);
+            AccederDatos.EjecutarAccion();
+            AccederDatos.CerrarConexion();
+
+        }
 
         public void ModificarLibro(Libro unLibro)
         {

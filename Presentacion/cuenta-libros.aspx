@@ -38,13 +38,13 @@
         </div>
             <form runat="server" action="" method="post">
             <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click"/>
-            <asp:Label ID="lblIndex" runat="server" Text="indice" Autopostback="false"></asp:Label>
+            <asp:Label ID="lblIndex" runat="server" Text="indice"></asp:Label>
             <asp:GridView ID="grillaLibros" runat="server" CssClass="tabla" AutoGenerateColumns="False" OnSelectedIndexChanged="grillaLibros_SelectedIndexChanged" AllowPaging="True" OnPageIndexChanging="grillaLibros_PageIndexChanging" PageSize="5" PagerStyle-CssClass="pgr" OnRowDeleting="grillaLibros_RowDeleting" OnRowCommand="grillaLibros_RowCommand" >
                 <Columns>
                     <asp:BoundField DataField="ISBN" HeaderText="ISBN" />
                     <asp:BoundField DataField="Titulo" HeaderText="Título" />
                     <asp:BoundField DataField="AnioEdicion" HeaderText="Año" />
-                    <asp:BoundField DataField="CodigoAutor" HeaderText="Autor" />
+                    <asp:BoundField DataField="Autor" HeaderText="Autor" />
                     <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/edit.png" SelectText="" ShowSelectButton="True" HeaderText="Actualizar"/>
                     <asp:CommandField ButtonType="Image" DeleteImageUrl="~/img/delete.png" ShowDeleteButton="True"/>              
                 </Columns>
