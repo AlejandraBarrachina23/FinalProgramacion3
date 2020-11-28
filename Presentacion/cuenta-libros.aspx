@@ -50,38 +50,53 @@
                 </Columns>
         <PagerStyle CssClass="pgr"></PagerStyle>
             </asp:GridView>
-                
             <asp:Panel ID="modal" runat="server" CssClass="ventana-emergente">
-                <h3>Agregar un nuevo libro</h3>
+                <fieldset>
+                <legend>Detalle libro</legend>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit unde doloremque dolorem molestiae facere deleniti delectus praesentium aperiam doloribus quod corrupti.</p>
-                <div class="emergente-campos">
-                <div class="emergente-izquierda">
-                    <label for="">ISBN</label>
-                    <asp:TextBox ID="tboxIsbn" runat="server"></asp:TextBox>
-                    <label for="">Titulo</label>
-                    <asp:TextBox ID="tboxTitulo" runat="server"></asp:TextBox>
-                    <label for="">Formato</label>
-                    <asp:DropDownList ID="ddlFormatos" runat="server"></asp:DropDownList>
-                    <label for="">Año de edición</label>
-                    <asp:TextBox ID="AnioEdicion" runat="server"></asp:TextBox>
-                    <label for="">Autor</label>
-                    <asp:DropDownList ID="ddlAutores" runat="server"></asp:DropDownList>
-                     <label for="">Editorial</label>
-                    <asp:DropDownList ID="ddlEditorial" runat="server"></asp:DropDownList>
+                <div class="fieldset-datos">
+                    <div class="form-item">
+                        <label for="ISBN">ISBN</label>
+                        <asp:TextBox ID="tboxIsbn" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="form-item">
+                        <label for="titulo">Título</label>
+                        <asp:TextBox ID="tboxTitulo" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="form-item">
+                        <label for="">Formato</label>
+                        <asp:DropDownList ID="ddlFormatos" runat="server"></asp:DropDownList>
+                    </div>
+                    <div class="form-item">
+                        <label for="anioEdicion">Año de edición</label>
+                         <asp:TextBox ID="AnioEdicion" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="form-item">
+                        <label for="formato-libro">Autores</label>
+                        <asp:DropDownList ID="ddlAutores" runat="server"></asp:DropDownList>
+                    </div>
+                    <div class="form-item">
+                        <label for="formato-libro">Editoriales</label>
+                        <asp:DropDownList ID="ddlEditorial" runat="server"></asp:DropDownList>
+                    </div>
+                      <div class="form-item">
+                        <label for="formato-libro">Sinopsis</label>
+                         <asp:TextBox ID="tboxSinopsis" runat="server" TextMode="MultiLine"></asp:TextBox>
+                    </div>
+                    <div class="form-item">
+                        <label for="formato-libro">Foto</label>
+                        <asp:Image ID="imgPortada" runat="server" Width="200" ImageUrl="~/img/imagen-no-disponible.png"/>
+                        <asp:FileUpload ID="fupImagenPortada" runat="server"  />
+                    </div>
+                     <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click"/>
+                     <asp:Button ID="btnAceptar" runat="server" Text="Agregar" Visible="false" OnClick="btnAceptar_Click1"/>
+                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar"/>
                 </div>
-                <div class="emergente-derecha">
-                    <label for="">Sinopsis</label>
-                    <asp:TextBox ID="tboxSinopsis" runat="server" TextMode="MultiLine"></asp:TextBox>
-                    <label for="">Foto de la tapa</label>
-                    <asp:Image ID="imgPortada" runat="server" Width="200" ImageUrl="~/img/imagen-no-disponible.png"/>
-                    <asp:FileUpload ID="fupImagenPortada" runat="server"  />
-                </div>
-                <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click"/>
-                <asp:Button ID="btnAceptar" runat="server" Text="Agregar" Visible="false" OnClick="btnAceptar_Click1"/>
-                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar"/>
-            </div>
+            </fieldset>
             </asp:Panel>
+          
         </form>
     </div>
 </section>
+   
 </asp:Content>

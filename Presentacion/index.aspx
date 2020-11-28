@@ -179,15 +179,18 @@
         </address>
     </div>
     </div>
-    <div class="contacto-simple-formulario">
-        <label for="tboxNombre">Nombre y Apellido</label>
-        <input type="text" id="input-nombre">
-        <label for="input-correo">Correo Electrónico</label>
-        <input type="text" id="input-correo">
-        <label for="text-area-mensaje">Mensaje</label>
-        <textarea name="" id="text-area-mensaje" cols="30" rows="7"></textarea>
-        <input type="submit" class="btn">
-    </div>
+        <form method="post" runat="server">
+        <div class="contacto-simple-formulario">    
+            <label for="tboxNombre">Nombre y Apellido</label>
+            <input type="text" name="tboxNombreUsuario" id="input-nombre" required>
+            <label for="input-correo">Correo Electrónico</label>
+            <input type="email" name="tboxEmail" id="input-correo" required>
+            <label for="text-area-mensaje">Mensaje</label>
+            <textarea name="tboxMensaje" id="text-area-mensaje" cols="30" rows="7" required></textarea>
+            <asp:Button ID="btnEnviarConsulta" CssClass="btn" runat="server" Text="Enviar" OnClick="btnEnviarConsulta_Click" />
+        </div>
+    </form>
+        <asp:Label ID="prueba" runat="server" Text="Label"></asp:Label>
 </div>
 </section>
 </div>

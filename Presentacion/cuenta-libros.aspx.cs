@@ -36,7 +36,7 @@ namespace Presentacion
                 ddlFormatos.DataSource = unFormatoNegocio.ListadoFormato();
                 ddlFormatos.DataTextField = "Medidas";
                 ddlFormatos.DataValueField = "CodigoFormato";
-                ddlFormatos.DataBind();
+                ddlFormatos.DataBind(); 
 
                 //CARGO DROW DOWN LIST -> AUTORES
                 ddlAutores.DataSource = unAutorNegocio.ListadoAutores();
@@ -46,8 +46,8 @@ namespace Presentacion
 
                 //CARGO DROW DOWN LIST -> EDITORIALES
                 ddlEditorial.DataSource = unaEditorialNegocio.ListarEditoriales();
-                ddlAutores.DataValueField = "CodigoEditorial";
-                ddlAutores.DataTextField = "NombreEditorial";
+                ddlEditorial.DataValueField = "CodigoEditorial";
+                ddlEditorial.DataTextField = "NombreEditorial";
                 ddlEditorial.DataBind();
 
             }
@@ -58,38 +58,49 @@ namespace Presentacion
 
         protected void grillaLibros_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LibroNegocio unLibroNegocio = new LibroNegocio();
-
-            // VARIABLE QUE ALMACENA EL INDICE DE LA FILA SELECCIONADA, SE AJUSTA CON LA PAGINACIÓN
-            int IndexRow = grillaLibros.SelectedIndex + (grillaLibros.PageIndex * grillaLibros.PageSize);
-
-            //precarga de datos
-            Libro LibroSeleccionado = new Libro();
-            LibroSeleccionado.Formato = new Formato();
-            LibroSeleccionado.Editorial = new Editorial();
-            LibroSeleccionado.Autor = new Autor();
-
-            //SACO LOS DATOS DE LA FILA SELECCIONADA
-            LibroSeleccionado = unLibroNegocio.ListadoLibros()[IndexRow];            
-
-            //CARGO TEXTBOX
-            tboxIsbn.Text = LibroSeleccionado.ISBN.ToString();
-            tboxTitulo.Text = LibroSeleccionado.Titulo.ToString();
-            tboxSinopsis.Text = LibroSeleccionado.Sinopsis;
-            AnioEdicion.Text = LibroSeleccionado.AnioEdicion.ToString();
             
-            //CARGO DROP DOWN LIST
-            ddlFormatos.Items.FindByValue(LibroSeleccionado.Formato.CodigoFormato.ToString()).Selected = true;
-            ddlAutores.Items.FindByValue(LibroSeleccionado.Autor.CodigoAutor.ToString()).Selected = true;
-            ddlEditorial.Items.FindByValue(LibroSeleccionado.Editorial.CodigoEditorial.ToString()).Selected = true;
-            
-            //CARGO LA PORTADA
-            imgPortada.ImageUrl = LibroSeleccionado.Portada;
-            
-            //HABILITO Y DESHABILITO LOS BOTONES
-            btnAceptar.Visible = false;
-            btnModificar.Visible = true;
-            tboxIsbn.Enabled = false;
+            try
+            {
+                LibroNegocio unLibroNegocio = new LibroNegocio();
+
+                // VARIABLE QUE ALMACENA EL INDICE DE LA FILA SELECCIONADA, SE AJUSTA CON LA PAGINACIÓN
+                int IndexRow = grillaLibros.SelectedIndex + (grillaLibros.PageIndex * grillaLibros.PageSize);
+
+                //precarga de datos
+                Libro LibroSeleccionado = new Libro();
+                LibroSeleccionado.Formato = new Formato();
+                LibroSeleccionado.Editorial = new Editorial();
+                LibroSeleccionado.Autor = new Autor();
+
+                //SACO LOS DATOS DE LA FILA SELECCIONADA
+                LibroSeleccionado = unLibroNegocio.ListadoLibros()[IndexRow];
+
+                //CARGO TEXTBOX
+                tboxIsbn.Text = LibroSeleccionado.ISBN.ToString();
+                tboxTitulo.Text = LibroSeleccionado.Titulo.ToString();
+                tboxSinopsis.Text = LibroSeleccionado.Sinopsis;
+                AnioEdicion.Text = LibroSeleccionado.AnioEdicion.ToString();
+
+                //CARGO DROP DOWN LIST
+                ResetearDDL();
+                ddlFormatos.Items.FindByValue(LibroSeleccionado.Formato.CodigoFormato.ToString()).Selected = true;
+                ddlAutores.Items.FindByValue(LibroSeleccionado.Autor.CodigoAutor.ToString()).Selected = true;
+                ddlEditorial.Items.FindByValue(LibroSeleccionado.Editorial.CodigoEditorial.ToString()).Selected = true;
+
+                //CARGO LA PORTADA
+                imgPortada.ImageUrl = LibroSeleccionado.Portada;
+
+                //HABILITO Y DESHABILITO LOS BOTONES
+                btnAceptar.Visible = false;
+                btnModificar.Visible = true;
+                tboxIsbn.Enabled = false;
+            }
+            catch (Exception exc)
+            {
+                lblIndex.Text = exc.Message;
+                throw;
+            }
+           
                      
         }
 
@@ -146,16 +157,33 @@ namespace Presentacion
                 imgPortada.ImageUrl = guardarImagen(imagenCargada, tboxIsbn.Text);
                 imgPortada.DataBind();
 
-                unNuevoLibro.setearLibro(tboxIsbn.Text, tboxTitulo.Text, Convert.ToInt32(ddlFormatos.SelectedItem.Value), tboxSinopsis.Text, Convert.ToInt32(AnioEdicion.Text), Convert.ToInt32(ddlAutores.SelectedItem.Value), Convert.ToInt32(ddlEditorial.SelectedItem.Value),imgPortada.ImageUrl);
-                //unLibroNegocio.AgregarLibro(unNuevoLibro);
+                unNuevoLibro.setearLibro(tboxIsbn.Text, tboxTitulo.Text, Convert.ToInt32(ddlFormatos.SelectedItem.Value), tboxSinopsis.Text, Convert.ToInt32(AnioEdicion.Text), 
+                Convert.ToInt32(ddlAutores.SelectedItem.Value), Convert.ToInt32(ddlEditorial.SelectedItem.Value),imgPortada.ImageUrl);
+                unLibroNegocio.AgregarLibro(unNuevoLibro);
+            }          
+        }
 
-            }
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            HttpPostedFile imagenCargada = fupImagenPortada.PostedFile;
 
-            else
+            if (VerificarImagen(imagenCargada))
             {
-            
+
+                Libro unNuevoLibro = new Libro();
+                LibroNegocio unLibroNegocio = new LibroNegocio();
+
+                unNuevoLibro.setearLibro(tboxIsbn.Text, tboxTitulo.Text, Convert.ToInt32(ddlFormatos.SelectedItem.Value), tboxSinopsis.Text, Convert.ToInt32(AnioEdicion.Text),
+                Convert.ToInt32(ddlAutores.SelectedItem.Value), Convert.ToInt32(ddlEditorial.SelectedItem.Value), imgPortada.ImageUrl);
+
+                imgPortada.ImageUrl = guardarImagen(imagenCargada, tboxIsbn.Text);
+                imgPortada.DataBind();
+
+                unLibroNegocio.ModificarLibro(unNuevoLibro);
+
             }
-          
+
+
         }
 
         protected string guardarImagen(HttpPostedFile imagenCargada, string nombreImagen) {
@@ -204,48 +232,7 @@ namespace Presentacion
             else return false;
         }
 
-        protected void btnModificar_Click(object sender, EventArgs e)
-        {
-            HttpPostedFile imagenCargada = fupImagenPortada.PostedFile;
-            int tamanioArchivo = imagenCargada.ContentLength;
-            string NombreArchivo = Path.GetFileName(imagenCargada.FileName);
-            string fileExtension = Path.GetExtension(NombreArchivo);
-            
 
-            if (fileExtension.ToLower() == ".jpg" || fileExtension.ToLower() == ".png" ||
-                fileExtension.ToLower() == ".jpeg" || fileExtension.ToLower() == ".bmp")
-            {
-
-                Libro unNuevoLibro = new Libro();
-                LibroNegocio unLibroNegocio = new LibroNegocio();
-                
-                unNuevoLibro.Formato = new Formato();
-                unNuevoLibro.ISBN = tboxIsbn.Text;
-                unNuevoLibro.Titulo = tboxTitulo.Text;
-                unNuevoLibro.Formato.CodigoFormato = ddlFormatos.SelectedIndex;
-                unNuevoLibro.Sinopsis = tboxSinopsis.Text;
-                unNuevoLibro.AnioEdicion = Convert.ToInt32(AnioEdicion.Text);
-                                
-
-                imagenCargada.SaveAs(Server.MapPath("~/img/portadas/") + unNuevoLibro.ISBN + fileExtension);
-                imgPortada.ImageUrl = "~/img/portadas/" + unNuevoLibro.ISBN+ fileExtension;
-
-                unNuevoLibro.Portada = imgPortada.ImageUrl;
-                imgPortada.ImageUrl = unNuevoLibro.Portada;
-                imgPortada.DataBind();
-
-                
-                unLibroNegocio.ModificarLibro(unNuevoLibro);
-                
-
-            }
-
-            else
-            {
-
-                
-            }
-        }
 
         private void LimpiarFormulario() {
 
@@ -276,6 +263,14 @@ namespace Presentacion
         private void LimpiarImagen()
         {
             imgPortada.ImageUrl = "~/img/imagen-no-disponible.png";
+        }
+
+        private void ResetearDDL() {
+
+            foreach (DropDownList ddl in modal.Controls.OfType<DropDownList>())
+            {
+                ddl.SelectedIndex = -1;
+            }
         }
     }
 }
