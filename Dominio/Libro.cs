@@ -9,7 +9,7 @@ namespace Dominio
     public class Libro
     {
         public string ISBN { get; set; }
-        public  string Titulo { get; set; }
+        public string Titulo { get; set; }
         public Formato Formato { get; set; }
         public string Sinopsis { get; set; }
         public int AnioEdicion { get; set; }
@@ -18,6 +18,12 @@ namespace Dominio
         public Editorial Editorial { get; set; }
 
         public string Portada { get; set; }
+
+        public string Genero { get; set; }
+        public int cantidadCaracteres {get;set;}
+        public int cantidadEjemplares { get; set; }
+        public int cantidadImagenes { get; set; }
+
 
         public void setearLibro(string ISBN, string Titulo, int CodigoFormato, string Sinopsis,
             int AnioEdicion, int CodigoAutor, int CodigoEditorial, string Portada)

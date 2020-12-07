@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Documents\ASP.NET AJAX Control Toolkit\Bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -71,11 +75,29 @@
     <Content Include="cuenta-libros.aspx" />
     <Content Include="edicion.aspx" />
     <Content Include="ghostwriter.aspx" />
+    <Content Include="js\paginacion.js" />
+    <Content Include="js\Preview.js" />
+    <Content Include="mail-template-admin-index.html" />
+    <Content Include="mail-template-admin.html" />
     <Content Include="img\delete.png" />
     <Content Include="img\edit.png" />
     <Content Include="img\imagen-no-disponible.png" />
+    <Content Include="img\mailing\ca_1.jpg" />
+    <Content Include="img\mailing\check_1.svg" />
+    <Content Include="img\mailing\custom-icon-placeholder.svg" />
+    <Content Include="img\mailing\facebook.svg" />
+    <Content Include="img\mailing\facebook2x.png" />
+    <Content Include="img\mailing\instagram.svg" />
+    <Content Include="img\mailing\instagram2x.png" />
+    <Content Include="img\mailing\linkedin.svg" />
+    <Content Include="img\mailing\linkedin2x.png" />
+    <Content Include="img\mailing\logo-completo.svg" />
+    <Content Include="img\mailing\pexels-photo-5273559.jpeg" />
     <Content Include="img\ver.png" />
     <Content Include="js\funciones.js" />
+    <Content Include="js\funciones-acordeon.js" />
+    <Content Include="js\contacto.js" />
+    <Content Include="mail-template.html" />
     <Content Include="talleres.aspx" />
     <Content Include="Web.config" />
     <Content Include="index.aspx" />

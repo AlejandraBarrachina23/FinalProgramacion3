@@ -10,7 +10,7 @@
         </div>
         <div class="contenedor-cuenta">
             <div class="registro">
-                 <form action="contacto.asp" class="formulario formulario-iniciar-sesion">
+                 <form runat="server" class="formulario formulario-iniciar-sesion">
                     <fieldset>
                         <h3>Iniciar sesión</h3>
                             <div class="fieldset-datos">
@@ -31,10 +31,12 @@
                             </div>
                             <div>
                                 <p>Olvide mi contraseña</p>
-                                <input type="submit" class="btn" value="Enviar">
+                                <asp:Button Text="Enviar" runat="server" class="btn" OnClick="Unnamed1_Click" />
+                                
                             </div>
                     </fieldset>
                 </form>
+                <asp:Label ID="lblEstadoLogeo" Text="text" runat="server" />
                     <form action="contacto.asp" class="formulario formulario-registro">
                         <fieldset>
                             <h3>Registrate</h3>

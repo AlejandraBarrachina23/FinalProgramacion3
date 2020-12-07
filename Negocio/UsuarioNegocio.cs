@@ -5,45 +5,48 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Mail;
+using System.IO;
+using System.Web;
+using DAO;
+using Dominio;
 
 
 namespace Negocio
 {
-   public class UsuarioNegocio
+    public class UsuarioNegocio
     {
-                
-        private MailMessage Email = new MailMessage();
-        private SmtpClient Cliente = new SmtpClient();
 
-        public void EnviarMail(string From, string To, string Password, string Mensaje, string Subject)
+        private AdministradorAccesoDatos AccederDatos = new AdministradorAccesoDatos();
+        public int VerificarUsuarioCargado(Usuario usuarioIngresado)
         {
 
-            Email.To.Add(To);
-            Email.From = new MailAddress(From);
-            Email.Body = Mensaje;
-            Email.BodyEncoding = System.Text.Encoding.UTF8;
-            Email.Subject = Subject;
-            Email.SubjectEncoding = System.Text.Encoding.UTF8;
-            Email.IsBodyHtml = true;
-
-            Cliente.UseDefaultCredentials = false;
-            Cliente.Credentials = new NetworkCredential(From, Password);
-
-            Cliente.Port = 587;
-            Cliente.EnableSsl = true;
-            Cliente.Host = "smtp.gmail.com";
-
-            try
-            {
-                Cliente.Send(Email);
-            }
-            catch (System.Net.Mail.SmtpException ex)
-            {
-                
-            }
+            AccederDatos.AbrirConexion();
+            AccederDatos.DefinirProcedimientoAlmacenado("SP_VerificarUsuario");
+            AccederDatos.Comando.Parameters.Clear();
+            AccederDatos.Comando.Parameters.AddWithValue("@usuario", usuarioIngresado.NombreUsuario);
+            AccederDatos.Comando.Parameters.AddWithValue("@contrasenia", usuarioIngresado.Contrasenia);
+            var respuesta = AccederDatos.ejecutarAccionReturn();
+            AccederDatos.CerrarConexion();
+            return respuesta;
 
         }
 
-        
+        public Usuario UsuarioLogeado(string NombreUsuario) {
+
+            Usuario usuarioLogeado = new Usuario();
+            AccederDatos.AbrirConexion();
+            AccederDatos.DefinirProcedimientoAlmacenado("SP_UsuarioLogeado");
+            AccederDatos.Comando.Parameters.AddWithValue("@usuario", NombreUsuario);
+            AccederDatos.EjecutarConsulta();
+            while (AccederDatos.LectorDatos.Read())
+            {
+                usuarioLogeado.NombreUsuario = NombreUsuario;
+                usuarioLogeado.Nombre = AccederDatos.LectorDatos["nombre"].ToString();
+                usuarioLogeado.Apellido = AccederDatos.LectorDatos["apellido"].ToString();
+            }
+
+            return usuarioLogeado;
+
+        }
     }
 }

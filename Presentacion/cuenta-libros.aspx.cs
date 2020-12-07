@@ -20,7 +20,7 @@ namespace Presentacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             LibroNegocio unLibroNegocio = new LibroNegocio();
             FormatoNegocio unFormatoNegocio = new FormatoNegocio();
             AutorNegocio unAutorNegocio = new AutorNegocio();
@@ -36,7 +36,7 @@ namespace Presentacion
                 ddlFormatos.DataSource = unFormatoNegocio.ListadoFormato();
                 ddlFormatos.DataTextField = "Medidas";
                 ddlFormatos.DataValueField = "CodigoFormato";
-                ddlFormatos.DataBind(); 
+                ddlFormatos.DataBind();
 
                 //CARGO DROW DOWN LIST -> AUTORES
                 ddlAutores.DataSource = unAutorNegocio.ListadoAutores();
@@ -51,14 +51,14 @@ namespace Presentacion
                 ddlEditorial.DataBind();
 
             }
-           
+
             //OCULTO VENTANAS EMERGENTES
-            modal.Visible = false;
+           //modal.Visible = false;
         }
 
         protected void grillaLibros_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             try
             {
                 LibroNegocio unLibroNegocio = new LibroNegocio();
@@ -97,11 +97,11 @@ namespace Presentacion
             }
             catch (Exception exc)
             {
-                lblIndex.Text = exc.Message;
+                //lblIndex.Text = exc.Message;
                 throw;
             }
-           
-                     
+
+
         }
 
         protected void grillaLibros_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -114,89 +114,163 @@ namespace Presentacion
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            modal.Visible = false;
             LimpiarFormulario();
         }
 
         protected void grillaLibros_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            LibroNegocio unLibroNegocio = new LibroNegocio();
-            unLibroNegocio.EliminarLibro(tboxIsbn.Text);
+
+            lblTituloEliminar.Text = e.Values[1].ToString();
+            lblISBNEliminar.Text = e.Values[0].ToString();
+
         }
 
         protected void grillaLibros_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+          
 
-            if (e.CommandName == "Select") modal.Visible = true;
+            if (e.CommandName == "Select")
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "AbrirModal", "$('#mymodal').modal({show:true});", true);
+                btnAceptar.Visible = false;
+            }
+
+            if (e.CommandName == "Delete") 
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "EliminarModal", "$('#exampleModalCenter').modal({show:true});", true);
+            }
+
+
         }
+            
+        
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            
-            LimpiarFormulario();
-            modal.Visible = true;
+       
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "AbrirModal", "$('#mymodal').modal({show:true});", true);
             btnModificar.Visible = false;
-            btnAceptar.Visible = true;
-            tboxIsbn.Enabled = true;
+            
+
         }
 
         protected void btnAceptar_Click1(object sender, EventArgs e)
         {
+
+            tboxIsbn.Enabled = true;
             /*HttpPostedFile -> La HttpFileCollection clase proporciona acceso a todos los archivos que se cargan 
             desde un cliente como una colección de archivos.*/
 
             //CAPTURA DE LA IMAGEN DEL FILE UPLOAD
-            HttpPostedFile imagenCargada = fupImagenPortada.PostedFile;
 
-            if (VerificarImagen(imagenCargada))
+            lblISBN.Text = "";
+            lblErrorImagen.Text = "";
+            
+            HttpPostedFile imagenCargada = fupImagenPortada.PostedFile;
+            LibroNegocio unLibroNegocio = new LibroNegocio();
+
+            //cumple condiciones o es la por defecto
+
+            if (VerificarUpload(imagenCargada) || VerificarImagen(imagenCargada))
             {
                 Libro unNuevoLibro = new Libro();
-                LibroNegocio unLibroNegocio = new LibroNegocio();
 
                 //ASIGNO A LA RUTA DE LA IMAGEN 
                 imgPortada.ImageUrl = guardarImagen(imagenCargada, tboxIsbn.Text);
                 imgPortada.DataBind();
 
-                unNuevoLibro.setearLibro(tboxIsbn.Text, tboxTitulo.Text, Convert.ToInt32(ddlFormatos.SelectedItem.Value), tboxSinopsis.Text, Convert.ToInt32(AnioEdicion.Text), 
-                Convert.ToInt32(ddlAutores.SelectedItem.Value), Convert.ToInt32(ddlEditorial.SelectedItem.Value),imgPortada.ImageUrl);
-                unLibroNegocio.AgregarLibro(unNuevoLibro);
-            }          
+
+                if (unLibroNegocio.ValidarISBN(tboxIsbn.Text) != 0)
+                {
+                    lblISBN.Text = "ISBN Repetido";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "AbrirModal", "$('#mymodal').modal({show:true});", true);
+                }
+
+                else {
+
+
+                    unNuevoLibro.setearLibro(tboxIsbn.Text, tboxTitulo.Text, Convert.ToInt32(ddlFormatos.SelectedItem.Value), tboxSinopsis.Text, Convert.ToInt32(AnioEdicion.Text),
+                    Convert.ToInt32(ddlAutores.SelectedItem.Value), Convert.ToInt32(ddlEditorial.SelectedItem.Value), imgPortada.ImageUrl);
+                    unLibroNegocio.AgregarLibro(unNuevoLibro);
+                    grillaLibros.DataSource = unLibroNegocio.ListadoLibros();
+                    grillaLibros.DataBind();
+
+                }
+
+            }
+
+            else {
+
+                lblErrorImagen.Text = "La imagen no cumple con las condiciones";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "AbrirModal", "$('#mymodal').modal({show:true});", true);
+
+            }
+
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
+         
+            lblISBN.Text = "";
+            lblErrorImagen.Text = "";
+            
             HttpPostedFile imagenCargada = fupImagenPortada.PostedFile;
+            LibroNegocio unLibroNegocio = new LibroNegocio();
+            Libro unNuevoLibro = new Libro();
+            //cumple condiciones o es la por defecto
 
-            if (VerificarImagen(imagenCargada))
-            {
-
-                Libro unNuevoLibro = new Libro();
-                LibroNegocio unLibroNegocio = new LibroNegocio();
-
+            if (VerificarUpload(imagenCargada))
+            { 
                 unNuevoLibro.setearLibro(tboxIsbn.Text, tboxTitulo.Text, Convert.ToInt32(ddlFormatos.SelectedItem.Value), tboxSinopsis.Text, Convert.ToInt32(AnioEdicion.Text),
                 Convert.ToInt32(ddlAutores.SelectedItem.Value), Convert.ToInt32(ddlEditorial.SelectedItem.Value), imgPortada.ImageUrl);
 
-                imgPortada.ImageUrl = guardarImagen(imagenCargada, tboxIsbn.Text);
-                imgPortada.DataBind();
-
                 unLibroNegocio.ModificarLibro(unNuevoLibro);
-
             }
 
+            else if (VerificarImagen(imagenCargada)){
+
+                //ASIGNO A LA RUTA DE LA IMAGEN 
+                imgPortada.ImageUrl = guardarImagen(imagenCargada, tboxIsbn.Text);
+              
+                unNuevoLibro.setearLibro(tboxIsbn.Text, tboxTitulo.Text, Convert.ToInt32(ddlFormatos.SelectedItem.Value), tboxSinopsis.Text, Convert.ToInt32(AnioEdicion.Text),
+                Convert.ToInt32(ddlAutores.SelectedItem.Value), Convert.ToInt32(ddlEditorial.SelectedItem.Value), imgPortada.ImageUrl);
+                unLibroNegocio.ModificarLibro(unNuevoLibro);
+            }
+
+            else {
+
+                lblErrorImagen.Text = "La imagen no cumple con las condiciones";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "AbrirModal", "$('#mymodal').modal({show:true});", true);
+            }
+
+            imgPortada.DataBind();
+            grillaLibros.DataSource = unLibroNegocio.ListadoLibros();
+            grillaLibros.DataBind();
 
         }
 
         protected string guardarImagen(HttpPostedFile imagenCargada, string nombreImagen) {
 
-            //NOMBRE DE LA IMAGEN
-            string NombreArchivo = Path.GetFileName(imagenCargada.FileName);
-            //EXTENSION DE LA IMAGEN
-            string fileExtension = Path.GetExtension(NombreArchivo);
-            //SE GUARDA LA IMAGEN
-            imagenCargada.SaveAs(Server.MapPath("~/img/portadas/") + nombreImagen + fileExtension);
-            //RUTA DE IMAGEN
-            string ruta = "~/img/portadas/" + nombreImagen + fileExtension;
+            string ruta = "";
 
+            if (VerificarUpload(imagenCargada))
+            {
+                //IMAGEN POR DEFECTO
+                ruta = "~/img/portadas/" + "imagen-no-disponible" + ".png";
+
+            }
+            else {
+
+                //NOMBRE DE LA IMAGEN
+                string NombreArchivo = Path.GetFileName(imagenCargada.FileName);
+                //EXTENSION DE LA IMAGEN
+                string fileExtension = Path.GetExtension(NombreArchivo);
+                //SE GUARDA LA IMAGEN
+                imagenCargada.SaveAs(Server.MapPath("~/img/portadas/") + nombreImagen + fileExtension);
+                //RUTA DE IMAGEN
+                ruta = "~/img/portadas/" + nombreImagen + fileExtension;
+            }
+            
             return ruta;
 
         }
@@ -232,7 +306,12 @@ namespace Presentacion
             else return false;
         }
 
+        protected bool VerificarUpload(HttpPostedFile imagenCargada) {
 
+            if (imagenCargada.ContentLength == 0) return true;
+            else return false;
+            
+        }
 
         private void LimpiarFormulario() {
 
@@ -248,7 +327,7 @@ namespace Presentacion
             {
                 tbox.Text = "";
             }
-
+           
         }
 
         private void LimpiarCombobox()
@@ -271,6 +350,15 @@ namespace Presentacion
             {
                 ddl.SelectedIndex = -1;
             }
+        }
+
+
+        protected void btnEliminar_Click1(object sender, EventArgs e)
+        {
+            LibroNegocio unLibroNegocio = new LibroNegocio();
+            unLibroNegocio.EliminarLibro(lblISBNEliminar.Text);
+            grillaLibros.DataSource = unLibroNegocio.ListadoLibros();
+            grillaLibros.DataBind();
         }
     }
 }

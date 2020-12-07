@@ -839,52 +839,47 @@ small a {
       flex-basis: calc(50% - 2rem);
 }
 
-.preguntas-item {
-  margin: 1px;
-  position: relative;
-  width: 100%;
-  min-width: 35rem;
-}
-
 .pregunta {
   background-color: #94D6C8;
-  border-bottom: 1px solid #107066;
   font-family: "Poppins", sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  padding: 1.5rem 2rem;
+  padding: 1.3rem 2rem;
   color: #312F2F;
   -webkit-box-shadow: 10px 11px 16px -4px rgba(0, 0, 0, 0.15);
           box-shadow: 10px 11px 16px -4px rgba(0, 0, 0, 0.15);
-  position: relative;
   cursor: pointer;
   display: block;
-  line-height: 1.5rem;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  -webkit-transition: background 0.2s;
+  transition: background 0.2s;
+  margin: 0;
 }
 
-.pregunta:after {
+.pregunta::after {
   content: '+';
   font-size: 2.5rem;
-  display: block;
-  position: absolute;
-  top: 1.5rem;
-  right: 1rem;
+  float: right;
+  -webkit-transform: sclae(1.5);
+          transform: sclae(1.5);
+}
+
+.pregunta--active::after {
+  content: '-';
 }
 
 .respuesta {
-  background-color: #fff;
-  height: 0;
-  position: absolute;
   overflow: hidden;
-  font-size: 1.3rem;
-  line-height: 1.7;
-}
-
-.pregunta.desplegar + .respuesta {
-  height: auto;
-  overflow: none;
-  position: static;
-  padding: 1.5rem;
+  max-height: 0;
+  font-size: 1.5rem;
+  -webkit-transition: max-height 0.2s;
+  transition: max-height 0.2s;
+  line-height: 1.5;
+  padding: 0.2rem 1.5rem;
+  background-color: #fff;
 }
 
 .resaltar-verde {
@@ -898,9 +893,10 @@ small a {
 
 @media (max-width: 768px) {
   .faq {
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
   .faq-derecha {
     display: none;
@@ -1297,49 +1293,25 @@ h2::after {
   font-family: "Poppins", sans-serif;
 }
 
-.listado-libros {
+.splide__slide {
+  padding-left: 5rem;
+}
+
+.slider-fotos {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  text-align: left;
-}
-
-.flecha-izquierda, .flecha-derecha {
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  color: #3C3C3F;
-  -webkit-box-shadow: 10px 10px 13px 0px #e8e8e8;
-          box-shadow: 10px 10px 13px 0px #e8e8e8;
-  margin-bottom: 10rem;
-}
-
-.libro-descripcion {
-  padding: 0rem 2rem;
-}
-
-.libro-imagen {
-  width: 100%;
-}
-
-.libro-imagen img {
-  max-height: 25rem;
-  -o-object-fit: fill;
-     object-fit: fill;
-  margin: auto;
-  -webkit-box-shadow: 10px 11px 16px -4px rgba(0, 0, 0, 0.15);
-          box-shadow: 10px 11px 16px -4px rgba(0, 0, 0, 0.15);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .libros-item {
-  -ms-flex-preferred-size: 20rem;
-      flex-basis: 20rem;
   margin: 1rem;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  width: 30%;
+  min-width: 20rem;
 }
 
 h3 {
@@ -1363,16 +1335,27 @@ h3 {
           box-shadow: 10px 10px 13px 0px #e8e8e8;
 }
 
+.contenedor-grande {
+  overflow: hidden;
+}
+
 .testimoniales {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+  height: 30rem;
   margin: 0 auto;
   padding: 2rem 0rem;
-  max-width: 50rem;
+  width: 50%;
+  max-width: 60rem;
+}
+
+.testimoniales-item {
+  width: 100%;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
 }
 
 .testimoniales-detalle {
@@ -1386,13 +1369,23 @@ h3 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 80%;
+  width: 60%;
   margin: 0 auto;
 }
 
 .testimoniales-imagen {
   text-align: center;
   margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .testimoniales-imagen img {
@@ -1513,7 +1506,27 @@ h3 {
 .listado-ediciones {
   border-top: 1px solid #3C3C3F;
   border-bottom: 1px solid #3C3C3F;
-  padding: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.libros-item {
+  -ms-flex-preferred-size: 20%;
+      flex-basis: 20%;
+}
+
+.libro-imagen {
+  background-color: #fff;
+}
+
+.libro-imagen img {
+  width: 500px;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .filtros-busqueda {
@@ -1530,41 +1543,29 @@ h3 {
 }
 
 .paginacion {
-  font-family: "Poppins", sans-serif;
-  font-size: 1.5rem;
-  color: #707070;
-  font-weight: 500;
-}
-
-.paginacion p {
-  text-align-last: right;
-  font-size: 1.2rem;
-}
-
-.paginacion-numeros {
-  margin-top: 2rem;
-  font-size: 1.3rem;
+  padding: 2rem;
   text-align: center;
 }
 
-.paginacion-numeros li {
+.paginacion button {
   margin: 0.5rem;
   display: inline;
-  padding: 1rem;
   font-weight: 700;
-  font-size: 1.2rem;
-}
-
-.paginacion-numeros .mueve-pagina {
-  text-transform: uppercase;
-}
-
-.paginacion-numeros .pagina-seleccionada {
+  font-size: 1.5rem;
+  outline: none;
+  border: none;
   background-color: #107066;
-  padding: 1rem 1.5rem;
-  color: #fff;
   -webkit-box-shadow: 10px 11px 16px -4px rgba(0, 0, 0, 0.15);
           box-shadow: 10px 11px 16px -4px rgba(0, 0, 0, 0.15);
+  padding: 1.5rem 1.8rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.paginacion button:hover {
+  background-color: #1b887d;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
 }
 
 @media (max-width: 900px) {
@@ -1658,14 +1659,13 @@ h3 {
   font-weight: 500;
   font-family: "Poppins", sans-serif;
   font-weight: 600;
-  border-bottom: 1px solid #3C3C3F;
 }
 
 .tabla td {
   padding: 1rem;
   font-size: 1.2rem;
   text-align: center;
- 
+  border-bottom: 1px solid #3C3C3F;
 }
 
 .tabla tr {
@@ -1675,11 +1675,6 @@ h3 {
 .tabla i {
   color: #107066;
   font-size: 1.6rem;
-}
-
-.tabla .pgr{
-
-background-color:blue;
 }
 
 .crud-libros {

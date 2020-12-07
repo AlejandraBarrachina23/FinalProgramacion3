@@ -5,14 +5,16 @@
 <html>
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Ediciones Elemento</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/735f5623c2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/estilos.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" href="css/estilos.css">   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+    <link rel="stylesheet" href="css/splide-core.min.css">
+    <link rel="stylesheet" href="css/splide.min.css">
+      <link rel="stylesheet" href="css/estilos.css">
+    <title>Ediciones Elemento</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -29,16 +31,16 @@
                 <ul class="menu">
                     <li><a href="#">Servicios</a>
                             <ul class="submenu">
-                                <li><a href="ghostwriter.html">Ghostwriter</a></li>
-                                <li><a href="talleres.html">Talleres</a></li>
-                                <li><a href="edicion.html">Edición</a></li>
+                                <li><a href="ghostwriter.aspx">Ghostwriter</a></li>
+                                <li><a href="talleres.aspx">Talleres</a></li>
+                                <li><a href="edicion.aspx">Edición</a></li>
                             </ul>
                         </li>
-                    <li><a href="nosotros.html">Nosotros</a></li>
-                    <li><a href="libros.html">Libros</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                    <li><a href="cuenta.html">Cuenta</a></li>
+                    <li><a href="nosotros.aspx">Nosotros</a></li>
+                    <li><a href="libros.aspx">Libros</a></li>
+                    <li><a href="faq.aspx">FAQ</a></li>
+                    <li><a href="contacto.aspx">Contacto</a></li>
+                    <li><a href="cuenta.aspx">Cuenta</a></li>
                  </ul>
                 </nav>            
         </div>   
@@ -48,7 +50,7 @@
                 <h1>Elemento</h1>
                 <h2>Editá tu libro</h2>
                 <p class="descripcion-principal">En “Ediciones Elemento” te asesoramos y acompañamos en todo el proceso de edición de tu libro. Conocemos el esfuerzo que hay detrás de cada proyecto y nos enorgullece ser parte de éste.</p>
-                <a class="btn" href="libros.html">Presupuesto</a>
+                <a class="btn" href="contacto.aspx">Presupuesto</a>
              </div> 
         </div>
     </header>
@@ -63,13 +65,13 @@
             <h3>Navegación</h3>
                 <nav>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="servicios.html">Servicios</a></li>
-                        <li><a href="nosotros.html">Nosotros</a></li>
-                        <li><a href="libros.html">Libros</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="contacto.html">Contacto</a></li>
-                        <li><a href="cuenta.html">Cuenta</a></li>
+                        <li><a href="index.aspx">Home</a></li>
+                        <li><a href="servicios.aspx">Servicios</a></li>
+                        <li><a href="nosotros.aspx">Nosotros</a></li>
+                        <li><a href="libros.aspx">Libros</a></li>
+                        <li><a href="faq.aspx">FAQ</a></li>
+                        <li><a href="contacto.aspx">Contacto</a></li>
+                        <li><a href="cuenta.aspx">Cuenta</a></li>
                     </ul>
                 </nav>
         </div>
@@ -87,4 +89,6 @@
         </div>
 </footer>
 </body>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+    <script src="js/funciones-acordeon.js"></script>
 </html>

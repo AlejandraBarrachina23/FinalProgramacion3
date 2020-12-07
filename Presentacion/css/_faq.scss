@@ -9,6 +9,7 @@
 
     display: flex;
     flex-wrap: wrap;
+
 }
 
 .faq-izquierda, .faq-derecha{
@@ -17,72 +18,51 @@
     flex-basis: calc(50% - 2rem);
 }
 
-
-.preguntas-item{
-
-    margin:1px;
-    position:relative;
-    width:100%;
-    min-width: 35rem;
-    
-    
-       
-}
-
 .pregunta{
   
     background-color:$colorVerdeClaro;
-    border-bottom:1px solid $colorVerde;
     font-family: $fuenteTitulos;
-    font-size:1.3rem;
+    font-size:1.5rem;
     font-weight: 600;
-    padding:1.5rem 2rem;
+    padding:1.3rem 2rem;
     color:#312F2F;
     box-shadow: 10px 11px 16px -4px rgba(0,0,0,0.15);
-    position:relative;
     cursor:pointer;
     display: block;
-    line-height: 1.5rem;
-
-    
-}
-
-.pregunta:after{
-
-    content:'+';
-    font-size:2.5rem;
-    display: block;
-    position:absolute;
-    top:1.5rem;
-    right:1rem;    
-    
-}
-
-.respuesta{
-    
-    background-color:$colorPrincipal;
-    height: 0;
-    position:absolute;
-    overflow: hidden;   
-    
-    font-size:1.3rem;
-    line-height: 1.7;
-
-}
-
-
-.desplegar {
-
+    width: 100%;
+    text-align: left;
+    border:none;
+    outline: none;
+    transition: background 0.2s;
+    margin:0;
  
 }
 
-.pregunta.desplegar + .respuesta{
+.pregunta::after{
 
-    height: auto;
-    overflow: none;
-    position:static;
-    padding:1.5rem; 
-       
+    content:'+';
+    font-size:2.5rem;
+    float: right;
+    transform: sclae(1.5);
+    }  
+
+
+    .pregunta--active::after{
+
+        content:'-';
+    }
+
+.respuesta{
+    
+    overflow:hidden;
+    max-height: 0;
+    font-size:1.5rem;
+    transition: max-height 0.2s;
+    line-height: 1.5;
+    padding: 0.2rem 1.5rem;
+    background-color:#fff;
+ 
+  
 }
 
 .resaltar-verde{
@@ -98,19 +78,20 @@
 }
 
 
+
 @media (max-width:$breakPointTabletVertical){
 
     
 .faq{
 
-    align-items: center;
-    
+    flex-direction: column;
+ 
 }
 
 .faq-derecha{
 
     display: none;
-   
+  
 }
 
 }

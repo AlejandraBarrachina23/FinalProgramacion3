@@ -4,3 +4,9 @@ D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\DAO\obj\Debug\DAO.cs
 D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
 D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\DAO\obj\Debug\DAO.dll
 D:\ALE\FINAL PROGRAMACION\FINAL_Barrachina\FINAL_Barrachina\DAO\obj\Debug\DAO.pdb
+C:\Users\aleja\Desktop\Final_Barrachina-master\DAO\bin\Debug\DAO.dll
+C:\Users\aleja\Desktop\Final_Barrachina-master\DAO\bin\Debug\DAO.pdb
+C:\Users\aleja\Desktop\Final_Barrachina-master\DAO\obj\Debug\DAO.csprojAssemblyReference.cache
+C:\Users\aleja\Desktop\Final_Barrachina-master\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
+C:\Users\aleja\Desktop\Final_Barrachina-master\DAO\obj\Debug\DAO.dll
+C:\Users\aleja\Desktop\Final_Barrachina-master\DAO\obj\Debug\DAO.pdb

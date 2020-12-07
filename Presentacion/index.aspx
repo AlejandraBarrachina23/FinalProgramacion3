@@ -6,58 +6,38 @@
     <main class="contenedor-mediano">
         <h2>Últimos lanzamientos</h2>
         <p class="bajada-titulo">Ultimas trabajos de edición realizadas por nuestra editorial.</p>
-    <div class="listado-libros">
-        <i class="fas fa-arrow-left flecha-izquierda"></i>
-        <div class="libros-item">
-            <div class="libro-imagen">
-                <img src="img/libros/libro7.jpg" alt="">
+        <div class="splide">
+            <div class="splide__arrows">
+                <button class="splide__arrow splide__arrow--prev">
+                    <
+                </button>
+                <button class="splide__arrow splide__arrow--next">
+                    >
+                </button>
             </div>
-            <div class="libro-descripcion">
-            <h3>La disolución freudiana de las psicosis</h3>
-            <p class="autor">por: Adrián Ortiz</p>
-            <div class="libros-calificaciones">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
+            <div class="splide__track">
+                <ul class="splide__list">
+  <%
+
+      Negocio.LibroNegocio unLibroNegocio = new Negocio.LibroNegocio();
+      
+      foreach (var unLibro in unLibroNegocio.ListarUltimasEdiciones())
+      { %>
+            <li class="splide__slide">
+                <div class="libros-item">
+                <div class="libro-imagen">
+                    <img src="<%=unLibro.Portada.Replace("~","") %>" alt="">
+                </div>
+                <div class="libro-descripcion">
+                    <h3><%= unLibro.Titulo %></h3>
+                    <p class="autor">por: <%=  unLibro.Autor.Nombre + " " + unLibro.Autor.Apellido %></p>
+                </div>
+                </div>
+            </li>
+      <%}%>
+            </ul>
         </div>
-        </div>
-        <div class="libros-item">
-            <div class="libro-imagen">
-                <img src="img/libros/libro6.jpg" alt="">
-            </div>
-            <div class="libro-descripcion">
-            <h3>Iorio, el perro cristiano</h3>
-            <p class="autor">por: Ariel O. Torres</p>
-            <div class="libros-calificaciones">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-        </div>
-        </div>
-        <div class="libros-item">
-            <div class="libro-imagen">
-                <img src="img/libros/libro10.jpg" alt="">
-            </div>
-            <div class="libro-descripcion">
-            <h3>Guía para el estudio del servicio de referencia en las bibliotecas</h3>
-            <p class="autor">por: María Laura Andrade</p>
-            <div class="libros-calificaciones">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-        </div>
-        </div>
-        <i class="fas fa-arrow-right flecha-derecha"></i>
-    </div>
+ </div>
     </main>
 <!--Fin Ultimos lanzamiento-->
 <!--Inicio Servicios-->
@@ -140,22 +120,67 @@
 <!--Fin Sobre Mi-->
 <!--Inicio Testimoniales-->
 <div class="fondo-general">
-<section class="contenedor-grande">  
-    <div class="testimoniales">
-        <i class="fas fa-arrow-left "></i>
-        <div class="testimoniales-detalle">
-        <div class="testimoniales-imagen">
-            <img src="img/testimonio1.png" alt="">
-            <h3>Eduardo Perez</h3>
-            <p>Director Ejecutivo, AMSL</p>
+
+<section class="contenedor-grande">
+    <div class="testimoniales">     
+        <div class="testimoniales-item">
+            <div class="testimoniales-detalle">
+                <div class="testimoniales-imagen">
+                    <img src="img/testimonio1.png" alt="">
+                    <h3>Eduardo Perez</h3>
+                    <p>Director Ejecutivo, AMSL</p>
+                </div>
+                <div class="testimoniales-descripcion">
+                    <p><i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare lorem neque, etscelerisque ligula tempus nec. Nam molestie leo sit amet arcu lacinia, et ullamcorper  libero rutrum. </p>
+                </div>
+            </div>
         </div>
-        <div class="testimoniales-descripcion">
-            <p><i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare lorem neque, etscelerisque ligula tempus nec. Nam molestie leo sit amet arcu lacinia, et ullamcorper  libero rutrum. </p>
+
+        <div class="testimoniales-item">
+            <div class="testimoniales-detalle">
+                <div class="testimoniales-imagen">
+                    <img src="img/testimoniales2.jpg" alt="">
+                    <h3>Fernando Rodriguez</h3>
+                    <p>Product Manager, AVON</p>
+                </div>
+                <div class="testimoniales-descripcion">
+                    <p><i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare lorem neque, etscelerisque ligula tempus nec. Nam molestie leo sit amet arcu lacinia, et ullamcorper  libero rutrum. </p>
+                </div>
+            </div>
         </div>
-    </div>
-        <i class="fas fa-arrow-right "></i>
+
+        <div class="testimoniales-item">
+            
+            <div class="testimoniales-detalle">
+                <div class="testimoniales-imagen">
+                    <img src="img/testimoniales3.jpg" alt="">
+                    <h3>Virginia Oliviero </h3>
+                    <p>Compositora musical</p>
+                </div>
+                <div class="testimoniales-descripcion">
+                    <p><i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare lorem neque, etscelerisque ligula tempus nec. Nam molestie leo sit amet arcu lacinia, et ullamcorper  libero rutrum. </p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="testimoniales-item">
+            
+            <div class="testimoniales-detalle">
+                <div class="testimoniales-imagen">
+                    <img src="img/testimoniales4.jpg" alt="">
+                    <h3>Sofia Lamas</h3>
+                    <p>Chef principal, El Gourmet</p>
+                </div>
+                <div class="testimoniales-descripcion">
+                    <p><i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare lorem neque, etscelerisque ligula tempus nec. Nam molestie leo sit amet arcu lacinia, et ullamcorper  libero rutrum. </p>
+                </div>
+            </div>
+
+        </div>
     </div>
 </section>
+    
 <!--Fin Testimoniales-->
 <!--Inicio Contacto-->
 
@@ -163,9 +188,9 @@
     <div class="contenedor-mediano contacto-principal">
         <h2>Contacto</h2>
     <div class="contacto-simple">
-    <div class="contacto-simple-informacion">
-        <p class="bajada-titulo">Para enviarnos un mensaje, complete el siguiente formulario. Nos contactaremos a la brevedad con usted.</p>
-        <div class="datos-contacto">
+        <div class="contacto-simple-informacion">
+            <p class="bajada-titulo">Para enviarnos un mensaje, complete el siguiente formulario. Nos contactaremos a la brevedad con usted.</p>
+            <div class="datos-contacto">
         <address>
             <div class="contacto-item">
                 <i class="fas fa-envelope-open-text"></i><p>adrianapcabrera@gmail.com</p>
@@ -190,9 +215,13 @@
             <asp:Button ID="btnEnviarConsulta" CssClass="btn" runat="server" Text="Enviar" OnClick="btnEnviarConsulta_Click" />
         </div>
     </form>
-        <asp:Label ID="prueba" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="lblEstado" runat="server" Text="Label"></asp:Label>
+</div>
 </div>
 </section>
 </div>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+    <script src="js/funciones.js"></script>
 <!--Fin Contacto-->
+    
 </asp:Content>

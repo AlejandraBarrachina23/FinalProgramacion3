@@ -19,30 +19,11 @@ namespace Presentacion
 
         protected void btnEnviarConsulta_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string Mensaje = Request.Form["tboxMensaje"];
-                string NombreUsuario = Request.Form["tboxNombreUsuario"];
-                string SubjectUsuario = "Ediciones Elemento - Mensaje";
-                
-
-
-                string email = Request.Form["tboxEmail"];
-                prueba.Text = Mensaje + " " + NombreUsuario + " " + email;
-                
-
-                UsuarioNegocio unUsuarioNegocio = new UsuarioNegocio();
-                unUsuarioNegocio.EnviarMail("alejandrabarrachina23@gmail.com", email, "barr1989Share.", Mensaje);
-                                
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-         
-
+            UsuarioNegocio unUsuarioNegocio = new UsuarioNegocio();
+            string NombreUsuario = Request.Form["tboxNombreUsuario"];
+            string CorreoElectronico = Request.Form["tboxEmail"];
+            string Mensaje = Request.Form["tboxMensaje"];
+            //unUsuarioNegocio.EnviarMail("alejandrabarrachina23@gmail.com", CorreoElectronico, "barr1989Share.", "", "Ediciones-Elemento");
 
         }
     }

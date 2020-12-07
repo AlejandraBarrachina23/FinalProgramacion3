@@ -13,7 +13,7 @@ namespace DAO
         public class AdministradorAccesoDatos
        
         {
-            public static string RutaBaseDatos = "data source =.; initial catalog= EdicionesElemento; integrated security=sspi";
+            public static string RutaBaseDatos = "data source =localhost\\SQLEXPRESS; initial catalog= EdicionesElemento; integrated security=sspi";
             private SqlConnection conexionSQL;
             private SqlCommand comandoSQL;
             private SqlDataReader lectorDatos;
@@ -83,7 +83,14 @@ namespace DAO
                 try
                 {
                     comandoSQL.Connection = conexionSQL;
-                    return (int)comandoSQL.ExecuteScalar();
+                    var resultado = comandoSQL.ExecuteScalar();
+                
+                if (resultado == DBNull.Value) { 
+                    return 0;
+                }
+
+                return Convert.ToInt32(resultado);
+
                 }
                 catch (Exception ex)
                 {

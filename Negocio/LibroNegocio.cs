@@ -146,6 +146,46 @@ namespace Negocio
             AccederDatos.CerrarConexion();
         }
 
+        public List<Libro> ListarUltimasEdiciones() {
+
+            List<Libro> ListadoUltimosLibrosEditados = new List<Libro>();
+            AccederDatos.AbrirConexion();
+            AccederDatos.DefinirProcedimientoAlmacenado("SP_ListarUltimasEdiciones");
+            AccederDatos.EjecutarConsulta();
+
+            while (AccederDatos.LectorDatos.Read())
+            {
+                Libro unLibro = new Libro();
+                unLibro.Autor = new Autor();
+                
+                unLibro.Titulo = (string)AccederDatos.LectorDatos["Titulo"];
+                unLibro.AnioEdicion = (int)AccederDatos.LectorDatos["Fecha_Edicion"];
+                unLibro.Autor.Nombre = (string)AccederDatos.LectorDatos["Nombre"];
+                unLibro.Autor.Apellido = (string)AccederDatos.LectorDatos["Apellido"];
+                unLibro.Portada = (string)AccederDatos.LectorDatos["Portada"];
+                ListadoUltimosLibrosEditados.Add(unLibro);
+            }
+
+            AccederDatos.CerrarConexion();
+            return ListadoUltimosLibrosEditados;
+
+        }
+
+        public int ValidarISBN(string ISBN) {
+
+           
+            AccederDatos.AbrirConexion();
+            AccederDatos.DefinirProcedimientoAlmacenado("SP_IsbnRepetido");
+            AccederDatos.Comando.Parameters.Clear();
+            AccederDatos.Comando.Parameters.AddWithValue("@ISBN", ISBN);
+            int respuesta = AccederDatos.ejecutarAccionReturn();
+            AccederDatos.CerrarConexion();
+            return respuesta;
+
+        }
+
+
+
     }
 }
 
