@@ -48,5 +48,32 @@ namespace Negocio
             return usuarioLogeado;
 
         }
+
+        public int VerificarUsuarioExistente(string NombreUsuario) {
+
+            AccederDatos.AbrirConexion();
+            AccederDatos.DefinirProcedimientoAlmacenado("SP_VerificarUsuarioExistente");
+            AccederDatos.Comando.Parameters.Clear();
+            AccederDatos.Comando.Parameters.AddWithValue("@usuario", NombreUsuario);
+            var respuesta = AccederDatos.ejecutarAccionReturn();
+            AccederDatos.CerrarConexion();
+            return respuesta;
+
+        }
+
+        public int VerificarMailExistente(string Email)
+        {
+
+            AccederDatos.AbrirConexion();
+            AccederDatos.DefinirProcedimientoAlmacenado("SP_VerificarEmailExistente");
+            AccederDatos.Comando.Parameters.Clear();
+            AccederDatos.Comando.Parameters.AddWithValue("@email", Email);
+            var respuesta = AccederDatos.ejecutarAccionReturn();
+            AccederDatos.CerrarConexion();
+            return respuesta;
+
+        }
+
+
     }
 }

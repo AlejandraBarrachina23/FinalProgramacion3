@@ -43,7 +43,6 @@
         </div>
             <form id="form1" runat="server">
             <!-- Modal ELIMINAR -->
-        
                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -64,8 +63,6 @@
                   </div>
                 </div>
                 <asp:Label ID="Label2" runat="server" />
-
-
             <asp:Button ID="btnAgregar" type="button" class="btn btn-primary preview" data-toggle="modal" data-target=".bd-example-modal-lg" runat="server" OnClick="btnAgregar_Click" Text="Agregar"/>
                     <div id="mymodal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">

@@ -14,5 +14,10 @@ namespace Presentacion
         {
       
         }
+
+        protected void lnkCuenta_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

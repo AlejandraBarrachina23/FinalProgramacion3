@@ -36,10 +36,10 @@
                     <li><a href="nosotros.html">Nosotros</a></li>
                     <li><a href="libros.html">Libros</a></li>
                     <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                    <li><a href="cuenta.html">Cuenta</a></li>
+                    <li><a id="contactohmtl" href="contacto.html">Contacto</a></li>
+                    <asp:HyperLink ID="hplnkContacto" runat="server" Visible="false">Contacto</asp:HyperLink>
                  </ul>
-                </nav>            
+                </nav>           
         </div>     
     </header>
         <div>

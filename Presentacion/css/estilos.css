@@ -972,8 +972,8 @@ legend {
 input[type=submit] {
   padding: 1rem;
   display: block;
-  width: 20%;
   margin-top: 3rem;
+  width: 50%;
 }
 
 @media (max-width: 768px) {
@@ -984,11 +984,21 @@ input[type=submit] {
   }
 }
 
-.formulario-usuario fieldset {
-  border-top: none;
+.contenedor-cuenta {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.registro {
+.formulario-registro {
+  -ms-flex-preferred-size: 45%;
+      flex-basis: 45%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -996,26 +1006,22 @@ input[type=submit] {
       justify-content: space-around;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  margin: 0 auto;
+  margin-top: 2rem;
   color: #707070;
-  margin-top: 3rem;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-.registro fieldset {
+.formulario-registro fieldset {
+  width: 100%;
   border-top: none;
   -webkit-box-shadow: 10px 11px 16px -4px rgba(0, 0, 0, 0.15);
           box-shadow: 10px 11px 16px -4px rgba(0, 0, 0, 0.15);
-  padding: 3rem;
 }
 
-.registro input {
+.formulario-registro .fieldset-datos {
   width: 100%;
-}
-
-.registro .fieldset-datos {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1025,20 +1031,30 @@ input[type=submit] {
           flex-direction: column;
 }
 
-.registro h3 {
+.formulario-registro .fieldset-datos .form-item {
+  padding-top: 0.5rem;
+}
+
+.formulario-registro .fieldset-datos .form-item input {
+  font-size: 1.4rem;
+}
+
+.formulario-registro .fieldset-datos .form-item label {
+  font-size: 1.5rem;
+}
+
+.formulario-registro h3 {
   padding: 0rem 1rem;
 }
 
-.registro .btn {
+.formulario-registro .btn {
   width: 95%;
   margin-left: 0.8rem;
 }
 
 .formulario-iniciar-sesion {
-  -ms-flex-preferred-size: 35%;
-      flex-basis: 35%;
-  min-width: 35rem;
-  margin: 4rem 0rem;
+  -ms-flex-preferred-size: 40%;
+      flex-basis: 40%;
 }
 
 .formulario-iniciar-sesion p {
@@ -1047,10 +1063,31 @@ input[type=submit] {
   margin: 0;
 }
 
-.formulario-registro {
-  -ms-flex-preferred-size: 40%;
-      flex-basis: 40%;
-  min-width: 35rem;
+.formulario-iniciar-sesion .fieldset-datos {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.formulario-iniciar-sesion .fieldset-datos .form-item {
+  padding-top: 0.5rem;
+}
+
+.formulario-iniciar-sesion .fieldset-datos .form-item input {
+  font-size: 1.4rem;
+}
+
+.formulario-iniciar-sesion .fieldset-datos .form-item label {
+  font-size: 1.5rem;
+}
+
+.formulario-iniciar-sesion fieldset {
+  border: 0;
 }
 
 .input-imagen {
@@ -1069,6 +1106,18 @@ input[type=submit] {
 
 .input-imagen i {
   color: #707070;
+}
+
+.olvide-contrasenia {
+  text-decoration: none;
+  color: #3C3C3F;
+  font-style: italic;
+}
+
+.Error {
+  color: red;
+  font-size: 1.5rem;
+  margin: 0;
 }
 
 .header-nosotros {
@@ -1494,6 +1543,35 @@ h3 {
   }
 }
 
+.descripcion-libro {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal-izquierda, .modal-derecha {
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+  margin: 1rem;
+}
+
+.modal-derecha h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.modal-derecha p {
+  font-size: 1.3rem;
+  line-height: 1.6;
+}
+
+.modal-derecha p span {
+  font-weight: 500;
+}
+
 .subtitulo {
   text-transform: none;
 }
@@ -1516,17 +1594,44 @@ h3 {
 .libros-item {
   -ms-flex-preferred-size: 20%;
       flex-basis: 20%;
+  position: relative;
+}
+
+.libros-item:hover .preview {
+  bottom: 20%;
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
+  -webkit-transition-property: bottom;
+  transition-property: bottom;
+  visibility: visible;
+}
+
+.preview {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  background-color: #94D6C8;
+  color: #3C3C3F;
+  padding: 1rem 2rem;
+  opacity: 0.8;
+  position: absolute;
+  text-align: center;
+  display: block;
+  width: 100%;
+  font-size: 1.5rem;
+  visibility: hidden;
+}
+
+.preview a {
+  text-decoration: none;
+  color: #3C3C3F;
 }
 
 .libro-imagen {
-  background-color: #fff;
+  background-color: pink;
 }
 
 .libro-imagen img {
-  width: 500px;
-  height: 300px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  overflow: hidden;
 }
 
 .filtros-busqueda {

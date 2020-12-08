@@ -77,6 +77,7 @@
     <Content Include="ghostwriter.aspx" />
     <Content Include="js\paginacion.js" />
     <Content Include="js\Preview.js" />
+    <Content Include="js\validacionesRegistro.js" />
     <Content Include="mail-template-admin-index.html" />
     <Content Include="mail-template-admin.html" />
     <Content Include="img\delete.png" />

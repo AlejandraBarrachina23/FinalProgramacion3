@@ -52,8 +52,6 @@ namespace Presentacion
 
             }
 
-            //OCULTO VENTANAS EMERGENTES
-           //modal.Visible = false;
         }
 
         protected void grillaLibros_SelectedIndexChanged(object sender, EventArgs e)
@@ -61,6 +59,7 @@ namespace Presentacion
 
             try
             {
+                //PRECARGA DE DATOS EN EL FORMULARIO OCULTO
                 LibroNegocio unLibroNegocio = new LibroNegocio();
 
                 // VARIABLE QUE ALMACENA EL INDICE DE LA FILA SELECCIONADA, SE AJUSTA CON LA PAGINACIÓN
@@ -97,15 +96,15 @@ namespace Presentacion
             }
             catch (Exception exc)
             {
-                //lblIndex.Text = exc.Message;
+
                 throw;
             }
-
 
         }
 
         protected void grillaLibros_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+
             LibroNegocio unLibroNegocio = new LibroNegocio();
             grillaLibros.PageIndex = e.NewPageIndex;
             grillaLibros.DataSource = unLibroNegocio.ListadoLibros();
@@ -119,7 +118,7 @@ namespace Presentacion
 
         protected void grillaLibros_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-
+            //TOMO EL VALOR DEL LIBRO A ELIMINAR
             lblTituloEliminar.Text = e.Values[1].ToString();
             lblISBNEliminar.Text = e.Values[0].ToString();
 
@@ -128,6 +127,7 @@ namespace Presentacion
         protected void grillaLibros_RowCommand(object sender, GridViewCommandEventArgs e)
         {
           
+            //VERIFICO QUE COMANDO ACTIVO EL EVENTO PARA PODER DESPLEGAR LA VENTANA EMERGENTE ASOCIADA
 
             if (e.CommandName == "Select")
             {
@@ -143,14 +143,11 @@ namespace Presentacion
 
         }
             
-        
-
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
        
             ScriptManager.RegisterStartupScript(this, this.GetType(), "AbrirModal", "$('#mymodal').modal({show:true});", true);
             btnModificar.Visible = false;
-            
 
         }
 
@@ -162,7 +159,6 @@ namespace Presentacion
             desde un cliente como una colección de archivos.*/
 
             //CAPTURA DE LA IMAGEN DEL FILE UPLOAD
-
             lblISBN.Text = "";
             lblErrorImagen.Text = "";
             
