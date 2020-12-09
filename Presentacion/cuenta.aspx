@@ -10,6 +10,8 @@
 </div>
 <div class="">
     <form runat="server" class="contenedor-cuenta">
+
+        <!--Formulario Inicio Sesión-->
         <div class="formulario-iniciar-sesion">
             <fieldset>
                 <h3>Iniciar sesión</h3>
@@ -20,7 +22,7 @@
                             <asp:TextBox ID="tboxUsuarioInicio" type="text" runat="server"></asp:TextBox>
                             <i class="fas fa-lock"></i>
                         </div>
-                        <asp:RequiredFieldValidator ID="rfvUsuarioInicio" ControlToValidate="tboxUsuarioInicio" class="Error" runat="server" ErrorMessage="Complete este campo"></asp:RequiredFieldValidator>
+                    <asp:Label ID="lblErrorUsuarioInicio" runat="server" Text="" class="Error"></asp:Label>
                     </div>
                     <div class="form-item">
                         <label for="contrasenia">Contraseña</label>
@@ -28,15 +30,16 @@
                             <asp:TextBox ID="tboxConstrasenia" type="password" runat="server"></asp:TextBox>
                             <i class="far fa-eye-slash mostrar"></i>
                         </div>
-                        <asp:RequiredFieldValidator ID="rfvContraseniaInicio" ControlToValidate="tboxConstrasenia" class="Error" runat="server" ErrorMessage="Complete este campo"></asp:RequiredFieldValidator>
+                        <asp:Label ID="lblErrorContraseniaInicio" runat="server" Text="" class="Error"></asp:Label>
                     </div>
                 </div>
                 <asp:Label ID="lblEstadoLogeo" class="Error" runat="server" Text=""></asp:Label>    
                 <a href="#"><p>Olvide mi contraseña</p></a>
-                <asp:Button ID="btnIniciarSesion" Text="Iniciar Sesión" runat="server" CssClass="btn" OnClick="btnIniciarSesion_Click" />
-                 
+                <asp:Button ID="btnIniciarSesion" Text="Iniciar Sesión" runat="server" CssClass="btn" OnClick="btnIniciarSesion_Click" OnClientClick="return ValidarInicioSesion();"/>
             </fieldset>
         </div>
+
+        <!--Formulario Registro-->
         <div class="formulario-registro" id="formularioRegistro">
             <fieldset>
              <h3>Registrate</h3>
@@ -87,9 +90,8 @@
        </div>
     </form>              
 </div>
-  
     </section>
-    <script src="js/validacionesRegistro.js">             </script>
-        
+    <script src="js/validacionesRegistro.js"></script>
+    <script src="js/botonCerrarSesion.js"></script>
 <!--Fin section-edicion-->
 </asp:Content>

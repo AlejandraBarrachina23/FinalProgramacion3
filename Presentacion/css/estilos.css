@@ -1120,6 +1120,29 @@ input[type=submit] {
   margin: 0;
 }
 
+.ventana-emergente .fieldset-datos .form-item {
+  padding-top: 0.5rem;
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+}
+
+.ventana-emergente .fieldset-datos .form-item input {
+  font-size: 1.4rem;
+}
+
+.ventana-emergente .fieldset-datos .form-item label {
+  font-size: 1.5rem;
+}
+
+.ventana-emergente .fieldset-datos .form-item select {
+  font-size: 1.4rem;
+  padding: 1rem;
+}
+
+.ventana-emergente .fieldset-datos .form-item textarea {
+  font-size: 1.4rem;
+}
+
 .header-nosotros {
   height: 25vh;
   background-image: url(../img/fondo-nosotros.png);

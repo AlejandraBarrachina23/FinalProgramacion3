@@ -14,7 +14,6 @@ namespace Presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             
-            
         }
     
 
@@ -47,14 +46,27 @@ namespace Presentacion
             Usuario usuarioIngresado = new Usuario();
             usuarioIngresado.NombreUsuario = tboxUsuarioRegistro.Text.ToLower();
             usuarioIngresado.Email = tboxEmailRegistro.Text;
-            //usuarioIngresado.Celular = Convert.ToInt32(tboxCelularRegistro.Text);
+            usuarioIngresado.Celular = Convert.ToInt32(tboxCelularRegistro.Text);
             usuarioIngresado.Contrasenia = tboxContraseniaRegistro.Text;
 
-            if (unUsuarioNegocio.VerificarUsuarioExistente(usuarioIngresado.NombreUsuario) == 1)
-                lblErrorRegistroUsuario.Text = "El nombre de usuario ingresado ya esta en uso";
+            if (unUsuarioNegocio.VerificarUsuarioExistente(usuarioIngresado.NombreUsuario) != 1)
+            {
 
-            if (unUsuarioNegocio.VerificarMailExistente(usuarioIngresado.Email) == 1)
-                lblErrorRegistroEmail.Text = "El mail ingresado ya esta en uso";
+                if (unUsuarioNegocio.VerificarMailExistente(usuarioIngresado.Email) != 1) { 
+                    
+                }
+
+                else lblErrorRegistroEmail.Text = "El mail ingresado ya esta en uso";
+
+            }
+
+            else {
+                
+                lblErrorRegistroUsuario.Text = "El nombre de usuario ingresado ya esta en uso";
+            }
+                
+
+            
       
         }
     }

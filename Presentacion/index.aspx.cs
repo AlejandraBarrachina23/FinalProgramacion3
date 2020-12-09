@@ -14,7 +14,14 @@ namespace Presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Usuario usuarioActivo = (Usuario)Session["UsuarioLogeado"];
 
+            if (Session["UsuarioLogeado"] != null)
+            {
+                HyperLink linkPerfil = (HyperLink)Master.FindControl("hplnkLogin");
+                linkPerfil.Text = usuarioActivo.NombreUsuario;
+                linkPerfil.NavigateUrl = "~/cuenta-home.aspx";
+            }
         }
 
         protected void btnEnviarConsulta_Click(object sender, EventArgs e)

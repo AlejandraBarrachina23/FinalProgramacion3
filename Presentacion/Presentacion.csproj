@@ -75,8 +75,10 @@
     <Content Include="cuenta-libros.aspx" />
     <Content Include="edicion.aspx" />
     <Content Include="ghostwriter.aspx" />
+    <Content Include="js\botonCerrarSesion.js" />
     <Content Include="js\paginacion.js" />
     <Content Include="js\Preview.js" />
+    <Content Include="js\validacionesABML.js" />
     <Content Include="js\validacionesRegistro.js" />
     <Content Include="mail-template-admin-index.html" />
     <Content Include="mail-template-admin.html" />
@@ -99,6 +101,7 @@
     <Content Include="js\funciones-acordeon.js" />
     <Content Include="js\contacto.js" />
     <Content Include="mail-template.html" />
+    <Content Include="notificacion.aspx" />
     <Content Include="talleres.aspx" />
     <Content Include="Web.config" />
     <Content Include="index.aspx" />
@@ -138,6 +141,13 @@
     </Compile>
     <Compile Include="ghostwriter.aspx.designer.cs">
       <DependentUpon>ghostwriter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="notificacion.aspx.cs">
+      <DependentUpon>notificacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="notificacion.aspx.designer.cs">
+      <DependentUpon>notificacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SiteMaterAllPages.Master.cs">

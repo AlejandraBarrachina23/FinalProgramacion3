@@ -26,7 +26,7 @@ namespace Presentacion
             AutorNegocio unAutorNegocio = new AutorNegocio();
             EditorialNegocio unaEditorialNegocio = new EditorialNegocio();
 
-            //CARGO GRID
+            //CARGO GRID -> LIBROS
             grillaLibros.DataSource = unLibroNegocio.ListadoLibros();
             grillaLibros.DataBind();
 
@@ -50,6 +50,16 @@ namespace Presentacion
                 ddlEditorial.DataTextField = "NombreEditorial";
                 ddlEditorial.DataBind();
 
+            }
+
+            //CARGO DATOS DE USUARIO
+            Usuario usuarioActivo = (Usuario)Session["UsuarioLogeado"];
+
+            if (Session["UsuarioLogeado"] != null)
+            {
+                HyperLink linkPerfil = (HyperLink)Master.FindControl("hplnkLogin");
+                linkPerfil.Text = usuarioActivo.NombreUsuario;
+                linkPerfil.NavigateUrl = "~/cuenta-home.aspx";
             }
 
         }
@@ -90,8 +100,6 @@ namespace Presentacion
                 imgPortada.ImageUrl = LibroSeleccionado.Portada;
 
                 //HABILITO Y DESHABILITO LOS BOTONES
-                btnAceptar.Visible = false;
-                btnModificar.Visible = true;
                 tboxIsbn.Enabled = false;
             }
             catch (Exception exc)
@@ -132,7 +140,10 @@ namespace Presentacion
             if (e.CommandName == "Select")
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "AbrirModal", "$('#mymodal').modal({show:true});", true);
+                btnModificar.Visible = true;
                 btnAceptar.Visible = false;
+
+
             }
 
             if (e.CommandName == "Delete") 
@@ -147,13 +158,16 @@ namespace Presentacion
         {
        
             ScriptManager.RegisterStartupScript(this, this.GetType(), "AbrirModal", "$('#mymodal').modal({show:true});", true);
+            LimpiarFormulario();
+            tboxIsbn.Enabled = true;
             btnModificar.Visible = false;
+            btnAceptar.Visible = true;
 
         }
 
         protected void btnAceptar_Click1(object sender, EventArgs e)
         {
-
+            
             tboxIsbn.Enabled = true;
             /*HttpPostedFile -> La HttpFileCollection clase proporciona acceso a todos los archivos que se cargan 
             desde un cliente como una colección de archivos.*/
@@ -165,7 +179,7 @@ namespace Presentacion
             HttpPostedFile imagenCargada = fupImagenPortada.PostedFile;
             LibroNegocio unLibroNegocio = new LibroNegocio();
 
-            //cumple condiciones o es la por defecto
+            //VERIFICA SI LA IMAGEN CUMPLES LOS REQUISITOS O SINO CARGO NINGUNA IMAGEN
 
             if (VerificarUpload(imagenCargada) || VerificarImagen(imagenCargada))
             {
@@ -184,13 +198,12 @@ namespace Presentacion
 
                 else {
 
-
                     unNuevoLibro.setearLibro(tboxIsbn.Text, tboxTitulo.Text, Convert.ToInt32(ddlFormatos.SelectedItem.Value), tboxSinopsis.Text, Convert.ToInt32(AnioEdicion.Text),
                     Convert.ToInt32(ddlAutores.SelectedItem.Value), Convert.ToInt32(ddlEditorial.SelectedItem.Value), imgPortada.ImageUrl);
                     unLibroNegocio.AgregarLibro(unNuevoLibro);
                     grillaLibros.DataSource = unLibroNegocio.ListadoLibros();
                     grillaLibros.DataBind();
-
+                    
                 }
 
             }

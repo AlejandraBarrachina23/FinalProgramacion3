@@ -31,21 +31,21 @@
         <div class="listado-ediciones" id="list">
         <% Negocio.LibroNegocio unLibroNegocio = new Negocio.LibroNegocio();
             List<Dominio.Libro> ListadoLibros = unLibroNegocio.ListadoLibros();
-            int posicion = 0;
+           
 
             foreach (var unLibro in unLibroNegocio.ListadoLibros())
             {
-                posicion++;%>        
+                %>        
             <div class="libros-item">
                 <div class="libro-imagen">
                     <img src="<%=unLibro.Portada.Replace("~","") %>" alt="">
-                    <button type="button" class="btn btn-primary preview" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-search-plus"></i> Ver más</button>
-                    <p class="identificador"><%=posicion%></p>
+                    <button type="button" class="btn btn-primary preview resumen" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-search-plus"></i> Ver más</button>
                 </div>
                 <div class="libro-descripcion">
                     <h3><%= unLibro.Titulo %></h3>
                     <p class="autor">por: <%=  unLibro.Autor.Nombre + " " + unLibro.Autor.Apellido %></p>
-
+                    <p hidden><%=  unLibro.Sinopsis %></p>
+                    <p hidden><%=  unLibro.AnioEdicion %></p>
                 </div>
             </div>
         <%}%>
@@ -62,15 +62,14 @@
             </div>
             <div class="modal-body descripcion-libro">
                 <div class="modal-izquierda">
-                    <img src="img/libros/libro7.jpg" alt="">
+                    <img src="img/libros/libro7.jpg" id="modal-imagen" alt="">
                 </div>
                 <div class="modal-derecha">
-                    <h3 id="titulo"></h3>
-                    <p id="sinopsis"></p>
+                    <h3 id="modal-titulo"></h3>
+                    <p id="modal-sinopsis"></p>
                     <hr>
-                    <p><span>Autor: </span> Adrián Ortiz</p> 
-                    <p><span>Género: </span> Suspenso</p>
-                    <p><span>Año: </span> 2018 </p>
+                    <p id="modal-autor">Adrián Ortiz</p> 
+                    <p id="modal-anio">2018 </p>
                     <div class="libros-calificaciones">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -86,13 +85,25 @@
     </section>
         <script src="js/paginacion.js"></script>
         <script>
-            const items = document.querySelectorAll('button.btn.btn-primary');
-            let posicion = 0;
+
+            const items = document.querySelectorAll('.resumen');
+            
+            let modalTitulo = document.getElementById('modal-titulo');
+            let modalAutor = document.getElementById('modal-autor');
+            let modalImagen = document.getElementById('modal-imagen');
+            let modalAnio = document.getElementById('modal-anio');
+            let modalSinopsis = document.getElementById('modal-sinopsis');
                     
             items.forEach(item => {
             item.addEventListener('click', function(event){
-                posicion = item.nextElementSibling.textContent;
-                document.getElementById('sinopsis').textContent = <%= unLibroNegocio.ListadoLibros()[0].Titulo %>
+
+
+                modalTitulo.textContent = item.parentElement.parentElement.lastElementChild.children[0].textContent;
+                modalAutor.textContent = "Autor: " + item.parentElement.parentElement.lastElementChild.children[1].textContent;
+                modalAnio.textContent = "Año: " + item.parentElement.parentElement.lastElementChild.children[2].textContent;
+                modalSinopsis.textContent = "Sinopsis: " + item.parentElement.parentElement.lastElementChild.children[3].textContent;
+                modalImagen.src = item.parentElement.firstElementChild.src;
+
 
                  })
           })

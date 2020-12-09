@@ -24,13 +24,13 @@ namespace Presentacion
         protected global::System.Web.UI.WebControls.TextBox tboxUsuarioInicio;
 
         /// <summary>
-        /// Control rfvUsuarioInicio.
+        /// Control lblErrorUsuarioInicio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvUsuarioInicio;
+        protected global::System.Web.UI.WebControls.Label lblErrorUsuarioInicio;
 
         /// <summary>
         /// Control tboxConstrasenia.
@@ -42,13 +42,13 @@ namespace Presentacion
         protected global::System.Web.UI.WebControls.TextBox tboxConstrasenia;
 
         /// <summary>
-        /// Control rfvContraseniaInicio.
+        /// Control lblErrorContraseniaInicio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvContraseniaInicio;
+        protected global::System.Web.UI.WebControls.Label lblErrorContraseniaInicio;
 
         /// <summary>
         /// Control lblEstadoLogeo.
