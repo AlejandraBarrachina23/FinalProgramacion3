@@ -23,15 +23,15 @@ namespace Presentacion
             Usuario usuarioIngresado = new Usuario();
             usuarioIngresado.NombreUsuario = tboxUsuarioInicio.Text.ToLower();
             usuarioIngresado.Contrasenia = tboxConstrasenia.Text.ToLower();
+            usuarioIngresado = unUsuarioNegocio.UsuarioLogeado(usuarioIngresado.NombreUsuario);
 
-            if (unUsuarioNegocio.VerificarUsuarioCargado(usuarioIngresado) == 1) {
-
-                //ME GUARDO LOS DATOS DEL USUARIO Y REDIRECCIONO A LA SIGUIENTE SECCIÓN
-                usuarioIngresado = unUsuarioNegocio.UsuarioLogeado(usuarioIngresado.NombreUsuario);
-                lblEstadoLogeo.Text = "Exito" + usuarioIngresado.NombreUsuario + usuarioIngresado.Nombre + usuarioIngresado.Apellido;
-                Session["UsuarioLogeado"] = usuarioIngresado;
-                Response.Redirect("cuenta-home.aspx");
+            if (usuarioIngresado!=null) {
                 
+                Session["UsuarioLogeado"] = usuarioIngresado;
+                //ME GUARDO LOS DATOS DEL USUARIO Y REDIRECCIONO A LA SIGUIENTE SECCIÓN
+                if (usuarioIngresado.TipoUsuario) Response.Redirect("cuenta-home.aspx");
+                else Response.Redirect("index.aspx");
+
             }
 
             else lblEstadoLogeo.Text = "El usuario/contraseña ingresado no existen";
@@ -46,14 +46,19 @@ namespace Presentacion
             Usuario usuarioIngresado = new Usuario();
             usuarioIngresado.NombreUsuario = tboxUsuarioRegistro.Text.ToLower();
             usuarioIngresado.Email = tboxEmailRegistro.Text;
-            usuarioIngresado.Celular = Convert.ToInt32(tboxCelularRegistro.Text);
+            usuarioIngresado.Celular = tboxCelularRegistro.Text;
             usuarioIngresado.Contrasenia = tboxContraseniaRegistro.Text;
 
             if (unUsuarioNegocio.VerificarUsuarioExistente(usuarioIngresado.NombreUsuario) != 1)
             {
 
-                if (unUsuarioNegocio.VerificarMailExistente(usuarioIngresado.Email) != 1) { 
-                    
+                if (unUsuarioNegocio.VerificarMailExistente(usuarioIngresado.Email) != 1) {
+
+                    usuarioIngresado.NombreUsuario = tboxUsuarioRegistro.Text;
+                    usuarioIngresado.Contrasenia = tboxContraseniaRegistro.Text;
+                    usuarioIngresado.Celular = tboxCelularRegistro.Text;
+                    usuarioIngresado.Email = tboxEmailRegistro.Text;
+                    unUsuarioNegocio.AgregarUsuario(usuarioIngresado);
                 }
 
                 else lblErrorRegistroEmail.Text = "El mail ingresado ya esta en uso";
@@ -63,6 +68,7 @@ namespace Presentacion
             else {
                 
                 lblErrorRegistroUsuario.Text = "El nombre de usuario ingresado ya esta en uso";
+
             }
                 
 

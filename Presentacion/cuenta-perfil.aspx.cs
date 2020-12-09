@@ -14,11 +14,16 @@ namespace Presentacion
         {
             Usuario usuarioActivo = (Usuario)Session["UsuarioLogeado"];
 
-            if (Session["UsuarioLogeado"] != null)
+            if (Session["UsuarioLogeado"] != null && usuarioActivo.TipoUsuario)
             {
                 HyperLink linkPerfil = (HyperLink)Master.FindControl("hplnkLogin");
                 linkPerfil.Text = usuarioActivo.NombreUsuario;
                 linkPerfil.NavigateUrl = "~/cuenta-home.aspx";
+            }
+
+            else
+            {
+                Response.Redirect("error404.aspx");
             }
         }
     }

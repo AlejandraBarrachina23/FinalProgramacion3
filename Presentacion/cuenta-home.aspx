@@ -9,37 +9,35 @@
         </div>
     <div class="edicion-servicios">
         <div class="edicion-item">
-            <a href="cuenta-libros.aspx">
                 <div class="edicion-item-imagen">
                     <img src="img/inicio-libros.jpg" alt="servicio-correcion">
-                    <h3>Libros</h3>
+                    <a href="cuenta-libros.aspx"><h3>Libros</h3></a>
                 </div>
             <div class="edicion-item-descripcion">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare lorem neque, et celerisque ligula tempus nec. Nam molestie leo sit amet arcu lacinia, et ullamcorper libero rutrum.</p>
             </div>
-                </a>
+                
         </div>
         <div class="edicion-item">
-            <a href="cuenta-categoria.aspx">
             <div class="edicion-item-imagen">
                 <img src="img/inicio-categorias.jpg" alt="servicio-correcion">
-                <h3>Categorías</h3>
+                <a href="cuenta-categoria.aspx"><h3>Categorías</h3></a>
             </div>
         <div class="edicion-item-descripcion">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare lorem neque, et celerisque ligula tempus nec. Nam molestie leo sit amet arcu lacinia, et ullamcorper libero rutrum.</p>
         </div>
-                </a>
+                
     </div>
     <div class="edicion-item">
-        <a href="cuenta-perfil.aspx">
+       
         <div class="edicion-item-imagen">
             <img src="img/inicio-cuenta.jpg" alt="servicio-correcion">
-            <h3>Mi cuenta</h3>
+             <a href="cuenta-perfil.aspx"><h3>Mi cuenta</h3></a>
         </div>
     <div class="edicion-item-descripcion">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare lorem neque, et celerisque ligula tempus nec. Nam molestie leo sit amet arcu lacinia, et ullamcorper libero rutrum.</p>
     </div>
-            </a>
+            
 </div>
         
     </div>

@@ -26,23 +26,27 @@ namespace Presentacion
         protected void btnSubmitFormContacto_Click(object sender, EventArgs e)
         {
             UsuarioNegocio unUsuarioNegocio = new UsuarioNegocio();
-            Usuario usuarioConsulta = new Usuario();
-            Libro libroSolicitado = new Libro();
-            libroSolicitado.Formato = new Formato();
             MailNegocio unNuevoMail = new MailNegocio();
 
-            usuarioConsulta.NombreUsuario = Request.Form["tboxNombre"] + " " + Request.Form["tboxApellido"];
-            usuarioConsulta.Email = Request.Form["tboxMail"];
-            usuarioConsulta.Celular = Convert.ToInt32(Request.Form["tboxCelular"]);
-            string PreferenciaContacto = Request.Params["rbtnPreferenciaContacto"];
+            Mail mail = new Mail();
+            mail.DetalleUsuario = new Usuario();
+            mail.DetalleLibro = new Libro();
+            mail.DetalleLibro.Formato = new Formato();
+            
+            mail.DetalleUsuario.NombreUsuario = Request.Form["tboxNombre"] + " " + Request.Form["tboxApellido"];
+            mail.DetalleUsuario.Email = Request.Form["tboxMail"];
+            mail.Destinatario = mail.DetalleUsuario.Email;
+            mail.DetalleUsuario.Celular = Request.Form["tboxCelular"];
+            mail.MedioContacto = Request.Params["rbtnPreferenciaContacto"];
 
-            libroSolicitado.Formato.Medidas = Request.Params["cboxFormato"] + " " + Request.Form["tboxFormatoOtros"];
-            libroSolicitado.Genero = Request.Params["cboxGenero"] + " " + Request.Form["tboxGeneroOtros"];
-            libroSolicitado.cantidadCaracteres = Convert.ToInt32(Request.Form["tboxCaracteres"]);
-            libroSolicitado.cantidadEjemplares = Convert.ToInt32(Request.Form["tboxCantidadEjemplares"]);
-            libroSolicitado.cantidadImagenes = Convert.ToInt32(Request.Form["tboxCantidadImagenes"]);
+            mail.DetalleLibro.Formato.Medidas = Request.Params["cboxFormato"] + " " + Request.Form["tboxFormatoOtros"];
+            mail.DetalleLibro.Genero = Request.Params["cboxGenero"] + " " + Request.Form["tboxGeneroOtros"];
+            mail.DetalleLibro.cantidadCaracteres = Convert.ToInt32(Request.Form["tboxCaracteres"]);
+            mail.DetalleLibro.cantidadEjemplares = Convert.ToInt32(Request.Form["tboxCantidadEjemplares"]);
+            mail.DetalleLibro.cantidadImagenes = Convert.ToInt32(Request.Form["tboxCantidadImagenes"]);
 
-            unNuevoMail.generarMailing(usuarioConsulta, "", libroSolicitado, PreferenciaContacto, "consultaCompuesta");
+            unNuevoMail.EnviarMail(mail, "compleja");
+
 
         }
 

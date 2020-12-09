@@ -80,8 +80,8 @@
     <Content Include="js\Preview.js" />
     <Content Include="js\validacionesABML.js" />
     <Content Include="js\validacionesRegistro.js" />
-    <Content Include="mail-template-admin-index.html" />
-    <Content Include="mail-template-admin.html" />
+    <Content Include="mail-notificacion-admin.html" />
+    <Content Include="mail-notificacion-admin-contacto.html" />
     <Content Include="img\delete.png" />
     <Content Include="img\edit.png" />
     <Content Include="img\imagen-no-disponible.png" />
@@ -100,7 +100,8 @@
     <Content Include="js\funciones.js" />
     <Content Include="js\funciones-acordeon.js" />
     <Content Include="js\contacto.js" />
-    <Content Include="mail-template.html" />
+    <Content Include="mail-notificacion-usuario.html" />
+    <Content Include="error404.aspx" />
     <Content Include="notificacion.aspx" />
     <Content Include="talleres.aspx" />
     <Content Include="Web.config" />
@@ -141,6 +142,13 @@
     </Compile>
     <Compile Include="ghostwriter.aspx.designer.cs">
       <DependentUpon>ghostwriter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="error404.aspx.cs">
+      <DependentUpon>error404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="error404.aspx.designer.cs">
+      <DependentUpon>error404.aspx</DependentUpon>
     </Compile>
     <Compile Include="notificacion.aspx.cs">
       <DependentUpon>notificacion.aspx</DependentUpon>

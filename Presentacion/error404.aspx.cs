@@ -8,21 +8,17 @@ using Dominio;
 
 namespace Presentacion
 {
-    public partial class cuenta_categoria : System.Web.UI.Page
+    public partial class error404 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             Usuario usuarioActivo = (Usuario)Session["UsuarioLogeado"];
 
-            if (Session["UsuarioLogeado"] != null && usuarioActivo.TipoUsuario)
+            if (Session["UsuarioLogeado"] != null)
             {
                 HyperLink linkPerfil = (HyperLink)Master.FindControl("hplnkLogin");
                 linkPerfil.Text = usuarioActivo.NombreUsuario;
                 linkPerfil.NavigateUrl = "~/cuenta-home.aspx";
-            }
-
-            else {
-                Response.Redirect("error404.aspx");
             }
         }
     }

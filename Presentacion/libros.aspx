@@ -11,6 +11,8 @@
         <div class="descripcion-seccion">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare lorem neque, et celerisque ligula tempus nec. Nam molestie leo sit amet arcu lacinia, et ullamcorper libero rutrum.                
         </div>
+<!-- FILTROS -->
+
         <div class="filtros-busqueda">
             <div class="busqueda">
                 <label for="">Búsqueda</label>
@@ -19,19 +21,18 @@
             <div class="orden">
                 <label for="prdenar-libros">Ordernar por</label>
                 <select name="cboxOrdenarLibros" id="ordenar-libros">
-                    <option value="">Alfabéticamente: A-Z</option>
-                    <option value="">Alfabéticamente: Z-A</option>
-                    <option value="">Precio: Más bajo </option>
-                    <option value="">Precio: Más alto </option>
-                    <option value="">Fecha emisión </option>
+                    <option value="1">Alfabéticamente: A-Z</option>
+                    <option value="2">Alfabéticamente: Z-A</option>
+                    <option value="3">Fecha emisión ascendiente </option>
+                    <option value="4">Fecha emisión descendiente </option>
                 </select>
             </div>
         </div>
+ <!-- GRILLA -->
         
         <div class="listado-ediciones" id="list">
         <% Negocio.LibroNegocio unLibroNegocio = new Negocio.LibroNegocio();
             List<Dominio.Libro> ListadoLibros = unLibroNegocio.ListadoLibros();
-           
 
             foreach (var unLibro in unLibroNegocio.ListadoLibros())
             {
@@ -52,6 +53,7 @@
          </div>
         <div class="paginacion" id="pagination"> </div>
 
+<!-- VENTANA MODAL-->
       <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content ">
@@ -66,10 +68,7 @@
                 </div>
                 <div class="modal-derecha">
                     <h3 id="modal-titulo"></h3>
-                    <p id="modal-sinopsis"></p>
-                    <hr>
-                    <p id="modal-autor">Adrián Ortiz</p> 
-                    <p id="modal-anio">2018 </p>
+                    <br />
                     <div class="libros-calificaciones">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -77,6 +76,12 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
+                    <br />
+                    <p id="modal-sinopsis"></p>
+                    <hr />
+                    <p id="modal-autor">Adrián Ortiz</p> 
+                    <p id="modal-anio">2018 </p>
+
                 </div>
             </div>
           </div>
@@ -87,7 +92,6 @@
         <script>
 
             const items = document.querySelectorAll('.resumen');
-            
             let modalTitulo = document.getElementById('modal-titulo');
             let modalAutor = document.getElementById('modal-autor');
             let modalImagen = document.getElementById('modal-imagen');
@@ -97,16 +101,27 @@
             items.forEach(item => {
             item.addEventListener('click', function(event){
 
-
                 modalTitulo.textContent = item.parentElement.parentElement.lastElementChild.children[0].textContent;
-                modalAutor.textContent = "Autor: " + item.parentElement.parentElement.lastElementChild.children[1].textContent;
-                modalAnio.textContent = "Año: " + item.parentElement.parentElement.lastElementChild.children[2].textContent;
-                modalSinopsis.textContent = "Sinopsis: " + item.parentElement.parentElement.lastElementChild.children[3].textContent;
+                modalAutor.textContent = item.parentElement.parentElement.lastElementChild.children[1].textContent;
+                modalAnio.textContent = "Año: " + item.parentElement.parentElement.lastElementChild.children[3].textContent;
+                modalSinopsis.textContent =  item.parentElement.parentElement.lastElementChild.children[2].textContent;
                 modalImagen.src = item.parentElement.firstElementChild.src;
 
-
                  })
-          })
+            })
+
+            const ddlListOrden = document.getElementById('ordenar-libros');
+            let librosItem = document.querySelectorAll('.libros-item');
+            let listadoLibros = Array.from(librosItem)
+
+            listadoLibros.sort(function (a, b) {
+                a = document.querySelector('.libro-descripcion').firstElementChild.textContent.toLowerCase;
+                b = document.querySelector('.libro-descripcion').firstElementChild.textContent.toLowerCase;
+
+                return a > b
+            });
+
+
         </script>
   
 </asp:Content>

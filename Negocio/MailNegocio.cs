@@ -16,20 +16,20 @@ namespace Negocio
         private MailMessage Email = new MailMessage();
         private SmtpClient Cliente = new SmtpClient();
 
-        private void EnviarMail(string From, string To, string Password, string Mensaje, string Subject, string body)
+        private void GenerarMail(Mail unMail, string body)
         {
+            Email.To.Clear();
+            Email.To.Add(unMail.Destinatario);
+            Email.From = new MailAddress("code.test.aspx@gmail.com");
 
-            Email.To.Add(To);
-            Email.From = new MailAddress(From);
-           
             Email.BodyEncoding = System.Text.Encoding.UTF8;
-            Email.Subject = Subject;
+            Email.Subject = unMail.Asunto ;
             Email.SubjectEncoding = System.Text.Encoding.UTF8;
 
             Email.Body = body;
             Email.IsBodyHtml = true;
             Cliente.UseDefaultCredentials = false;
-            Cliente.Credentials = new NetworkCredential(From, Password);
+            Cliente.Credentials = new NetworkCredential("code.test.aspx@gmail.com", "codetest1234");
 
             Cliente.Port = 587;
             Cliente.EnableSsl = true;
@@ -51,66 +51,84 @@ namespace Negocio
 
         }
 
-        private void generarMailingUsuario(Usuario destinatario)
-        {
+        public void EnviarMail(Mail unMail, string tipoConsulta) {
 
-            string body = string.Empty;
+            if (tipoConsulta == "sencilla") {
 
-            using (StreamReader reader = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/mail-template.html")))
-            {
 
-                body = reader.ReadToEnd();
+                unMail.Asunto = "Ediciones Elemento - Consulta Recibida";
+                GenerarMail(unMail, generarNotificacionUsuario(unMail));
+                unMail.Destinatario = "code.test.aspx@gmail.com";
+                unMail.Asunto = "Ediciones Elemento - Consulta Usuario";
+                GenerarMail(unMail, generarMailingAdministrador(unMail, "Consulta Sencilla"));
+            }
+
+            if (tipoConsulta == "compleja") {
+
+                unMail.Asunto = "Ediciones Elemento - Consulta Recibida";
+                GenerarMail(unMail, generarNotificacionUsuario(unMail));
+                unMail.Destinatario = "code.test.aspx@gmail.com";
+                unMail.Asunto = "Ediciones Elemento - Consulta Usuario";
+                GenerarMail(unMail, generarMailingAdministrador(unMail, "Consulta Compleja"));
 
             }
-            body = body.Replace("{nombreUsuario}", destinatario.NombreUsuario);
-
-            EnviarMail("alejandrabarrachina23@gmail.com", destinatario.Email, "barr1989Share.", " ", "Ediciones-Elemento - Enviada", body);
+            
         }
 
-        public void generarMailing(Usuario unUsuario, string mensaje, Libro libroSolicitado, string medioContacto, string tipoMensaje)
+
+        private string generarMailingAdministrador(Mail MailEnviar, string TipoMail)
         {
+            string bodyHTML = string.Empty;
 
-            string body = string.Empty;
-
-            if (tipoMensaje == "consultaCompuesta")
+            if (TipoMail == "Consulta Sencilla")
             {
-                using (StreamReader reader = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/mail-template-admin.html")))
+                using (StreamReader reader = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/mail-notificacion-admin.html")))
                 {
-
-                    body = reader.ReadToEnd();
-
+                    bodyHTML = reader.ReadToEnd();
                 }
 
-                body = body.Replace("{nombreUsuario}", unUsuario.NombreUsuario);
-                body = body.Replace("{email}", unUsuario.Email);
-                body = body.Replace("{celular}", unUsuario.Celular.ToString());
-                body = body.Replace("{medioContacto}", medioContacto);
-                body = body.Replace("{formato}", libroSolicitado.Formato.Medidas);
-                body = body.Replace("{genero}", libroSolicitado.Genero);
-                body = body.Replace("{cantidadCaracteres}", libroSolicitado.cantidadCaracteres.ToString());
-                body = body.Replace("{cantidadEjemplares}", libroSolicitado.cantidadCaracteres.ToString());
-                body = body.Replace("{cantidadImagenes}", libroSolicitado.cantidadImagenes.ToString());
+                bodyHTML = bodyHTML.Replace("{nombreUsuario}", MailEnviar.DetalleUsuario.NombreUsuario);
+                bodyHTML = bodyHTML.Replace("{email}", MailEnviar.DetalleUsuario.Email);
+                bodyHTML = bodyHTML.Replace("{mensaje}", MailEnviar.Mensaje);
 
             }
 
             else {
 
-                using (StreamReader reader = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/mail-template-admin-index.html")))
+                using (StreamReader reader = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/mail-notificacion-admin-contacto.html")))
                 {
 
-                    body = reader.ReadToEnd();
+                    bodyHTML = reader.ReadToEnd();
 
                 }
 
-                body = body.Replace("{nombreUsuario}", unUsuario.NombreUsuario);
-                body = body.Replace("{email}", unUsuario.Email);
-                body = body.Replace("{celular}", mensaje);
+                bodyHTML = bodyHTML.Replace("{nombreUsuario}", MailEnviar.DetalleUsuario.NombreUsuario);
+                bodyHTML = bodyHTML.Replace("{email}", MailEnviar.DetalleUsuario.Email);
+                bodyHTML = bodyHTML.Replace("{celular}", MailEnviar.DetalleUsuario.Celular.ToString());
+                bodyHTML = bodyHTML.Replace("{medioContacto}", MailEnviar.MedioContacto);
+                bodyHTML = bodyHTML.Replace("{formato}", MailEnviar.DetalleLibro.Formato.Medidas);
+                bodyHTML = bodyHTML.Replace("{genero}", MailEnviar.DetalleLibro.Genero);
+                bodyHTML = bodyHTML.Replace("{cantidadCaracteres}", MailEnviar.DetalleLibro.cantidadCaracteres.ToString());
+                bodyHTML = bodyHTML.Replace("{cantidadEjemplares}", MailEnviar.DetalleLibro.cantidadEjemplares.ToString());
+                bodyHTML = bodyHTML.Replace("{cantidadImagenes}", MailEnviar.DetalleLibro.cantidadImagenes.ToString());
+            }
+            
+            return bodyHTML;
+        }
 
+        private string generarNotificacionUsuario(Mail unMail) {
+
+            string bodyHTML = string.Empty;
+
+            using (StreamReader reader = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/mail-notificacion-usuario.html")))
+            {
+
+                bodyHTML = reader.ReadToEnd();
             }
 
-            EnviarMail("alejandrabarrachina23@gmail.com", "alejandrabarrachina23@gmail.com", "barr1989Share.", " ", "Ediciones-Elemento - Consulta", body);
-            generarMailingUsuario(unUsuario);
-            
+            bodyHTML = bodyHTML.Replace("{nombreUsuario}", unMail.DetalleUsuario.NombreUsuario);
+
+            return bodyHTML;
         }
 
     }
