@@ -54,11 +54,20 @@ namespace Presentacion
 
                 if (unUsuarioNegocio.VerificarMailExistente(usuarioIngresado.Email) != 1) {
 
+                    Mail notificacion = new Mail();
+                    MailNegocio unMail = new MailNegocio();
+                    notificacion.DetalleUsuario = new Usuario();
+
                     usuarioIngresado.NombreUsuario = tboxUsuarioRegistro.Text;
                     usuarioIngresado.Contrasenia = tboxContraseniaRegistro.Text;
                     usuarioIngresado.Celular = tboxCelularRegistro.Text;
                     usuarioIngresado.Email = tboxEmailRegistro.Text;
+                    usuarioIngresado.Nombre = "No definido";
+                    usuarioIngresado.Apellido = "No definido";
+                    notificacion.DetalleUsuario = usuarioIngresado;
                     unUsuarioNegocio.AgregarUsuario(usuarioIngresado);
+                    unMail.EnviarMail(notificacion, "alta usuario");
+
                 }
 
                 else lblErrorRegistroEmail.Text = "El mail ingresado ya esta en uso";

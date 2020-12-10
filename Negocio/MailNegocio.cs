@@ -37,11 +37,12 @@ namespace Negocio
 
             //LinkedResource image = new LinkedResource(System.Web.HttpContext.Current.Server.MapPath("~/img/mailing"));
             //image.ContentId = "logo-completo";
-
+           
 
             try
             {
                 Cliente.Send(Email);
+              
 
             }
             catch (System.Net.Mail.SmtpException ex)
@@ -53,8 +54,8 @@ namespace Negocio
 
         public void EnviarMail(Mail unMail, string tipoConsulta) {
 
-            if (tipoConsulta == "sencilla") {
-
+            if (tipoConsulta == "sencilla")
+            {
 
                 unMail.Asunto = "Ediciones Elemento - Consulta Recibida";
                 GenerarMail(unMail, generarNotificacionUsuario(unMail));
@@ -63,7 +64,8 @@ namespace Negocio
                 GenerarMail(unMail, generarMailingAdministrador(unMail, "Consulta Sencilla"));
             }
 
-            if (tipoConsulta == "compleja") {
+            else if (tipoConsulta == "compleja")
+            {
 
                 unMail.Asunto = "Ediciones Elemento - Consulta Recibida";
                 GenerarMail(unMail, generarNotificacionUsuario(unMail));
@@ -72,6 +74,26 @@ namespace Negocio
                 GenerarMail(unMail, generarMailingAdministrador(unMail, "Consulta Compleja"));
 
             }
+
+            else if (tipoConsulta == "restauracion")
+            {
+
+                unMail.Asunto = "Ediciones Elemento - Restauración Contraseña";
+                unMail.Destinatario = unMail.DetalleUsuario.Email;
+                unMail.Mensaje = "Estimado cliente ha solicitado sus datos personales para poder iniciar sesión. A continuación se los detallamos, recuerde no compartirlos.";
+                GenerarMail(unMail, generarMailingAdministrador(unMail, "Notificacion-Alta-Restauracion"));
+
+            }
+
+            else if (tipoConsulta == "alta usuario") {
+
+                unMail.Asunto = "Ediciones Elemento - Alta usuario";
+                unMail.Destinatario = unMail.DetalleUsuario.Email;
+                unMail.Mensaje = "Estimado, su usuario y contraseña han sido dada de alta. A continuación dejamos sus datos para iniciar sesión.";
+                GenerarMail(unMail, generarMailingAdministrador(unMail, "Notificacion-Alta-Restauracion"));
+            }
+
+            
             
         }
 
@@ -93,7 +115,8 @@ namespace Negocio
 
             }
 
-            else {
+            else if (TipoMail == "Consulta Compleja")
+            {
 
                 using (StreamReader reader = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/mail-notificacion-admin-contacto.html")))
                 {
@@ -111,6 +134,24 @@ namespace Negocio
                 bodyHTML = bodyHTML.Replace("{cantidadCaracteres}", MailEnviar.DetalleLibro.cantidadCaracteres.ToString());
                 bodyHTML = bodyHTML.Replace("{cantidadEjemplares}", MailEnviar.DetalleLibro.cantidadEjemplares.ToString());
                 bodyHTML = bodyHTML.Replace("{cantidadImagenes}", MailEnviar.DetalleLibro.cantidadImagenes.ToString());
+            }
+
+            else if (TipoMail == "Notificacion-Alta-Restauracion") {
+
+                using (StreamReader reader = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/mail-notificacion-restauracion.html")))
+                {
+
+                    bodyHTML = reader.ReadToEnd();
+
+                }
+
+                bodyHTML = bodyHTML.Replace("{nombreUsuario}", MailEnviar.DetalleUsuario.NombreUsuario);
+                bodyHTML = bodyHTML.Replace("{email}", MailEnviar.DetalleUsuario.Email);
+                bodyHTML = bodyHTML.Replace("{contrasenia}", MailEnviar.DetalleUsuario.Contrasenia.ToString());
+                bodyHTML = bodyHTML.Replace("{Nombre}", MailEnviar.DetalleUsuario.Nombre.ToString());
+                bodyHTML = bodyHTML.Replace("{Apellido}", MailEnviar.DetalleUsuario.Apellido.ToString());
+                bodyHTML = bodyHTML.Replace("{mensaje}", MailEnviar.Mensaje);
+
             }
             
             return bodyHTML;

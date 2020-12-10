@@ -75,6 +75,7 @@
     <Content Include="cuenta-libros.aspx" />
     <Content Include="edicion.aspx" />
     <Content Include="ghostwriter.aspx" />
+    <Content Include="mail-notificacion-restauracion.html" />
     <Content Include="js\botonCerrarSesion.js" />
     <Content Include="js\paginacion.js" />
     <Content Include="js\Preview.js" />
@@ -103,6 +104,7 @@
     <Content Include="mail-notificacion-usuario.html" />
     <Content Include="error404.aspx" />
     <Content Include="notificacion.aspx" />
+    <Content Include="recuperar-contrasenia.aspx" />
     <Content Include="talleres.aspx" />
     <Content Include="Web.config" />
     <Content Include="index.aspx" />
@@ -158,6 +160,13 @@
       <DependentUpon>notificacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="recuperar-contrasenia.aspx.cs">
+      <DependentUpon>recuperar-contrasenia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="recuperar-contrasenia.aspx.designer.cs">
+      <DependentUpon>recuperar-contrasenia.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SiteMaterAllPages.Master.cs">
       <DependentUpon>SiteMaterAllPages.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -75,6 +75,26 @@ namespace Negocio
             AccederDatos.CerrarConexion();
         }
 
+        public Usuario ReestablecerConstrasenia(string correoElectronico) {
+
+            Usuario usuarioLogeado = new Usuario();
+            AccederDatos.AbrirConexion();
+            AccederDatos.DefinirProcedimientoAlmacenado("SP_RestablecerContrasenia");
+            AccederDatos.Comando.Parameters.AddWithValue("@email", correoElectronico);
+            AccederDatos.EjecutarConsulta();
+            while (AccederDatos.LectorDatos.Read())
+            {
+                usuarioLogeado.NombreUsuario = AccederDatos.LectorDatos["Usuario"].ToString();
+                usuarioLogeado.Contrasenia = AccederDatos.LectorDatos["contrasenia"].ToString();
+                usuarioLogeado.Nombre = AccederDatos.LectorDatos["nombre"].ToString();
+                usuarioLogeado.Apellido = AccederDatos.LectorDatos["apellido"].ToString();
+                usuarioLogeado.Email = AccederDatos.LectorDatos["email"].ToString();
+            }
+
+            AccederDatos.CerrarConexion();
+
+            return usuarioLogeado;
+        }
 
     }
 }
