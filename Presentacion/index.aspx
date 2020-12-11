@@ -9,10 +9,10 @@
         <div class="splide">
             <div class="splide__arrows">
                 <button class="splide__arrow splide__arrow--prev">
-                    <
+                    <i class="fas fa-chevron-left"></i>
                 </button>
                 <button class="splide__arrow splide__arrow--next">
-                    >
+                  <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
             <div class="splide__track">
@@ -45,42 +45,42 @@
 <section class="contenedor-mediano">
     <h2>Servicios</h2>
     <div class="servicios">
-        <div class="servicio-icono"><i class="fas fa-tools"></i></div>
+        <a href="edicion.aspx"><div class="servicio-icono"><i class="fas fa-tools"></i></div></a>
             <div class="servicio-descripcion">
                 <h3>Edición</h3>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
             </div>
     </div>
     <div class="servicios">
-        <div class="servicio-icono"><i class="fas fa-highlighter"></i></div>
+        <a href="edicion.aspx"><div class="servicio-icono"><i class="fas fa-highlighter"></i></div></a>
         <div class="servicio-descripcion">
             <h3>Corrección</h3>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
         </div>
     </div>
     <div class="servicios">
-        <div class="servicio-icono"><i class="fas fa-palette"></i></div>
+        <a href="edicion.aspx"><div class="servicio-icono"><i class="fas fa-palette"></i></div></a>
         <div class="servicio-descripcion">
             <h3>Diseño y armado</h3>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
         </div>
     </div>
     <div class="servicios">
-        <div class="servicio-icono"><i class="fas fa-book"></i></div>
+        <a href="servicios.aspx"><div class="servicio-icono"><i class="fas fa-book"></i></div></a>
         <div class="servicio-descripcion">
             <h3>Impresión</h3>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
         </div>
     </div>
     <div class="servicios">
-        <div class="servicio-icono"><i class="fas fa-ghost"></i></div>
+        <a href="ghostwriter.aspx"><div class="servicio-icono"><i class="fas fa-ghost"></i></div></a>
         <div class="servicio-descripcion">
             <h3>Ghostwriter</h3>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
         </div>
     </div>
     <div class="servicios">
-        <div class="servicio-icono"><i class="fas fa-pen-nib"></i></div>
+        <a href="talleres.aspx"><div class="servicio-icono"><i class="fas fa-pen-nib"></i></div></a>
         <div class="servicio-descripcion">
             <h3>Talleres</h3>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
@@ -94,7 +94,7 @@
 <section class="contenedor-mediano">
     <h2>Sobre mi</h2>
 <div class="acerca-de-mi">
-    <div class="acerca-de-mi-imagenes"><img src="img/acerca-de-mi.png" alt=""></div>
+    <a href="nosotros.aspx"><div class="acerca-de-mi-imagenes"><img src="img/acerca-de-mi.png" alt=""></div></a>
     <div class="acerca-de-mi-descripcion">
         <h3>Hola, soy Adriana Cabrera</h3>
         <h4>Ghostwriter / Corrección y edición de libros</h4>
@@ -215,7 +215,6 @@
             <asp:Button ID="btnEnviarConsulta" CssClass="btn" runat="server" Text="Enviar" OnClick="btnEnviarConsulta_Click" />
         </div>
     </form>
-        <asp:Label ID="lblEstado" runat="server" Text="Label"></asp:Label>
 </div>
 </div>
 </section>

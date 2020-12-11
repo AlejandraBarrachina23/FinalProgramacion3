@@ -8,7 +8,7 @@
             <div class="descripcion-parrafos">
                 <p>Se llama así a un profesional de las letras, que trabaja por encargo y que no firma sus obras. Autobiografías, cuentos, ensayos y hasta novelas que circulan por nuestro medio no fueron escritas por quien figura como el autor del libro, sino por un fantasma o negro, que tomó a su cargo la redacción, bajo el estricto código de la confidencialidad.</p>
                 <p>Personas con buenas ideas para escribir un libro, pero sin el tiempo o la capacidad para organizarlo y darle forma, delegan en el fantasma su pluma. Es sabido que a los políticos “les escriben los discursos”… dentro de ese mismo concepto también se hacen autobiografías para deportistas o actores, novelas para autores con mucha actividad de marketing, ensayos, cuentos y una larga lista de etcétera.</p>
-                <p>Ediciones Elemento ofrece este servicio de manera independiente de la edición del libro, llena nuestra formulario <span class="resaltar-verde">aquí</span> para que nos pongamos en contacto.</p>
+                <p>Ediciones Elemento ofrece este servicio de manera independiente de la edición del libro, llena nuestra formulario <a href="contacto.aspx"><span class="resaltar-verde">aquí</span></a> para que nos pongamos en contacto.</p>
             </div>
             <div class="descripcion-imagenes">
                 <img src="img/ghostwriter-imagen1.jpg" alt="">
@@ -26,4 +26,5 @@
         </div>
     </section>
 <!--Fin section-edicion-->
+
 </asp:Content>

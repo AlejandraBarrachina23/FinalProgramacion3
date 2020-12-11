@@ -18,52 +18,41 @@
         <div class="descripcion-seccion">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare lorem neque, et celerisque ligula tempus nec. Nam molestie leo sit amet arcu lacinia, et ullamcorper libero rutrum.</p> 
         </div>
-        <form action="perfil.asp" class="formulario">
+        <form runat="server" class="formulario">
             <fieldset>
                 <legend>Datos del usuario</legend>
-                    <div class="perfil"> 
-                    <div class="foto-perfil">
-                        <img src="img/acerca-de-mi.png" alt="">
-                        <p><i class="far fa-images"></i>Subir</p>
-                    </div>
-                    <div class="datos-perfil">
+                      <div class="datos-perfil">
                         <div class="fieldset-datos">
                         <div class="form-item">
                             <label for="nombre-perfil">Nombre</label>
-                            <input type="text" id="nombre-perfil" name="tboxNombrePerfil">
+                            <asp:TextBox ID="tboxNombre" runat="server"></asp:TextBox>
                         </div>
                         <div class="form-item">
                             <label for="apellido-perfil">Apellido</label>
-                            <input type="text" id="apellido-perfil" name="tboxApellidoPerfil">
+                            <asp:TextBox ID="tboxApellido" runat="server"></asp:TextBox>
                         </div>
                         <div class="form-item">
                             <label for="correo-perfil">Correo electrónico</label>
-                            <input type="text" id="mail" name="tbpxCorreoPerfil">
+                            <asp:TextBox ID="tboxEmail" runat="server"></asp:TextBox>
                         </div>
                         <div class="form-item">
                             <label for="celular-perfil">Celular</label>
-                            <input type="number" id="celular-perfil" name="tboxCelularPerfil"> 
+                            <asp:TextBox ID="tboxCelular" runat="server"></asp:TextBox>
                         </div>
                         <div class="form-item">
                             <label for="telefono-perfil">Teléfono</label>
-                            <input type="number" id="celular" name="tboxTelefonoPerfil"> 
-                        </div>
-                        <div class="form-item">
-                            <label for="direccion-perfil">Dirección</label>
-                            <input type="text" id="direccion-perfil" name="tboxDireccionPerfil"> 
+                            <asp:TextBox ID="tboxTelefono" runat="server"></asp:TextBox>
                         </div>
                         <div class="form-item">
                             <label for="contrasenia-perfil">Contraseña</label>
-                            <input type="password" id="contrasenia-perfil" name="tboxContraseniaPerfil"> 
+                            <asp:TextBox ID="tboxContrasenia" runat="server"></asp:TextBox>
                         </div>
-                        <div class="form-item">
-                            <label for="repetir-contrasenia-perfil">Repetir contraseña</label>
-                            <input type="password" id="repetir-contrasenia-perfil" name="tboxRepetirContraseniaPerfil"> 
-                        </div>
+                             <asp:Button ID="btnModificar" CssClass="btn" runat="server" Text="Modificar"/>
+                             <asp:Button ID="btnAceptar" CssClass="btn" runat="server" Text="Agregar" Visible="false"/>
                     </div>
                 </div>
                
-            </div>
+            
             
             </fieldset>   
         </form>

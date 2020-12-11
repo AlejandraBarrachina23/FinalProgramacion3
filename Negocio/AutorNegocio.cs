@@ -37,5 +37,80 @@ namespace Negocio
 
 
         }
+
+        public List<Autor> ListarAutores()
+        {
+
+            List<Autor> ListadoAutores = new List<Autor>();
+            AccederDatos.AbrirConexion();
+            AccederDatos.DefinirProcedimientoAlmacenado("SP_ListadoAutores");
+            AccederDatos.EjecutarConsulta();
+
+            while (AccederDatos.LectorDatos.Read())
+            {
+                Autor unAutor = new Autor();
+
+                unAutor.CodigoAutor = (int)AccederDatos.LectorDatos["ID_Autor"];
+                unAutor.Nombre = (string)AccederDatos.LectorDatos["Nombre"];
+                unAutor.Apellido = (string)AccederDatos.LectorDatos["Apellido"];
+                unAutor.Celular = (string)AccederDatos.LectorDatos["Celular"];
+                unAutor.Email = (string)AccederDatos.LectorDatos["Email"];
+                ListadoAutores.Add(unAutor);
+            }
+            AccederDatos.CerrarConexion();
+            return ListadoAutores;
+
+        }
+
+
+        public void AgregarAutor(Autor unAutor)
+        {
+            AccederDatos.AbrirConexion();
+            AccederDatos.DefinirProcedimientoAlmacenado("SP_AgregarAutor");
+            AccederDatos.Comando.Parameters.Clear();
+            AccederDatos.Comando.Parameters.AddWithValue("@Nombre", unAutor.Nombre);
+            AccederDatos.Comando.Parameters.AddWithValue("@apellido", unAutor.Apellido);
+            AccederDatos.Comando.Parameters.AddWithValue("@celular", unAutor.Celular);
+            AccederDatos.Comando.Parameters.AddWithValue("@email", unAutor.Email);
+            AccederDatos.EjecutarAccion();
+            AccederDatos.CerrarConexion();
+
+        }
+
+        public void ModificarAutor(Autor unAutor)
+        {
+            AccederDatos.AbrirConexion();
+            AccederDatos.DefinirProcedimientoAlmacenado("SP_ModificarAutor");
+            AccederDatos.Comando.Parameters.Clear();
+            AccederDatos.Comando.Parameters.AddWithValue("@CodigoAutor", unAutor.CodigoAutor);
+            AccederDatos.Comando.Parameters.AddWithValue("@nombre", unAutor.Nombre);
+            AccederDatos.Comando.Parameters.AddWithValue("@apellido", unAutor.Apellido);
+            AccederDatos.Comando.Parameters.AddWithValue("@celular", unAutor.Celular);
+            AccederDatos.Comando.Parameters.AddWithValue("@email", unAutor.Email);
+            AccederDatos.EjecutarAccion();
+            AccederDatos.CerrarConexion();
+
+        }
+
+        public void EliminarAutor(int CodigoAutor)
+        {
+            AccederDatos.AbrirConexion();
+            AccederDatos.DefinirProcedimientoAlmacenado("SP_EliminarAutor");
+            AccederDatos.Comando.Parameters.Clear();
+            AccederDatos.Comando.Parameters.AddWithValue("@CodigoAutor", CodigoAutor);
+            AccederDatos.EjecutarAccion();
+            AccederDatos.CerrarConexion();
+        }
+
+        public int IDAutor() {
+
+            AccederDatos.AbrirConexion();
+            AccederDatos.DefinirProcedimientoAlmacenado("SP_UltimoIdAutores");
+            AccederDatos.Comando.Parameters.Clear();
+            var respuesta = AccederDatos.ejecutarAccionReturn();
+            AccederDatos.CerrarConexion();
+            return respuesta+1;
+        }
+
     }
 }

@@ -2,9 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="hero">
-        <h2 class="titulos-cabecera">Contacto</h2>     
-     </div>
+
     <section class="contenedor-mediano">
         <h2 class="subtitulo">Mantegamonos en contacto</h2>
         <div class="descripcion-seccion">
@@ -112,7 +110,6 @@
                 
             </fieldset>
             <asp:Button ID="btnSubmitFormContacto" runat="server" Text="Enviar" class="btn btn-form-contacto" OnClick="btnSubmitFormContacto_Click"/>
-            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
         </form>
 
     </section>

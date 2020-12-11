@@ -16,11 +16,11 @@
         <div class="filtros-busqueda">
             <div class="busqueda">
                 <label for="">Búsqueda</label>
-                <input type="text">
+                <input type="text" id="tboxBusqueda">
             </div>
             <div class="orden">
-                <label for="prdenar-libros">Ordernar por</label>
-                <select name="cboxOrdenarLibros" id="ordenar-libros">
+                <label for="prdenar-libros" >Ordernar por</label>
+                <select name="cboxOrdenarLibros" id="ordenar-libros" >
                     <option value="1">Alfabéticamente: A-Z</option>
                     <option value="2">Alfabéticamente: Z-A</option>
                     <option value="3">Fecha emisión ascendiente </option>
@@ -88,40 +88,6 @@
       </div>
     </div>
     </section>
-        <script src="js/paginacion.js"></script>
-        <script>
+        <script src="js/paginacion.js"></script>  
 
-            const items = document.querySelectorAll('.resumen');
-            let modalTitulo = document.getElementById('modal-titulo');
-            let modalAutor = document.getElementById('modal-autor');
-            let modalImagen = document.getElementById('modal-imagen');
-            let modalAnio = document.getElementById('modal-anio');
-            let modalSinopsis = document.getElementById('modal-sinopsis');
-                    
-            items.forEach(item => {
-            item.addEventListener('click', function(event){
-
-                modalTitulo.textContent = item.parentElement.parentElement.lastElementChild.children[0].textContent;
-                modalAutor.textContent = item.parentElement.parentElement.lastElementChild.children[1].textContent;
-                modalAnio.textContent = "Año: " + item.parentElement.parentElement.lastElementChild.children[3].textContent;
-                modalSinopsis.textContent =  item.parentElement.parentElement.lastElementChild.children[2].textContent;
-                modalImagen.src = item.parentElement.firstElementChild.src;
-
-                 })
-            })
-
-            const ddlListOrden = document.getElementById('ordenar-libros');
-            let librosItem = document.querySelectorAll('.libros-item');
-            let listadoLibros = Array.from(librosItem)
-
-            listadoLibros.sort(function (a, b) {
-                a = document.querySelector('.libro-descripcion').firstElementChild.textContent.toLowerCase;
-                b = document.querySelector('.libro-descripcion').firstElementChild.textContent.toLowerCase;
-
-                return a > b
-            });
-
-
-        </script>
-  
 </asp:Content>

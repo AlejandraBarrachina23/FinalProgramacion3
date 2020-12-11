@@ -21,7 +21,7 @@
         <div class="edicion-item">
             <div class="edicion-item-imagen">
                 <img src="img/inicio-categorias.jpg" alt="servicio-correcion">
-                <a href="cuenta-categoria.aspx"><h3>Categorías</h3></a>
+                <a href="cuenta-autores.aspx"><h3>Autores</h3></a>
             </div>
         <div class="edicion-item-descripcion">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare lorem neque, et celerisque ligula tempus nec. Nam molestie leo sit amet arcu lacinia, et ullamcorper libero rutrum.</p>

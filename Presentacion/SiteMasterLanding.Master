@@ -23,7 +23,7 @@
 </head>
 <body>
    
-           <!--Modal Cerrar Sesión-->
+<!--Modal Cerrar Sesión-->
  <div class="modal fade" id="Logout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -49,7 +49,7 @@
         <div class="barra-navegacion-principal">
             <nav class="contenedor-menu">
                 <div class="logo">
-                    <img src="img/logo-sin.svg" alt="">
+                    <a href="index.aspx"><img src="img/logo-sin.svg" alt=""></a>
                     <i class="fas fa-bars" id="btn-responsive"></i>    
                 </div>        
                 <ul class="menu">
@@ -65,7 +65,7 @@
                     <li><a href="faq.aspx">FAQ</a></li>
                     <li><a href="contacto.aspx">Contacto</a></li>
                     <li><asp:HyperLink ID="hplnkLogin" NavigateUrl="~/cuenta.aspx" runat="server">LOGIN</asp:HyperLink></li>
-                    <li><button type="button" ID="btnCerrarSesion" class="" data-toggle="modal" data-target="#Logout">SALIR</button></li>
+                    <li><button type="button" ID="btnCerrarSesion" class="" data-toggle="modal" data-target="#Logout" hidden>SALIR</button></li>
                  </ul>
                 </nav>            
         </div>   
@@ -81,17 +81,18 @@
     </header>
 <!--Fin header-->
 
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">           </asp:ContentPlaceHolder>
+
+<!--Inicio footer-->
 <footer>
     <div class="pie-de-pagina">
-        <div class="logo logo-f"><img src="img/logo-completo.svg" alt=""></div>
+        <a href="index.aspx"><div class="logo logo-f"><img src="img/logo-completo.svg" alt=""></div></a>
         <div class="navegacion">
             <h3>Navegación</h3>
                 <nav>
                     <ul>
                         <li><a href="index.aspx">Home</a></li>
-                        <li><a href="servicios.aspx">Servicios</a></li>
+                        <li><a href="edicion.aspx">Servicios</a></li>
                         <li><a href="nosotros.aspx">Nosotros</a></li>
                         <li><a href="libros.aspx">Libros</a></li>
                         <li><a href="faq.aspx">FAQ</a></li>
@@ -116,5 +117,12 @@
 </body>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
     <script src="js/funciones-acordeon.js"></script>
+        <script>
+
+            const boton = document.getElementById('btnCerrarSesion');
+            const link = document.getElementById('hplnkLogin');
+            if (link.text !== 'LOGIN') boton.removeAttribute('hidden');
+
+    </script>
 
 </html>

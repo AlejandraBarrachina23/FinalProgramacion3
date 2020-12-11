@@ -75,7 +75,7 @@
             </div>
             <div class="faq">
                 <div class="faq-derecha">
-                    <img src="img/faq2.jpg" alt="">
+                    <img src="img/faq3.jpg" alt="">
                 </div>
                 <div class="faq-izquierda">
                     <div class="preguntas-item">

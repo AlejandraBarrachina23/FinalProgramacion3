@@ -13,15 +13,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="js/botonCerrarSesion.js"></script>
-    <link rel="stylesheet" href="css/estilos.css">   
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
     <link rel="stylesheet" href="css/splide-core.min.css">
     <link rel="stylesheet" href="css/splide.min.css">
+    <link rel="stylesheet" href="css/estilos.css">   
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-       <!--Modal Cerrar Sesión-->
+ <!--Modal Cerrar Sesión-->
  <div class="modal fade" id="Logout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -37,7 +37,6 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button type="button" id="btnLogout" class="btn btn-primary"><a href="notificacion.aspx">Aceptar</a></button>
-          
       </div>
     </div>
   </div>
@@ -47,7 +46,7 @@
         <div class="barra-navegacion-principal">
             <nav class="contenedor-menu">
                 <div class="logo">
-                    <img src="img/logo-sin.svg" alt="">
+                    <a href="index.aspx"><img src="img/logo-sin.svg" alt=""></a>
                     <i class="fas fa-bars" id="btn-responsive"></i>    
                 </div>        
                 <ul class="menu">
@@ -63,10 +62,13 @@
                     <li><a href="faq.aspx">FAQ</a></li>
                     <li><a href="contacto.aspx">Contacto</a></li>
                     <li><asp:HyperLink ID="hplnkLogin" NavigateUrl="~/cuenta.aspx" runat="server">LOGIN</asp:HyperLink></li>
-                    <li><button type="button" ID="btnCerrarSesion" class="" data-toggle="modal" data-target="#Logout">SALIR</button></li>
+                    <li><button type="button" ID="btnCerrarSesion" class="" data-toggle="modal" data-target="#Logout" hidden>SALIR</button></li>
                  </ul>
-                </nav>           
-        </div>     
+                </nav>   
+        </div>    
+               <div class="contenedor-mediano">
+            <h2 class="titulos-cabecera">Talleres</h2>
+         </div>      
     </header>
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
@@ -74,7 +76,7 @@
         </div>
         <footer>
     <div class="pie-de-pagina">
-        <div class="logo logo-f"><img src="img/logo-completo.svg" alt=""></div>
+        <a href="index.aspx"><div class="logo logo-f"><img src="img/logo-completo.svg" alt=""></div></a>
         <div class="navegacion">
             <h3>Navegación</h3>
                 <nav>
@@ -105,6 +107,63 @@
 </footer>
 
 </body>
+    <script>
+
+        const boton = document.getElementById('btnCerrarSesion');
+        const link = document.getElementById('hplnkLogin');
+        if (link.text !== 'LOGIN') boton.removeAttribute('hidden');
+
+        var pathname = window.location.pathname;
+        const header = document.getElementsByTagName('header');
+
+        if (pathname === "/libros.aspx") {
+
+            header[0].classList.remove("header-contacto");
+            header[0].classList.add("header-libros");
+            header[0].lastElementChild.firstElementChild.textContent = "Libros";
+        }
+
+        else if (pathname === "/ghostwriter.aspx") {
+
+            header[0].classList.remove("header-contacto");
+            header[0].classList.add("header-ghostwriter");
+            header[0].lastElementChild.firstElementChild.textContent = "Ghostwriter";
+        }
+
+        else if (pathname === "/talleres.aspx") {
+
+            header[0].classList.remove("header-contacto");
+            header[0].classList.add("header-talleres");
+            header[0].lastElementChild.firstElementChild.textContent = "Talleres";
+
+        }
+
+        else if (pathname === "/nosotros.aspx") {
+
+            header[0].lastElementChild.firstElementChild.textContent = "Nosotros";
+        }
+
+        else if (pathname === "/faq.aspx") {
+
+            header[0].lastElementChild.firstElementChild.textContent = "FAQ";
+        }
+
+        else if (pathname === "/contacto.aspx") {
+
+            header[0].lastElementChild.firstElementChild.textContent = "Contacto";
+        }
+
+        else if (pathname === "/cuenta.aspx") {
+
+            header[0].lastElementChild.firstElementChild.textContent = "Cuenta";
+        }
+        
+
+
+        
+
   
-  
+        
+
+         </script>
 </html>

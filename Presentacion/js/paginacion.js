@@ -60,3 +60,133 @@ function PaginationButton(page, items) {
 
 SetupPagination(cantidadLibros, pagination_element, row);
 DisplayList(cantidadLibros, cantidadLibros, row, current_page);
+
+const items = document.querySelectorAll('.resumen');
+let modalTitulo = document.getElementById('modal-titulo');
+let modalAutor = document.getElementById('modal-autor');
+let modalImagen = document.getElementById('modal-imagen');
+let modalAnio = document.getElementById('modal-anio');
+let modalSinopsis = document.getElementById('modal-sinopsis');
+
+items.forEach(item => {
+    item.addEventListener('click', function (event) {
+
+        modalTitulo.textContent = item.parentElement.parentElement.lastElementChild.children[0].textContent;
+        modalAutor.textContent = item.parentElement.parentElement.lastElementChild.children[1].textContent;
+        modalAnio.textContent = "Año: " + item.parentElement.parentElement.lastElementChild.children[3].textContent;
+        modalSinopsis.textContent = item.parentElement.parentElement.lastElementChild.children[2].textContent;
+        modalImagen.src = item.parentElement.firstElementChild.src;
+
+    })
+})
+
+// LISTADO DE FILTRO (ALFABETICO/FECHA)
+const ddlListOrden = document.getElementById('ordenar-libros');
+// LISTADO DE ITEMS (CON TODOS LOS DATOS)
+let librosItem = document.querySelectorAll('.libros-item');
+// CONVERSION A ARRAY
+let listadoLibros = Array.from(librosItem);
+let busqueda = document.getElementById('tboxBusqueda');
+
+function filtroBusqueda() {
+
+    librosItem.forEach(item => {
+
+        if (item.lastElementChild.firstElementChild.textContent.toLowerCase().includes(busqueda.value.toLowerCase())) item.style.display = 'block';
+        else item.style.display = 'none';
+
+    });
+
+}
+
+function ordenamiento() {
+
+    let seleccion = ddlListOrden.selectedIndex;
+    let listadoEdiciones = document.querySelector('.listado-ediciones');
+    listadoEdiciones.innerHTML = "";
+
+    switch (seleccion) {
+
+        case 0: ///ALFABETICAMENTE A-Z
+            listadoLibros.sort(comparaTitulosAZ);
+            break;
+        case 1: //ALFABETICAMENTE Z-A
+            listadoLibros.sort(comparaTitulosZA);
+            break;
+        case 2: //NUMERICAMENTE 1 A X
+            listadoLibros.sort(comparaNumerosAscendiente);
+            break;
+        case 3: //NUMERICAMENTE X A 1
+            listadoLibros.sort(comparaNumerosDescendiente);
+            break;
+        default:
+            break;
+
+    }
+
+    listadoLibros.forEach(item => listadoEdiciones.appendChild(item));
+}
+
+busqueda.addEventListener('keyup', filtroBusqueda);
+ddlListOrden.addEventListener('change', ordenamiento);
+
+
+function comparaTitulosAZ(itemA, itemB) {
+
+    let tituloUno = itemA.lastElementChild.firstElementChild.textContent.toLowerCase();
+    let tituloDos = itemB.lastElementChild.firstElementChild.textContent.toLowerCase();
+
+    if (tituloUno < tituloDos) {
+        return -1;
+    }
+    if (tituloUno > tituloDos) {
+        return 1;
+    }
+
+    return 0;
+}
+
+function comparaTitulosZA(itemA, itemB) {
+
+    let tituloUno = itemA.lastElementChild.firstElementChild.textContent.toLowerCase();
+    let tituloDos = itemB.lastElementChild.firstElementChild.textContent.toLowerCase();
+
+    if (tituloUno > tituloDos) {
+        return -1;
+    }
+    if (tituloUno < tituloDos) {
+        return 1;
+    }
+
+    return 0;
+}
+
+function comparaNumerosAscendiente(itemA, itemB) {
+
+    let tituloUno = itemA.lastElementChild.lastElementChild.textContent.toLowerCase();
+    let tituloDos = itemB.lastElementChild.lastElementChild.textContent.toLowerCase();
+
+    if (tituloUno > tituloDos) {
+        return -1;
+    }
+    if (tituloUno < tituloDos) {
+        return 1;
+    }
+
+    return 0;
+}
+
+function comparaNumerosDescendiente(itemA, itemB) {
+
+    let tituloUno = itemA.lastElementChild.lastElementChild.textContent.toLowerCase();
+    let tituloDos = itemB.lastElementChild.lastElementChild.textContent.toLowerCase();
+
+    if (tituloUno < tituloDos) {
+        return -1;
+    }
+    if (tituloUno > tituloDos) {
+        return 1;
+    }
+
+    return 0;
+}

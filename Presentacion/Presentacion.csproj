@@ -71,7 +71,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="cuenta-categoria.aspx" />
+    <Content Include="cuenta-autores.aspx" />
     <Content Include="cuenta-libros.aspx" />
     <Content Include="edicion.aspx" />
     <Content Include="ghostwriter.aspx" />
@@ -117,12 +117,12 @@
     <Content Include="cuenta-home.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="cuenta-categoria.aspx.cs">
-      <DependentUpon>cuenta-categoria.aspx</DependentUpon>
+    <Compile Include="cuenta-autores.aspx.cs">
+      <DependentUpon>cuenta-autores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="cuenta-categoria.aspx.designer.cs">
-      <DependentUpon>cuenta-categoria.aspx</DependentUpon>
+    <Compile Include="cuenta-autores.aspx.designer.cs">
+      <DependentUpon>cuenta-autores.aspx</DependentUpon>
     </Compile>
     <Compile Include="cuenta-libros.aspx.cs">
       <DependentUpon>cuenta-libros.aspx</DependentUpon>

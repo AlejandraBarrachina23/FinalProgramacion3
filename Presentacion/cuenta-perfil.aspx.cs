@@ -25,6 +25,13 @@ namespace Presentacion
             {
                 Response.Redirect("error404.aspx");
             }
+
+            tboxNombre.Text = usuarioActivo.Nombre;
+            tboxApellido.Text = usuarioActivo.Apellido;
+            tboxContrasenia.Text = usuarioActivo.Contrasenia;
+            tboxCelular.Text = usuarioActivo.Celular;
+            tboxEmail.Text = usuarioActivo.Email;
+            
         }
     }
 }
