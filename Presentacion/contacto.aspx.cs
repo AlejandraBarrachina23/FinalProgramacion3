@@ -25,6 +25,7 @@ namespace Presentacion
 
         protected void btnSubmitFormContacto_Click(object sender, EventArgs e)
         {
+
             UsuarioNegocio unUsuarioNegocio = new UsuarioNegocio();
             MailNegocio unNuevoMail = new MailNegocio();
 
@@ -37,7 +38,7 @@ namespace Presentacion
             mail.DetalleUsuario.Email = Request.Form["tboxMail"];
             mail.Destinatario = mail.DetalleUsuario.Email;
             mail.DetalleUsuario.Celular = Request.Form["tboxCelular"];
-            mail.MedioContacto = Request.Params["rbtnPreferenciaContacto"];
+            mail.MedioContacto = Request.Params["rbtnPreferenciaContacto"].ToString();
 
             mail.DetalleLibro.Formato.Medidas = Request.Params["cboxFormato"] + " " + Request.Form["tboxFormatoOtros"];
             mail.DetalleLibro.Genero = Request.Params["cboxGenero"] + " " + Request.Form["tboxGeneroOtros"];
@@ -46,6 +47,7 @@ namespace Presentacion
             mail.DetalleLibro.cantidadImagenes = Convert.ToInt32(Request.Form["tboxCantidadImagenes"]);
 
             unNuevoMail.EnviarMail(mail, "compleja");
+      
 
 
         }

@@ -15,6 +15,15 @@ namespace Presentacion
     {
 
         /// <summary>
+        /// Control pnlDatosUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlDatosUsuario;
+
+        /// <summary>
         /// Control tboxNombre.
         /// </summary>
         /// <remarks>
@@ -51,22 +60,22 @@ namespace Presentacion
         protected global::System.Web.UI.WebControls.TextBox tboxCelular;
 
         /// <summary>
-        /// Control tboxTelefono.
+        /// Control tboxConstrasenia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tboxTelefono;
+        protected global::System.Web.UI.WebControls.TextBox tboxConstrasenia;
 
         /// <summary>
-        /// Control tboxContrasenia.
+        /// Control tboxRepetirContrasenia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tboxContrasenia;
+        protected global::System.Web.UI.WebControls.TextBox tboxRepetirContrasenia;
 
         /// <summary>
         /// Control btnModificar.

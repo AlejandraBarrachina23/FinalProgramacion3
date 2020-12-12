@@ -1,6 +1,9 @@
 .header-talleres{
 
     background-image: url(../img/fondo-talleres.jpg);
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-position:center;
     height: 25rem;
 }
 
@@ -45,6 +48,11 @@
 
     background-image: url(../img/fondo-ghostwriter.png);
     height: 25vh;
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-position:center;
+    height: 25rem;
+    
 }
 
 .descripcion-parrafos{

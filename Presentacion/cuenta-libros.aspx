@@ -16,9 +16,9 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare lorem neque, et celerisque ligula tempus nec. Nam molestie leo sit amet arcu lacinia, et ullamcorper libero rutrum.</p>
         <nav>
             <ul class="menu-administrador">
-                <li><a href=""><i class="fas fa-users"></i>Mi cuenta</a></li>
-                <li><a href=""><i class="fas fa-theater-masks"></i>Categorías</a></li>
-                <li><a href=""><i class="fas fa-book"></i>Libros</li></a>
+                <li><a href="cuenta-perfil.aspx"><i class="fas fa-users"></i>Mi cuenta</a></li>
+                <li><a href="cuenta-autores.aspx"><i class="fas fa-theater-masks"></i>Autores</a></li>
+                <li><a href="cuenta-libros.aspx"><i class="fas fa-book"></i>Libros</li></a>
             </ul>    
         </nav>
     </div>
@@ -135,6 +135,27 @@
                   </div>
                 </div>
                 <asp:Label ID="lblISBNEliminar" runat="server" Visible="false"/>
+
+<!-- Modal NOTIFICACION-->
+
+<div class="modal fade" id="modalAccionCompletada" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content m-contenido">
+      <div class="modal-header m-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <i class="far fa-check-circle m-icono"></i>
+       <p>Acción completada exitosamente</p>
+      </div>
+            
+    </div>
+  </div>
+</div>
+
+    <!--Fin Ventana modal-->
         
 <!-- Grilla LIBROS -->
                 <asp:GridView ID="grillaLibros" runat="server" CssClass="tabla" AutoGenerateColumns="False" OnSelectedIndexChanged="grillaLibros_SelectedIndexChanged" AllowPaging="True" OnPageIndexChanging="grillaLibros_PageIndexChanging" PagerStyle-CssClass="pgr" OnRowDeleting="grillaLibros_RowDeleting" OnRowCommand="grillaLibros_RowCommand" EmptyDataText="No se encontró ningún elemento asociado a la búsqueda solicitada." ShowHeaderWhenEmpty="True" >

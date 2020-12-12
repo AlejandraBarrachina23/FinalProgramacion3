@@ -11,7 +11,7 @@
 @import 'contacto';
 @import 'cuenta';
 @import 'nosotros';
-
+@import 'modal';
 
 
 //ESTILOS GENERALES
@@ -43,6 +43,21 @@ img {
    
     max-width: 100%;
     display: block;
+    
+}
+
+#btnCerrarSesion{
+
+    color: #fff;
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+#btnCerrarSesion:hover{
+
+    text-decoration: underline #fff;
     
 }
 
@@ -637,6 +652,13 @@ font-size:1.5rem;
         font-weight: 500;
         padding:0rem 3rem;
     }
+
+
+}
+
+.error-404 h2::after{
+
+    background-color:none;
 }
 
 .notificacion{

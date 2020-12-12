@@ -7,7 +7,7 @@
             <div class="contenedor-mediano">
                 <h2>GRACIAS POR VISITARNOS</h2>
                 <h3>Tu sesión de usuario ha sido cerrada</h3>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <p>Haz click en siguiente botón para volver al inicio.</p>
                 <a href="index.aspx" class="btn">Volver al inicio</a>
             </div>      
         </div>

@@ -90,6 +90,7 @@
        </div>
     </form>              
 </div>
+
     </section>
     <script src="js/validacionesRegistro.js"></script>
     <script src="js/botonCerrarSesion.js"></script>

@@ -16,19 +16,23 @@
                     <div class="fieldset-datos">
                     <div class="form-item">
                         <label for="nombre">Nombre</label>
-                        <input type="text" id="nombre" name="tboxNombre" required>
+                        <input type="text" id="nombre" name="tboxNombre">
+                        <asp:Label ID="lblErrorNombre" class="Error" Text="" runat="server" />
                     </div>
                     <div class="form-item">
                         <label for="apellido">Apellido</label>
-                        <input type="text" id="apellido" name="tboxApellido" required>
+                        <input type="text" id="apellido" name="tboxApellido">
+                        <asp:Label ID="lblErrorApellido" class="Error" Text="" runat="server" />
                     </div>
                     <div class="form-item">
                         <label for="mail">Correo electrónico</label>
-                        <input type="email" id="mail" name="tboxMail" required>
+                        <input type="email" id="mail" name="tboxMail" >
+                        <asp:Label ID="lblErrorMail" class="Error" Text="" runat="server" />
                     </div>
                     <div class="form-item">
                         <label for="celular">Celular</label>
-                        <input type="number" id="celular" name="tboxCelular" required> 
+                        <input type="number" id="celular" name="tboxCelular" > 
+                        <asp:Label ID="lblErrorCelular" class="Error" Text="" runat="server"/>
                     </div>
                     <div class="form-item">
                         <label for="radio-imagenes">¿Cómo preferís que te contacte?</label> 
@@ -83,7 +87,7 @@
                     </div>
                     <div class="form-item">
                         <label for="cantidad-caracteres">Cantidad de caracteres</label>
-                        <input type="number" id="cantidad-caracteres" name="tboxCaracteres" min=1> 
+                        <input type="number" id="cantidad-caracteres" name="tboxCaracteres" min=0> 
                     </div>
                     <div class="form-item">
                         <label for="cantidad-ejemplares">Cantidad de ejemplares</label>
@@ -109,11 +113,36 @@
                 </div>
                 
             </fieldset>
-            <asp:Button ID="btnSubmitFormContacto" runat="server" Text="Enviar" class="btn btn-form-contacto" OnClick="btnSubmitFormContacto_Click"/>
+            <asp:Button ID="btnSubmitFormContacto" runat="server" Text="Enviar" class="btn btn-form-contacto" OnClick="btnSubmitFormContacto_Click" OnClientClick="return ValidacionesContacto();"/>
         </form>
+        <!-- Modal -->
 
+<div class="modal fade" id="modalMailEnviadoContacto" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content m-contenido">
+      <div class="modal-header m-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <i class="far fa-check-circle m-icono"></i>
+       <p>Tu consulta fue enviada exitosamente</p>
+      </div>
+            
+    </div>
+  </div>
+</div>
+
+    <!--Fin Ventana modal-->
     </section>
-    <script src="js/contacto.js"></script>
+    <script src="js/contacto.js">
+
+
+}
+    
+    </script>
 <!--Fin section-edicion-->
+
 
 </asp:Content>

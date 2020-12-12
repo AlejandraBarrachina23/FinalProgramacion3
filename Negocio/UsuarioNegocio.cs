@@ -17,20 +17,25 @@ namespace Negocio
     {
 
         private AdministradorAccesoDatos AccederDatos = new AdministradorAccesoDatos();
-        
-        public Usuario UsuarioLogeado(string NombreUsuario) {
+
+        public Usuario UsuarioLogeado(Usuario usuarioIngresado) {
 
             Usuario usuarioLogeado = new Usuario();
             AccederDatos.AbrirConexion();
             AccederDatos.DefinirProcedimientoAlmacenado("SP_UsuarioLogeado");
-            AccederDatos.Comando.Parameters.AddWithValue("@usuario", NombreUsuario);
+            AccederDatos.Comando.Parameters.AddWithValue("@usuario", usuarioIngresado.NombreUsuario);
+            AccederDatos.Comando.Parameters.AddWithValue("@contrasenia", usuarioIngresado.Contrasenia);
             AccederDatos.EjecutarConsulta();
             while (AccederDatos.LectorDatos.Read())
             {
-                usuarioLogeado.NombreUsuario = NombreUsuario;
+                usuarioLogeado.NombreUsuario = usuarioIngresado.NombreUsuario;
                 usuarioLogeado.Nombre = AccederDatos.LectorDatos["nombre"].ToString();
                 usuarioLogeado.Apellido = AccederDatos.LectorDatos["apellido"].ToString();
                 usuarioLogeado.TipoUsuario = (bool)AccederDatos.LectorDatos["TipoUsuario"];
+                usuarioLogeado.Contrasenia = AccederDatos.LectorDatos["contrasenia"].ToString();
+                usuarioLogeado.Email = AccederDatos.LectorDatos["email"].ToString();
+                usuarioLogeado.Celular = AccederDatos.LectorDatos["celular"].ToString();
+
             }
 
             return usuarioLogeado;
@@ -94,6 +99,22 @@ namespace Negocio
             AccederDatos.CerrarConexion();
 
             return usuarioLogeado;
+        }
+
+        public void ModificarUsuario(Usuario usuarioModificado)
+        {
+            AccederDatos.AbrirConexion();
+            AccederDatos.DefinirProcedimientoAlmacenado("SP_ModificarUsuario");
+            AccederDatos.Comando.Parameters.Clear();
+            AccederDatos.Comando.Parameters.AddWithValue("@NombreUsuario", usuarioModificado.NombreUsuario);
+            AccederDatos.Comando.Parameters.AddWithValue("@Nombre", usuarioModificado.Nombre);
+            AccederDatos.Comando.Parameters.AddWithValue("@Apellido", usuarioModificado.Apellido);
+            AccederDatos.Comando.Parameters.AddWithValue("@celular", usuarioModificado.Celular);
+            AccederDatos.Comando.Parameters.AddWithValue("@email", usuarioModificado.Email);
+            AccederDatos.Comando.Parameters.AddWithValue("@contrasenia", usuarioModificado.Contrasenia);
+            AccederDatos.EjecutarAccion();
+            AccederDatos.CerrarConexion();
+
         }
 
     }

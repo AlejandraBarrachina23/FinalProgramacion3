@@ -207,6 +207,7 @@ namespace Presentacion
                     unNuevoLibro.setearLibro(tboxIsbn.Text, tboxTitulo.Text, Convert.ToInt32(ddlFormatos.SelectedItem.Value), tboxSinopsis.Text, Convert.ToInt32(AnioEdicion.Text),
                     Convert.ToInt32(ddlAutores.SelectedItem.Value), Convert.ToInt32(ddlEditorial.SelectedItem.Value), imgPortada.ImageUrl);
                     unLibroNegocio.AgregarLibro(unNuevoLibro);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "modalAccionesCompleta", "$('#modalAccionCompletada').modal({show:true});", true);
                     grillaLibros.DataSource = unLibroNegocio.ListadoLibros();
                     grillaLibros.DataBind();
                     
@@ -250,6 +251,7 @@ namespace Presentacion
                 unNuevoLibro.setearLibro(tboxIsbn.Text, tboxTitulo.Text, Convert.ToInt32(ddlFormatos.SelectedItem.Value), tboxSinopsis.Text, Convert.ToInt32(AnioEdicion.Text),
                 Convert.ToInt32(ddlAutores.SelectedItem.Value), Convert.ToInt32(ddlEditorial.SelectedItem.Value), imgPortada.ImageUrl);
                 unLibroNegocio.ModificarLibro(unNuevoLibro);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "modalAccionesCompleta", "$('#modalAccionCompletada').modal({show:true});", true);
             }
 
             else {

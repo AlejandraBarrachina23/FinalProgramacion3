@@ -18,9 +18,9 @@
             <div class="splide__track">
                 <ul class="splide__list">
   <%
-
+     
       Negocio.LibroNegocio unLibroNegocio = new Negocio.LibroNegocio();
-      
+
       foreach (var unLibro in unLibroNegocio.ListarUltimasEdiciones())
       { %>
             <li class="splide__slide">
@@ -34,12 +34,15 @@
                 </div>
                 </div>
             </li>
-      <%}%>
+      <%}
+          
+           %>
             </ul>
         </div>
  </div>
     </main>
 <!--Fin Ultimos lanzamiento-->
+
 <!--Inicio Servicios-->
 <div class="imagen-fondo">
 <section class="contenedor-mediano">
@@ -66,7 +69,7 @@
         </div>
     </div>
     <div class="servicios">
-        <a href="servicios.aspx"><div class="servicio-icono"><i class="fas fa-book"></i></div></a>
+        <a href="edicion.aspx"><div class="servicio-icono"><i class="fas fa-book"></i></div></a>
         <div class="servicio-descripcion">
             <h3>Impresión</h3>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
@@ -212,7 +215,7 @@
             <input type="email" name="tboxEmail" id="input-correo" required>
             <label for="text-area-mensaje">Mensaje</label>
             <textarea name="tboxMensaje" id="text-area-mensaje" cols="30" rows="7" required></textarea>
-            <asp:Button ID="btnEnviarConsulta" CssClass="btn" runat="server" Text="Enviar" OnClick="btnEnviarConsulta_Click" />
+            <asp:Button ID="btnEnviarConsulta" CssClass="btn" runat="server" Text="Enviar" OnClick="btnEnviarConsulta_Click"/>
         </div>
     </form>
 </div>
@@ -222,5 +225,46 @@
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
     <script src="js/funciones.js"></script>
 <!--Fin Contacto-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalMailEnviado" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content m-contenido">
+      <div class="modal-header m-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <i class="far fa-check-circle m-icono"></i>
+       <p>Tu consulta fue enviada exitosamente</p>
+      </div>
+            
+    </div>
+  </div>
+</div>
+
+    <!--Fin Ventana modal-->
+
+    <script>
+
+        const tboxNombre = document.getElementById('input-nombre');
+        const tboxCorreo = document.getElementById('input-correo');
+        const tboxMensaje = document.getElementById('text-area-mensaje');
+        const botonSubmit = document.getElementById('ContentPlaceHolder1_btnEnviarConsulta');
+
+            botonSubmit.addEventListener('click', notificacion);
+
+            function notificacion() {
+
+                if (tboxNombre.value !== "" && tboxCorreo !== "" && tboxMensaje !== "" && tboxCorreo.value.includes('@')) {
+
+                    $('#modalMailEnviado').modal({ show: true });
+                }
+
+            }
+        
+    </script>
     
 </asp:Content>

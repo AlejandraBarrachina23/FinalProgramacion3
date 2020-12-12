@@ -10,9 +10,9 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare lorem neque, et celerisque ligula tempus nec. Nam molestie leo sit amet arcu lacinia, et ullamcorper libero rutrum.</p>
         <nav>
             <ul class="menu-administrador">
-                <li><a href=""><i class="fas fa-users"></i>Mi cuenta</a></li>
-                <li><a href=""><i class="fas fa-theater-masks"></i>Categorías</a></li>
-                <li><a href=""><i class="fas fa-book"></i>Libros</li></a>
+                <li><a href="cuenta-perfil.aspx"><i class="fas fa-users"></i>Mi cuenta</a></li>
+                <li><a href="cuenta-autores.aspx"><i class="fas fa-theater-masks"></i>Autores</a></li>
+                <li><a href="cuenta-libros.aspx"><i class="fas fa-book"></i>Libros</li></a>
             </ul>    
         </nav>
     </div>
@@ -63,7 +63,7 @@
                                                 <asp:Label ID="lblAutorError" runat="server" Text=""  CssClass="Error"></asp:Label>
                                             </div>
                                             <div class="form-item">
-                                                <label for="tboxNombre">Título</label>
+                                                <label for="tboxNombre">Nombre</label>
                                                 <asp:TextBox ID="tboxNombre" runat="server" ></asp:TextBox>
                                                 <asp:Label ID="lblErrorNombreAutor" runat="server" Text="" CssClass="Error"></asp:Label>
                                             </div>
@@ -78,7 +78,7 @@
                                                  <asp:Label ID="lblErrorCelular" runat="server" Text="" CssClass="Error"></asp:Label>
                                             </div>
                                             <div class="form-item">
-                                                <label for="tboxEmail">Apellido</label>
+                                                <label for="tboxEmail">Email</label>
                                                  <asp:TextBox ID="tboxEmail" runat="server" Type="text"></asp:TextBox>
                                                  <asp:Label ID="lblErrorEmail" runat="server" Text="" CssClass="Error"></asp:Label>
                                             </div>
@@ -114,6 +114,27 @@
                   </div>
                 </div>
                 <asp:Label ID="lblCodigoAutorEliminar" runat="server" Visible="false"/>
+
+<!-- Modal NOTIFICACION-->
+
+<div class="modal fade" id="modalAccionCompletadaActores" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content m-contenido">
+      <div class="modal-header m-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <i class="far fa-check-circle m-icono"></i>
+       <p>Acción completada exitosamente</p>
+      </div>
+            
+    </div>
+  </div>
+</div>
+
+    <!--Fin Ventana modal-->
         
 <!-- Grilla LIBROS -->
                 <asp:GridView ID="grillaAutores" runat="server" CssClass="tabla" AutoGenerateColumns="False" AllowPaging="True" PagerStyle-CssClass="pgr" EmptyDataText="No se encontró ningún elemento asociado a la búsqueda solicitada." ShowHeaderWhenEmpty="True" OnSelectedIndexChanged="grillaAutores_SelectedIndexChanged" OnPageIndexChanging="grillaAutores_PageIndexChanging" OnRowCommand="grillaAutores_RowCommand" OnRowDeleting="grillaAutores_RowDeleting" >

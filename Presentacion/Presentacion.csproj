@@ -75,6 +75,7 @@
     <Content Include="cuenta-libros.aspx" />
     <Content Include="edicion.aspx" />
     <Content Include="ghostwriter.aspx" />
+    <Content Include="js\encabezados.js" />
     <Content Include="mail-notificacion-restauracion.html" />
     <Content Include="js\botonCerrarSesion.js" />
     <Content Include="js\paginacion.js" />

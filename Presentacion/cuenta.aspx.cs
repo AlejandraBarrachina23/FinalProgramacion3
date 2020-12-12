@@ -23,10 +23,11 @@ namespace Presentacion
             Usuario usuarioIngresado = new Usuario();
             usuarioIngresado.NombreUsuario = tboxUsuarioInicio.Text.ToLower();
             usuarioIngresado.Contrasenia = tboxConstrasenia.Text.ToLower();
-            usuarioIngresado = unUsuarioNegocio.UsuarioLogeado(usuarioIngresado.NombreUsuario);
+            usuarioIngresado = unUsuarioNegocio.UsuarioLogeado(usuarioIngresado);
 
-            if (usuarioIngresado!=null) {
-                
+            if (usuarioIngresado.NombreUsuario != null) {
+
+                lblEstadoLogeo.Text = usuarioIngresado.Nombre + usuarioIngresado.NombreUsuario + usuarioIngresado.Contrasenia;
                 Session["UsuarioLogeado"] = usuarioIngresado;
                 //ME GUARDO LOS DATOS DEL USUARIO Y REDIRECCIONO A LA SIGUIENTE SECCIÓN
                 if (usuarioIngresado.TipoUsuario) Response.Redirect("cuenta-home.aspx");

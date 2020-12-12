@@ -176,7 +176,7 @@ ul li a:hover {
 /*COLORES*/
 /*FUENTES*/
 /*BREAKPOINTS*/
-header {
+.header-inicio {
   width: 100%;
   height: 65rem;
   background-image: url(../img/fondo-p.jpg);
@@ -704,8 +704,11 @@ small a {
 }
 
 .header-edicion {
-  height: 25rem;
   background-image: url(../img/fondo-edicion.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 25rem;
 }
 
 .edicion-servicios {
@@ -761,6 +764,9 @@ small a {
 
 .header-talleres {
   background-image: url(../img/fondo-talleres.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   height: 25rem;
 }
 
@@ -798,6 +804,10 @@ small a {
 .header-ghostwriter {
   background-image: url(../img/fondo-ghostwriter.png);
   height: 25vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 25rem;
 }
 
 .descripcion-parrafos {
@@ -823,6 +833,9 @@ small a {
 
 .header-faq {
   background-image: url(../img/fondo-faq.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   height: 25rem;
 }
 
@@ -879,7 +892,7 @@ small a {
   -webkit-transition: max-height 0.2s;
   transition: max-height 0.2s;
   line-height: 1.5;
-  padding: 0.2rem 1.5rem;
+  padding: 0.2rem 1rem;
   background-color: #fff;
 }
 
@@ -906,6 +919,9 @@ small a {
 
 .header-contacto {
   background-image: url(../img/fondo-landing-footer.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   height: 25rem;
 }
 
@@ -1145,8 +1161,11 @@ input[type=submit] {
 }
 
 .header-nosotros {
-  height: 25rem;
   background-image: url(../img/fondo-nosotros.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 25rem;
 }
 
 .carta-presentacion {
@@ -1273,6 +1292,26 @@ input[type=submit] {
   }
 }
 
+.m-contenido {
+  color: #107066;
+  font-family: 'Poppins';
+  font-weight: 600;
+  opacity: 0.90;
+  font-size: 1.8;
+  text-align: center;
+  border: none;
+}
+
+.m-header {
+  background-color: #94D6C8;
+  border: none;
+}
+
+.m-icono {
+  font-size: 6rem;
+  margin: 1.5rem 2rem;
+}
+
 *, *:before, *:after {
   -webkit-box-sizing: inherit;
           box-sizing: inherit;
@@ -1295,6 +1334,19 @@ body {
 img {
   max-width: 100%;
   display: block;
+}
+
+#btnCerrarSesion {
+  color: #fff;
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+#btnCerrarSesion:hover {
+  -webkit-text-decoration: underline #fff;
+          text-decoration: underline #fff;
 }
 
 .titulos-cabecera {
@@ -1804,6 +1856,10 @@ h3 {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   padding: 0rem 3rem;
+}
+
+.error-404 h2::after {
+  background-color: none;
 }
 
 .notificacion {

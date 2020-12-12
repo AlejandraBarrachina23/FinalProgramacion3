@@ -6,7 +6,7 @@
     <section class="contenedor-mediano">
 <h2 class="subtitulo">Recupera tu contraseña</h2>
 <div class="descripcion-seccion">
-    <p>Ingresa en el siguiente formulario el correo electrónico que tengas asociado a tu usuario, de esta manera podremos enviarte los datos correspondientes a tu usuario.</p>
+    <p>Ingresa en el siguiente formulario el correo electrónico que tengas asociado a tu usuario, de esta manera podremos enviarte los datos correspondientes para iniciar sesión.</p>
 </div>
 
  <!-- Ventana Modal -->

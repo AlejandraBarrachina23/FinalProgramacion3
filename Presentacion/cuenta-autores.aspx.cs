@@ -128,7 +128,8 @@ namespace Presentacion
             unNuevoAutor.Email = tboxEmail.Text;
 
             unAutorNegocio.AgregarAutor(unNuevoAutor);
-            
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "modalAccionesCompletaActores", "$('#modalAccionCompletadaActores').modal({show:true});", true);
+
             grillaAutores.DataSource = unAutorNegocio.ListarAutores();
             grillaAutores.DataBind();
 
@@ -145,7 +146,7 @@ namespace Presentacion
             unAutor.Celular = tboxCelular.Text;
             unAutor.Email = tboxEmail.Text;
             unAutorNegocio.ModificarAutor(unAutor);
-
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "modalAccionesCompletaActores", "$('#modalAccionCompletadaActores').modal({show:true});", true);
             grillaAutores.DataSource = unAutorNegocio.ListarAutores();
             grillaAutores.DataBind();
         }

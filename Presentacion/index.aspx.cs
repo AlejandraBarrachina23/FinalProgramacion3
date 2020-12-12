@@ -37,6 +37,7 @@ namespace Presentacion
             
             mail.EnviarMail(detalleMail,"sencilla");
 
+            
         }
     }
 }
