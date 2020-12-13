@@ -15,6 +15,7 @@ function DisplayList(items, wrapper, rows_per_page, page) {
     var btnsArr = Array.from(items);
     let paginatedItem = btnsArr.slice(start, end);
 
+
     //OCULTO TODO
     for (let i = 0; i < btnsArr.length; i++) {
 
@@ -61,6 +62,8 @@ function PaginationButton(page, items) {
 SetupPagination(cantidadLibros, pagination_element, row);
 DisplayList(cantidadLibros, cantidadLibros, row, current_page);
 
+
+//MOSTRAR EL DETALLE DE LOS LIBROS
 const items = document.querySelectorAll('.resumen');
 let modalTitulo = document.getElementById('modal-titulo');
 let modalAutor = document.getElementById('modal-autor');

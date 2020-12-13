@@ -12,7 +12,7 @@ function ValidarRegistro() {
     const ContraseniaError = document.getElementById('ContentPlaceHolder1_lblErrorPassword');
     const tboxContraseniaRepetida = document.getElementById('ContentPlaceHolder1_tboxRepetirContrasenia');
     const ConstraseniaRepetidaError = document.getElementById('ContentPlaceHolder1_lblErrorPasswordRepetida');
-    
+
     let errores = 0;
 
     //LIMPIO LAS NOTIFICACIONES
@@ -26,15 +26,17 @@ function ValidarRegistro() {
     if (!validarTextBoxVacio(tboxContraseniaRepetida, ConstraseniaRepetidaError, 'Complete este campo')) errores++;
 
     //VALIDO QUE EL CAMPO USUARIO Y CONTRASEÑA NO TENGA MAS DE 20 CARACTERES
-    if (!longitudMaxima(tboxUsuario, 20, UsuarioRegistroError, 'El máximo de caracteres permitido es 20')) errores++;
-    if (!longitudMaxima(tboxContrasenia, 20, ContraseniaError, 'El máximo de caracteres permitido es 20')) errores++;
-
+    if (!ValidarIntervalo(tboxContrasenia, 20, 10, ContraseniaError, "La contraseña debe contener de 10 a 20 caracteres"))  errores++; 
+    if (!ValidarIntervalo(tboxUsuario, 20, 10, UsuarioRegistroError, "El nombre de usuario debe tener de 10 a 20 caracteres"))  errores++; 
 
     //VALIDO LONGITUD DEL CELULAR
     if (!longitudExacta(tboxCelular, 10, CelularError, 'El celular debe contener 10 caracteres')) errores++;
 
     //COMPARO CONTRASEÑAS
     if (!compararContrasenias(tboxContrasenia, tboxContraseniaRepetida, ConstraseniaRepetidaError, 'Las contraseñas no coinciden')) errores++;
+
+    if (!ValidarMail(tboxEmail)) { EmailError.textContent = "El formato de mail ingresado es incorrecto"; errores++ }
+    
 
     //SI HAY AUNQUE SEA UN ERROR, DEVUELVO FALSO.
     if (errores > 0) { return false; }
@@ -59,6 +61,11 @@ function ValidarInicioSesion() {
     
 }
 
+function ValidarIntervalo(tboxEvaluar, ValorMaximo, ValorMinimo, campo, mensajeError) {
+
+    if (tboxEvaluar.value.length > ValorMaximo || tboxEvaluar.value.length < ValorMinimo) { campo.textContent = mensajeError; return false }
+    else return true;
+}
 
 function validarTextBoxVacio(textBox, campo, mensajeError) {
 
@@ -93,6 +100,12 @@ function longitudExacta(tboxEvaluar, cantidadCaracteresPermitidos, campo, mensaj
 
     if (tboxEvaluar.value.length !== cantidadCaracteresPermitidos) { campo.textContent = mensajeError; return false }
     return true;
+}
+
+function ValidarMail(email) {
+
+    var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email.value) ? true : false;
 }
 
 

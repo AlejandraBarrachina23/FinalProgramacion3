@@ -22,13 +22,17 @@ namespace Presentacion
                 linkPerfil.NavigateUrl = "~/cuenta-home.aspx";
             }
 
-            else {
+            else
+            {
                 Response.Redirect("error404.aspx");
             }
 
-            AutorNegocio unAutor = new AutorNegocio();
-            grillaAutores.DataSource = unAutor.ListarAutores();
-            grillaAutores.DataBind();
+            if (!IsPostBack) { 
+                AutorNegocio unAutor = new AutorNegocio();
+                grillaAutores.DataSource = unAutor.ListarAutores();
+                grillaAutores.DataBind();
+            }
+
         }
 
         protected void grillaAutores_SelectedIndexChanged(object sender, EventArgs e)
@@ -39,14 +43,11 @@ namespace Presentacion
                 AutorNegocio unAutorNegocio = new AutorNegocio();
 
                 // VARIABLE QUE ALMACENA EL INDICE DE LA FILA SELECCIONADA, SE AJUSTA CON LA PAGINACIÓN
-                int IndexRow = grillaAutores.SelectedIndex + (grillaAutores.PageIndex * grillaAutores.PageSize);
 
-                //precarga de datos
-                Autor AutorSeleccionado = new Autor();
+                GridViewRow rowSeleccionada = grillaAutores.SelectedRow;
+                int idAutor = Convert.ToInt32(rowSeleccionada.Cells[0].Text);
 
-
-                //SACO LOS DATOS DE LA FILA SELECCIONADA
-                AutorSeleccionado = unAutorNegocio.ListarAutores()[IndexRow];
+                Autor AutorSeleccionado = unAutorNegocio.AutorSeleccionado(idAutor);
 
                 //CARGO TEXTBOX
                 tboxCodigoAutor.Text = AutorSeleccionado.CodigoAutor.ToString();
@@ -55,8 +56,6 @@ namespace Presentacion
                 tboxCelular.Text = AutorSeleccionado.Celular;
                 tboxEmail.Text = AutorSeleccionado.Email;
 
-                //HABILITO Y DESHABILITO LOS BOTONES
-                tboxCodigoAutor.Enabled = false;
             }
             catch (Exception exc)
             {
@@ -69,6 +68,8 @@ namespace Presentacion
         protected void grillaAutores_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             AutorNegocio unAutorNegocio = new AutorNegocio();
+            lblEstado.Text = e.NewPageIndex.ToString();
+            
             grillaAutores.PageIndex = e.NewPageIndex;
             grillaAutores.DataSource = unAutorNegocio.ListarAutores();
             grillaAutores.DataBind();
@@ -93,7 +94,7 @@ namespace Presentacion
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "AbrirModal", "$('#mymodal').modal({show:true});", true);
                 btnModificar.Visible = true;
                 btnAceptar.Visible = false;
-
+                lblErrorNombreAutor.Text = "";
 
             }
 
@@ -109,7 +110,6 @@ namespace Presentacion
             AutorNegocio unAutor = new AutorNegocio();
             ScriptManager.RegisterStartupScript(this, this.GetType(), "AbrirModal", "$('#mymodal').modal({show:true});", true);
             LimpiarFormulario();
-            tboxCodigoAutor.Enabled = true;
             btnModificar.Visible = false;
             btnAceptar.Visible = true;
             tboxCodigoAutor.Text = unAutor.IDAutor().ToString();
@@ -118,7 +118,6 @@ namespace Presentacion
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            tboxCodigoAutor.Enabled = true;
 
             AutorNegocio unAutorNegocio = new AutorNegocio();
             Autor unNuevoAutor = new Autor();
@@ -137,7 +136,7 @@ namespace Presentacion
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-
+            lblErrorNombreAutor.Text = "";
             AutorNegocio unAutorNegocio = new AutorNegocio();
             Autor unAutor = new Autor();
             unAutor.CodigoAutor = Convert.ToInt32(tboxCodigoAutor.Text);
@@ -145,10 +144,41 @@ namespace Presentacion
             unAutor.Apellido = tboxApellido.Text;
             unAutor.Celular = tboxCelular.Text;
             unAutor.Email = tboxEmail.Text;
-            unAutorNegocio.ModificarAutor(unAutor);
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "modalAccionesCompletaActores", "$('#modalAccionCompletadaActores').modal({show:true});", true);
-            grillaAutores.DataSource = unAutorNegocio.ListarAutores();
-            grillaAutores.DataBind();
+            string autorIngresado = unAutor.Nombre + " " + unAutor.Apellido;
+            List<Autor> ListadoAutoresDisponibles = unAutorNegocio.ListadoAutores();
+
+
+            if (!VerificarAutor(ListadoAutoresDisponibles, autorIngresado, unAutor.CodigoAutor))
+            {
+
+                unAutorNegocio.ModificarAutor(unAutor);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "modalAccionesCompletaActores", "$('#modalAccionCompletadaActores').modal({show:true});", true);
+                grillaAutores.DataSource = unAutorNegocio.ListarAutores();
+                grillaAutores.DataBind();
+            }
+
+            else
+            {
+
+                lblErrorNombreAutor.Text = "El autor ingresado ya existe";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "AbrirModal", "$('#mymodal').modal({show:true});", true);
+            }
+        }
+
+        private bool VerificarAutor(List<Autor> ListadoAutoresDisponibles, string NombreAutor, int CodigoAutor)
+        {
+
+
+            foreach (var autor in ListadoAutoresDisponibles)
+            {
+                if (autor.Nombre.ToString().ToLower() == NombreAutor.ToLower() && CodigoAutor != autor.CodigoAutor)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+
         }
 
         private void LimpiarFormulario()
@@ -188,10 +218,44 @@ namespace Presentacion
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            AutorNegocio unAutorNegocio = new AutorNegocio(); 
+            AutorNegocio unAutorNegocio = new AutorNegocio();
             unAutorNegocio.EliminarAutor(Convert.ToInt32(lblCodigoAutorEliminar.Text));
             grillaAutores.DataSource = unAutorNegocio.ListarAutores();
             grillaAutores.DataBind();
         }
+
+        protected void cboxOrdenarLibros_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AutorNegocio unAutorNegocio = new AutorNegocio();
+            List<Autor> ListadoAutores = new List<Autor>();
+            ListadoAutores = unAutorNegocio.ListarAutores();
+
+            if (cboxOrdenarLibros.SelectedIndex == 0)
+            {
+                grillaAutores.DataSource = ListadoAutores.OrderBy(x => x.Nombre).ToList<Autor>();
+                grillaAutores.DataBind();
+            }
+            else if (cboxOrdenarLibros.SelectedIndex == 1)
+            {
+                grillaAutores.DataSource = ListadoAutores.OrderBy(x => x.Apellido).ToList<Autor>();
+                grillaAutores.DataBind();
+            }
+            else
+            {
+                grillaAutores.DataSource = ListadoAutores.OrderBy(x => x.Email).ToList<Autor>();
+                grillaAutores.DataBind();
+            }
+        }
+
+        protected void tboxBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            AutorNegocio unAutorNegocio = new AutorNegocio();
+            List<Autor> ListadoAutores = new List<Autor>();
+            ListadoAutores = unAutorNegocio.ListarAutores();
+            grillaAutores.DataSource = ListadoAutores.FindAll(x => x.Nombre.ToLower().Contains(tboxBusqueda.Text.ToLower()));
+            grillaAutores.DataBind();
+            
+        }
     }
+    
 }

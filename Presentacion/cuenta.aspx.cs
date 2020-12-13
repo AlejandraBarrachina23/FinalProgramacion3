@@ -68,6 +68,8 @@ namespace Presentacion
                     notificacion.DetalleUsuario = usuarioIngresado;
                     unUsuarioNegocio.AgregarUsuario(usuarioIngresado);
                     unMail.EnviarMail(notificacion, "alta usuario");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "AbrirModal", "$('#modalUsuarioAgregado').modal({show:true});", true);
+                    LimpiarInput();
 
                 }
 
@@ -80,10 +82,18 @@ namespace Presentacion
                 lblErrorRegistroUsuario.Text = "El nombre de usuario ingresado ya esta en uso";
 
             }
-                
-
-            
       
         }
+
+        private void LimpiarInput()
+        {
+
+            foreach (TextBox tbox in pnlRegistro.Controls.OfType<TextBox>())
+            {
+                tbox.Text = "";
+            }
+
+        }
+
     }
 }

@@ -26,9 +26,6 @@ namespace Presentacion
             AutorNegocio unAutorNegocio = new AutorNegocio();
             EditorialNegocio unaEditorialNegocio = new EditorialNegocio();
 
-            //CARGO GRID -> LIBROS
-            grillaLibros.DataSource = unLibroNegocio.ListadoLibros();
-            grillaLibros.DataBind();
 
             if (!IsPostBack)
             {
@@ -49,6 +46,10 @@ namespace Presentacion
                 ddlEditorial.DataValueField = "CodigoEditorial";
                 ddlEditorial.DataTextField = "NombreEditorial";
                 ddlEditorial.DataBind();
+
+                //CARGO GRID -> LIBROS
+                grillaLibros.DataSource = unLibroNegocio.ListadoLibros();
+                grillaLibros.DataBind();
 
             }
 
@@ -78,8 +79,6 @@ namespace Presentacion
                 //PRECARGA DE DATOS EN EL FORMULARIO OCULTO
                 LibroNegocio unLibroNegocio = new LibroNegocio();
 
-                // VARIABLE QUE ALMACENA EL INDICE DE LA FILA SELECCIONADA, SE AJUSTA CON LA PAGINACIÓN
-                int IndexRow = grillaLibros.SelectedIndex + (grillaLibros.PageIndex * grillaLibros.PageSize);
 
                 //precarga de datos
                 Libro LibroSeleccionado = new Libro();
@@ -87,9 +86,10 @@ namespace Presentacion
                 LibroSeleccionado.Editorial = new Editorial();
                 LibroSeleccionado.Autor = new Autor();
 
-                //SACO LOS DATOS DE LA FILA SELECCIONADA
-                LibroSeleccionado = unLibroNegocio.ListadoLibros()[IndexRow];
-
+                GridViewRow rowSeleccionada = grillaLibros.SelectedRow;
+                string ISBN = rowSeleccionada.Cells[0].Text;
+                LibroSeleccionado = unLibroNegocio.LibroSeleccionado(ISBN);
+             
                 //CARGO TEXTBOX
                 tboxIsbn.Text = LibroSeleccionado.ISBN.ToString();
                 tboxTitulo.Text = LibroSeleccionado.Titulo.ToString();
@@ -251,7 +251,7 @@ namespace Presentacion
                 unNuevoLibro.setearLibro(tboxIsbn.Text, tboxTitulo.Text, Convert.ToInt32(ddlFormatos.SelectedItem.Value), tboxSinopsis.Text, Convert.ToInt32(AnioEdicion.Text),
                 Convert.ToInt32(ddlAutores.SelectedItem.Value), Convert.ToInt32(ddlEditorial.SelectedItem.Value), imgPortada.ImageUrl);
                 unLibroNegocio.ModificarLibro(unNuevoLibro);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "modalAccionesCompleta", "$('#modalAccionCompletada').modal({show:true});", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "modalAccionesCompletaModificar", "$('#modalAccionCompletada').modal({show:true});", true);
             }
 
             else {
@@ -375,6 +375,34 @@ namespace Presentacion
             LibroNegocio unLibroNegocio = new LibroNegocio();
             unLibroNegocio.EliminarLibro(lblISBNEliminar.Text);
             grillaLibros.DataSource = unLibroNegocio.ListadoLibros();
+            grillaLibros.DataBind();
+        }
+
+        protected void ddlFiltroLibros_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LibroNegocio unLibroNegocio = new LibroNegocio();
+            List<Libro> ListadoLibros = new List<Libro>();
+            ListadoLibros = unLibroNegocio.ListadoLibros();
+
+            if (ddlFiltroLibros.SelectedIndex == 0)
+            {
+                grillaLibros.DataSource = ListadoLibros.OrderBy(x => x.Titulo).ToList<Libro>();
+                grillaLibros.DataBind();
+            }
+            else if (ddlFiltroLibros.SelectedIndex == 1)
+            {
+                grillaLibros.DataSource = ListadoLibros.OrderBy(x => x.Autor.Nombre).ToList<Libro>();
+                grillaLibros.DataBind();
+            }
+
+        }
+
+        protected void btnBusqueda_Click(object sender, EventArgs e)
+        {
+            LibroNegocio unLibroNegocio = new LibroNegocio();
+            List<Libro> ListadoAutores = new List<Libro>();
+            ListadoAutores = unLibroNegocio.ListadoLibros();
+            grillaLibros.DataSource = ListadoAutores.FindAll(x => x.Titulo.ToLower().Contains(tboxBusqueda.Text.ToLower()));
             grillaLibros.DataBind();
         }
     }

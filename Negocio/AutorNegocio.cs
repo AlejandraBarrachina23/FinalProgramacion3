@@ -112,5 +112,25 @@ namespace Negocio
             return respuesta+1;
         }
 
+        public Autor AutorSeleccionado(int codigoAutor) {
+
+            AccederDatos.AbrirConexion();
+            AccederDatos.DefinirProcedimientoAlmacenado("SP_AutorSeleccionado");
+            AccederDatos.Comando.Parameters.AddWithValue("@CodigoAutor", codigoAutor);
+            AccederDatos.EjecutarConsulta();
+            Autor unAutor = new Autor();
+
+            while (AccederDatos.LectorDatos.Read())
+            {
+                unAutor.CodigoAutor = (int)AccederDatos.LectorDatos["ID_Autor"];
+                unAutor.Nombre = (string)AccederDatos.LectorDatos["Nombre"];
+                unAutor.Apellido = (string)AccederDatos.LectorDatos["Apellido"];
+                unAutor.Celular = (string)AccederDatos.LectorDatos["Celular"];
+                unAutor.Email = (string)AccederDatos.LectorDatos["Email"];
+            }
+
+            AccederDatos.CerrarConexion();
+            return unAutor;
+        }
     }
 }

@@ -76,6 +76,8 @@
     <Content Include="edicion.aspx" />
     <Content Include="ghostwriter.aspx" />
     <Content Include="js\encabezados.js" />
+    <Content Include="js\validacionesAutores.js" />
+    <Content Include="js\validacionesUsuario.js" />
     <Content Include="mail-notificacion-restauracion.html" />
     <Content Include="js\botonCerrarSesion.js" />
     <Content Include="js\paginacion.js" />

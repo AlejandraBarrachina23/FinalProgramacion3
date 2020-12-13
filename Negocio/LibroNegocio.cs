@@ -184,7 +184,36 @@ namespace Negocio
 
         }
 
+        public Libro LibroSeleccionado(string ISBN) {
 
+            Libro libroSeleccionado = new Libro();
+            libroSeleccionado.Autor = new Autor();
+            libroSeleccionado.Formato = new Formato();
+            libroSeleccionado.Autor = new Autor();
+            libroSeleccionado.Editorial = new Editorial();
+            AccederDatos.AbrirConexion();
+            AccederDatos.DefinirProcedimientoAlmacenado("SP_LibroSeleccionado");
+            AccederDatos.Comando.Parameters.AddWithValue("@ISBN",ISBN);
+            AccederDatos.EjecutarConsulta();
+
+            while (AccederDatos.LectorDatos.Read())
+            {
+                libroSeleccionado.ISBN = (string)AccederDatos.LectorDatos["ISBN"];
+                libroSeleccionado.Titulo = (string)AccederDatos.LectorDatos["Titulo"];
+                libroSeleccionado.AnioEdicion = (int)AccederDatos.LectorDatos["Fecha_Edicion"];
+                libroSeleccionado.Sinopsis = (string)AccederDatos.LectorDatos["Sinopsis"];
+                libroSeleccionado.Autor.CodigoAutor = (int)AccederDatos.LectorDatos["ID_Autor"];
+                libroSeleccionado.Autor.Nombre = (string)AccederDatos.LectorDatos["Nombre"];
+                libroSeleccionado.Autor.Apellido = (string)AccederDatos.LectorDatos["Apellido"];
+                libroSeleccionado.Formato.CodigoFormato = (int)AccederDatos.LectorDatos["ID_Formato"];
+                libroSeleccionado.Editorial.CodigoEditorial = (int)AccederDatos.LectorDatos["ID_Editorial"];
+                libroSeleccionado.Editorial.NombreEditorial = (string)AccederDatos.LectorDatos["Nombre_Editorial"];
+                libroSeleccionado.Portada = (string)AccederDatos.LectorDatos["Portada"];
+            }
+
+            AccederDatos.CerrarConexion();
+            return libroSeleccionado;
+        }
 
     }
 }

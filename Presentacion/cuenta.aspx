@@ -43,8 +43,9 @@
         <div class="formulario-registro" id="formularioRegistro">
             <fieldset>
              <h3>Registrate</h3>
-             <div class="fieldset-datos">
-                <div class="form-item">
+             <asp:Panel ID="pnlRegistro" runat="server">
+                <div class="fieldset-datos">
+                 <div class="form-item">
                     <label for="usuario-registro">Usuario</label>
                     <div class="input-imagen">    
                         <asp:TextBox ID="tboxUsuarioRegistro" runat="server"></asp:TextBox>
@@ -86,12 +87,32 @@
                  <asp:Label class="Error" ID="lblErrorPasswordRepetida" runat="server" Text=""></asp:Label>
                  <asp:Button ID="btnRegistro" runat="server" CssClass="btn" Text="Enviar" OnClick="btnRegistro_Click"  OnClientClick="return ValidarRegistro();" />
              </div>
+                 </asp:Panel>
        </fieldset>
        </div>
+<!-- Modal -->
+<div class="modal fade" id="modalUsuarioAgregado" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content m-contenido">
+      <div class="modal-header m-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <i class="far fa-check-circle m-icono"></i>
+       <p>Tu consulta fue enviada exitosamente</p>
+      </div>
+            
+    </div>
+  </div>
+</div>
+<!--Fin Ventana modal-->
     </form>              
 </div>
 
     </section>
+
     <script src="js/validacionesRegistro.js"></script>
     <script src="js/botonCerrarSesion.js"></script>
 <!--Fin section-edicion-->

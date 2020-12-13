@@ -22,24 +22,24 @@
     </div>
 
 <!-- BUSQUEDA -->
+         <form id="form1" runat="server">
     <div class="crud-libros">
         <div class="filtros-busqueda">
             <div class="busqueda">
                 <label for="">Búsqueda</label>
-                <input type="text">
+                <asp:TextBox ID="tboxBusqueda" runat="server" OnTextChanged="tboxBusqueda_TextChanged"></asp:TextBox>
+                <asp:Button ID="Button1" class="btn" runat="server" Text="Buscar" />
             </div>
             <div class="orden">
                 <label for="prdenar-libros">Ordernar por</label>
-                <select name="cboxOrdenarLibros" id="ordenar-libros">
-                    <option value="">Alfabéticamente: A-Z</option>
-                    <option value="">Alfabéticamente: Z-A</option>
-                    <option value="">Año de edición</option>
-                </select>
+                <asp:DropDownList ID="cboxOrdenarLibros" runat="server" OnSelectedIndexChanged="cboxOrdenarLibros_SelectedIndexChanged" AutoPostBack="True">
+                    <asp:ListItem Value="0">Nombre Autor</asp:ListItem>
+                    <asp:ListItem Value="1">Apellido Autor</asp:ListItem>
+                    <asp:ListItem Value="2">Email Autor</asp:ListItem>
+                </asp:DropDownList>
             </div>
         </div>
-
-        <form id="form1" runat="server">
-        
+  
 <!-- Modal EDITAR-CREAR -->
             
             <asp:Button ID="btnAgregar" runat="server" type="button" Text="Agregar"  CssClass="btn" data-toggle="modal" data-target=".bd-example-modal-lg" OnClick="btnAgregar_Click" />              
@@ -59,7 +59,7 @@
                                         <div class="fieldset-datos">
                                             <div class="form-item">
                                                 <label for="CodigoAutor">Código Autor</label>
-                                                <asp:TextBox ID="tboxCodigoAutor" runat="server" ></asp:TextBox>
+                                                <asp:TextBox ID="tboxCodigoAutor" runat="server" Enabled="false" ></asp:TextBox>
                                                 <asp:Label ID="lblAutorError" runat="server" Text=""  CssClass="Error"></asp:Label>
                                             </div>
                                             <div class="form-item">
@@ -82,8 +82,8 @@
                                                  <asp:TextBox ID="tboxEmail" runat="server" Type="text"></asp:TextBox>
                                                  <asp:Label ID="lblErrorEmail" runat="server" Text="" CssClass="Error"></asp:Label>
                                             </div>
-                                             <asp:Button ID="btnModificar" CssClass="btn" runat="server" Text="Modificar" OnClick="btnModificar_Click"/>
-                                             <asp:Button ID="btnAceptar" CssClass="btn" runat="server" Text="Agregar" OnClientClick="return validarABML();" OnClick="btnAceptar_Click"/>
+                                             <asp:Button ID="btnModificar" CssClass="btn" runat="server" Text="Modificar" OnClick="btnModificar_Click" OnClientClick="return ValidarAutores();"/>
+                                             <asp:Button ID="btnAceptar" CssClass="btn" runat="server" Text="Agregar" OnClientClick="return ValidarAutores();" OnClick="btnAceptar_Click"/>
                                         </div>
                                     </fieldset>
                                    </asp:Panel>
@@ -135,9 +135,9 @@
 </div>
 
     <!--Fin Ventana modal-->
-        
+        <asp:Label ID="lblEstado" Text="" runat="server" />
 <!-- Grilla LIBROS -->
-                <asp:GridView ID="grillaAutores" runat="server" CssClass="tabla" AutoGenerateColumns="False" AllowPaging="True" PagerStyle-CssClass="pgr" EmptyDataText="No se encontró ningún elemento asociado a la búsqueda solicitada." ShowHeaderWhenEmpty="True" OnSelectedIndexChanged="grillaAutores_SelectedIndexChanged" OnPageIndexChanging="grillaAutores_PageIndexChanging" OnRowCommand="grillaAutores_RowCommand" OnRowDeleting="grillaAutores_RowDeleting" >
+                <asp:GridView ID="grillaAutores" runat="server" CssClass="tabla" AutoGenerateColumns="False" AllowPaging="True" PagerStyle-CssClass="pgr" EmptyDataText="No se encontró ningún elemento asociado a la búsqueda solicitada." ShowHeaderWhenEmpty="True" OnSelectedIndexChanged="grillaAutores_SelectedIndexChanged" OnPageIndexChanging="grillaAutores_PageIndexChanging" OnRowCommand="grillaAutores_RowCommand" OnRowDeleting="grillaAutores_RowDeleting" PageSize="5" >
                 <Columns>
                     <asp:BoundField DataField="CodigoAutor" HeaderText="Código" />
                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
@@ -149,11 +149,11 @@
                 </Columns>
                 <PagerStyle CssClass="pgr"></PagerStyle>
                 </asp:GridView>                
-         
+            </div>
             </form>
          
-    </div>
+ 
 </section>
-
+    <script src="js/validacionesAutores.js"></script>
 
 </asp:Content>

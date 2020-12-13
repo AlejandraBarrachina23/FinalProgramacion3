@@ -41,7 +41,6 @@ namespace Presentacion
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-           
 
             DeshabilitarHabilitarTextBoxes(true);
             btnAceptar.Visible = true;
@@ -55,18 +54,28 @@ namespace Presentacion
            
             Usuario usuarioModificado = new Usuario();
             UsuarioNegocio unUsuarioNegocio = new UsuarioNegocio();
+            usuarioModificado = (Usuario)Session["UsuarioLogeado"];
 
-            usuarioModificado.Nombre = tboxNombre.Text;
-            usuarioModificado.Apellido = tboxApellido.Text;
-            usuarioModificado.Contrasenia = tboxConstrasenia.Text;
-            usuarioModificado.Celular = tboxCelular.Text;
-            usuarioModificado.Email = tboxEmail.Text;
-            usuarioModificado.NombreUsuario = ((Usuario)Session["UsuarioLogeado"]).NombreUsuario;
-            usuarioModificado.TipoUsuario = true;
-            Session["UsuarioLogeado"] = usuarioModificado;
-            unUsuarioNegocio.ModificarUsuario(usuarioModificado);
-            DeshabilitarHabilitarTextBoxes(false);
+            if (unUsuarioNegocio.VerificarMailExistente(tboxEmail.Text) != 1)
+            {
+                
+                usuarioModificado.Nombre = tboxNombre.Text;
+                usuarioModificado.Apellido = tboxApellido.Text;
+                usuarioModificado.Contrasenia = tboxConstrasenia.Text;
+                usuarioModificado.Celular = tboxCelular.Text;
+                usuarioModificado.Email = tboxEmail.Text;
+                usuarioModificado.NombreUsuario = ((Usuario)Session["UsuarioLogeado"]).NombreUsuario;
+                usuarioModificado.TipoUsuario = true;
+                Session["UsuarioLogeado"] = usuarioModificado;
+                unUsuarioNegocio.ModificarUsuario(usuarioModificado);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ModalModificarUsuario", "$('#modalUsuarioModificacion').modal({show:true});", true);
+                DeshabilitarHabilitarTextBoxes(false);
+            }
 
+            else {
+
+                lblErrorEmail.Text = "El mail ingresado ya está en uso";
+            }
         }
 
         protected void DeshabilitarHabilitarTextBoxes(bool estado)

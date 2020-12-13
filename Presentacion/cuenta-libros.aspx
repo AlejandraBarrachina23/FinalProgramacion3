@@ -26,25 +26,24 @@
     <div class="descripcion-seccion">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare lorem neque, et celerisque ligula tempus nec. Nam molestie leo sit amet arcu lacinia, et ullamcorper libero rutrum.</p>
     </div>
-
+<form id="form1" runat="server">
 <!-- BUSQUEDA -->
     <div class="crud-libros">
         <div class="filtros-busqueda">
             <div class="busqueda">
                 <label for="">Búsqueda</label>
-                <input type="text">
+                <asp:TextBox ID="tboxBusqueda" runat="server"></asp:TextBox>
+                <asp:Button ID="btnBusqueda" runat="server" Text="Button" OnClick="btnBusqueda_Click" />
             </div>
             <div class="orden">
                 <label for="prdenar-libros">Ordernar por</label>
-                <select name="cboxOrdenarLibros" id="ordenar-libros">
-                    <option value="">Alfabéticamente: A-Z</option>
-                    <option value="">Alfabéticamente: Z-A</option>
-                    <option value="">Año de edición</option>
-                </select>
+                <asp:DropDownList ID="ddlFiltroLibros" runat="server" OnSelectedIndexChanged="ddlFiltroLibros_SelectedIndexChanged" AutoPostBack="True">
+                    <asp:ListItem Value="0">Títulos</asp:ListItem>
+                    <asp:ListItem Value="1">Autores</asp:ListItem>
+                </asp:DropDownList>
             </div>
         </div>
-
-        <form id="form1" runat="server">
+        
         
 <!-- Modal EDITAR-CREAR -->
             
@@ -174,9 +173,6 @@
          
     </div>
 </section>
-    <script src="js/validacionesGenerales.js" ></script>
     <script src="js/validacionesABML.js"></script>
-    <script src="js/Preview.js"></script>
-         
-        
+    <script src="js/Preview.js"></script>   
 </asp:Content>
