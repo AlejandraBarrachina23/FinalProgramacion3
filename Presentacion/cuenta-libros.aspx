@@ -33,13 +33,14 @@
             <div class="busqueda">
                 <label for="">Búsqueda</label>
                 <asp:TextBox ID="tboxBusqueda" runat="server"></asp:TextBox>
-                <asp:Button ID="btnBusqueda" runat="server" Text="Button" OnClick="btnBusqueda_Click" />
+                <asp:Button ID="btnBusqueda" CssClass="btn btn-dtgrid" runat="server" Text="Button" OnClick="btnBusqueda_Click" />
             </div>
             <div class="orden">
-                <label for="prdenar-libros">Ordernar por</label>
-                <asp:DropDownList ID="ddlFiltroLibros" runat="server" OnSelectedIndexChanged="ddlFiltroLibros_SelectedIndexChanged" AutoPostBack="True">
-                    <asp:ListItem Value="0">Títulos</asp:ListItem>
-                    <asp:ListItem Value="1">Autores</asp:ListItem>
+                <label for="prdenar-libros">Ordernar</label>
+                <asp:DropDownList ID="ddlFiltroLibros" runat="server" OnSelectedIndexChanged="ddlFiltroLibros_SelectedIndexChanged" AutoPostBack="True" CssClass="cbox-filtro">
+                    <asp:ListItem Value="0">Seleccione una opción</asp:ListItem>
+                    <asp:ListItem Value="1">Títulos</asp:ListItem>
+                    <asp:ListItem Value="2">Autores</asp:ListItem>
                 </asp:DropDownList>
             </div>
         </div>
@@ -47,7 +48,7 @@
         
 <!-- Modal EDITAR-CREAR -->
             
-            <asp:Button ID="Button1" runat="server" type="button" Text="Agregar" OnClick="btnAgregar_Click" CssClass="btn" data-toggle="modal" data-target=".bd-example-modal-lg" />              
+            <asp:Button ID="Button1" runat="server" type="button" Text="Nuevo libro" OnClick="btnAgregar_Click" CssClass="btn" data-toggle="modal" data-target=".bd-example-modal-lg" />              
               
                     
                 <div id="mymodal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">

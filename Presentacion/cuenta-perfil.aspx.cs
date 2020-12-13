@@ -56,7 +56,7 @@ namespace Presentacion
             UsuarioNegocio unUsuarioNegocio = new UsuarioNegocio();
             usuarioModificado = (Usuario)Session["UsuarioLogeado"];
 
-            if (unUsuarioNegocio.VerificarMailExistente(tboxEmail.Text) != 1)
+            if (unUsuarioNegocio.VerificarMailExistente(tboxEmail.Text,usuarioModificado.NombreUsuario) != 1)
             {
                 
                 usuarioModificado.Nombre = tboxNombre.Text;

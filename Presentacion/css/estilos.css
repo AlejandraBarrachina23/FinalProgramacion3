@@ -1331,6 +1331,25 @@ body {
   background-color: #F5F5F5;
 }
 
+.btn-dtgrid {
+  margin-left: auto;
+  margin-bottom: 2rem;
+}
+
+.busqueda {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.busqueda .btn {
+  margin-top: 0;
+  margin-left: 2rem;
+}
+
 img {
   max-width: 100%;
   display: block;
@@ -1761,11 +1780,23 @@ h3 {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin: 2rem;
   font-size: 1.3rem;
   font-family: "Poppins", sans-serif;
   color: #3C3C3F;
   font-weight: 500;
+}
+
+.filtros-busqueda .cbox-filtro {
+  padding: 0.5rem;
+}
+
+.filtros-busqueda label {
+  font-weight: 600;
+  margin-right: 1rem;
 }
 
 .paginacion {
@@ -1792,6 +1823,15 @@ h3 {
   background-color: #1b887d;
   -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
+}
+
+.orden {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 @media (max-width: 900px) {

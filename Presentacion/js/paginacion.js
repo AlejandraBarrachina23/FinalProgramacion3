@@ -59,8 +59,8 @@ function PaginationButton(page, items) {
     return button;
 }
 
-SetupPagination(cantidadLibros, pagination_element, row);
-DisplayList(cantidadLibros, cantidadLibros, row, current_page);
+/*SetupPagination(cantidadLibros, pagination_element, row);
+DisplayList(cantidadLibros, cantidadLibros, row, current_page);*/
 
 
 //MOSTRAR EL DETALLE DE LOS LIBROS
@@ -93,12 +93,17 @@ let busqueda = document.getElementById('tboxBusqueda');
 
 function filtroBusqueda() {
 
+    let LibroFiltrados=[];
     librosItem.forEach(item => {
 
-        if (item.lastElementChild.firstElementChild.textContent.toLowerCase().includes(busqueda.value.toLowerCase())) item.style.display = 'block';
+        if (item.lastElementChild.firstElementChild.textContent.toLowerCase().includes(busqueda.value.toLowerCase())) { item.style.display = 'block'; LibroFiltrados.push(item);}
         else item.style.display = 'none';
 
     });
+
+    SetupPagination(LibroFiltrados, pagination_element, row);
+    DisplayList(LibroFiltrados, LibroFiltrados, row, current_page);
+
 
 }
 
@@ -127,11 +132,42 @@ function ordenamiento() {
 
     }
 
+    SetupPagination(listadoLibros, pagination_element, row);
+    DisplayList(listadoLibros, listadoLibros, row, current_page);
+
     listadoLibros.forEach(item => listadoEdiciones.appendChild(item));
 }
 
 busqueda.addEventListener('keyup', filtroBusqueda);
 ddlListOrden.addEventListener('change', ordenamiento);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function comparaTitulosAZ(itemA, itemB) {

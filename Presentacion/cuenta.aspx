@@ -100,8 +100,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <i class="far fa-check-circle m-icono"></i>
-       <p>Tu consulta fue enviada exitosamente</p>
+          <i class="far fa-thumbs-up m-icono"></i>
+       <p>Tu usuario ha sido creado exitosamente.</p>
       </div>
             
     </div>

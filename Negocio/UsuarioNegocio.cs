@@ -54,13 +54,14 @@ namespace Negocio
 
         }
 
-        public int VerificarMailExistente(string Email)
+        public int VerificarMailExistente(string Email,string NombreUsuario)
         {
 
             AccederDatos.AbrirConexion();
             AccederDatos.DefinirProcedimientoAlmacenado("SP_VerificarEmailExistente");
             AccederDatos.Comando.Parameters.Clear();
             AccederDatos.Comando.Parameters.AddWithValue("@email", Email);
+            AccederDatos.Comando.Parameters.AddWithValue("@nombreUsuario", NombreUsuario);
             var respuesta = AccederDatos.ejecutarAccionReturn();
             AccederDatos.CerrarConexion();
             return respuesta;

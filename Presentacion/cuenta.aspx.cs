@@ -53,7 +53,7 @@ namespace Presentacion
             if (unUsuarioNegocio.VerificarUsuarioExistente(usuarioIngresado.NombreUsuario) != 1)
             {
 
-                if (unUsuarioNegocio.VerificarMailExistente(usuarioIngresado.Email) != 1) {
+                if (unUsuarioNegocio.VerificarMailExistente(usuarioIngresado.Email,usuarioIngresado.NombreUsuario) != 1) {
 
                     Mail notificacion = new Mail();
                     MailNegocio unMail = new MailNegocio();

@@ -384,12 +384,12 @@ namespace Presentacion
             List<Libro> ListadoLibros = new List<Libro>();
             ListadoLibros = unLibroNegocio.ListadoLibros();
 
-            if (ddlFiltroLibros.SelectedIndex == 0)
+            if (ddlFiltroLibros.SelectedIndex == 1)
             {
                 grillaLibros.DataSource = ListadoLibros.OrderBy(x => x.Titulo).ToList<Libro>();
                 grillaLibros.DataBind();
             }
-            else if (ddlFiltroLibros.SelectedIndex == 1)
+            else if (ddlFiltroLibros.SelectedIndex == 2)
             {
                 grillaLibros.DataSource = ListadoLibros.OrderBy(x => x.Autor.Nombre).ToList<Libro>();
                 grillaLibros.DataBind();

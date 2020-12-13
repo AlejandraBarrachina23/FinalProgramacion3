@@ -37,7 +37,25 @@ body {
 
 }
 
+.btn-dtgrid{
 
+    margin-left:auto;
+    margin-bottom:2rem;
+}
+
+.busqueda{
+
+    display: flex;
+    align-items: center;
+
+    .btn{
+
+        margin-top:0;
+        margin-left:2rem;
+
+    }
+
+}
 
 img {
    
@@ -546,12 +564,22 @@ font-size:1.5rem;
 
     display: flex;
     justify-content: space-around;
+    align-items:center;
     margin:2rem;
     font-size:1.3rem;
     font-family: $fuenteTitulos;
     color:$colorGrisOscuro;
     font-weight: 500;
     
+    .cbox-filtro{
+        padding:0.5rem;
+    }
+
+    label{
+
+        font-weight: 600;
+        margin-right: 1rem;
+    }
 }
 
 .paginacion{
@@ -580,6 +608,14 @@ font-size:1.5rem;
         transition: background-color 0.3s;
     }
 }
+
+.orden{
+
+    display: flex;
+    align-items: center;
+}
+
+
 
 
 @media (max-width:900px){

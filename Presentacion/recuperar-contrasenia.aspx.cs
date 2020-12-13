@@ -28,7 +28,7 @@ namespace Presentacion
                 solicitudContrasenia.DetalleUsuario = new Usuario();
                 solicitudContrasenia.DetalleUsuario = usuarioMail;
                 mailRestauracion.EnviarMail(solicitudContrasenia, "restauracion");
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "ConfirmacionRestauracion", "$('#confirmacionRestauracion').modal({show:true});", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ConfirmacionRestauracion", "$('#modalRecuperarContrasenia').modal({show:true});", true);
             }
 
             else {

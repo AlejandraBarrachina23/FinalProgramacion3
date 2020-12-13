@@ -28,7 +28,7 @@
             <div class="busqueda">
                 <label for="">Búsqueda</label>
                 <asp:TextBox ID="tboxBusqueda" runat="server" OnTextChanged="tboxBusqueda_TextChanged"></asp:TextBox>
-                <asp:Button ID="Button1" class="btn" runat="server" Text="Buscar" />
+                <asp:Button ID="Button1" class="btn btn-dtgrid" runat="server" Text="Buscar" />
             </div>
             <div class="orden">
                 <label for="prdenar-libros">Ordernar por</label>
@@ -42,7 +42,7 @@
   
 <!-- Modal EDITAR-CREAR -->
             
-            <asp:Button ID="btnAgregar" runat="server" type="button" Text="Agregar"  CssClass="btn" data-toggle="modal" data-target=".bd-example-modal-lg" OnClick="btnAgregar_Click" />              
+            <asp:Button ID="btnAgregar" runat="server" type="button" Text="Agregar"  CssClass="btn btn-dtgrid" data-toggle="modal" data-target=".bd-example-modal-lg" OnClick="btnAgregar_Click" />              
                 <div id="mymodal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content ">
@@ -135,7 +135,7 @@
 </div>
 
     <!--Fin Ventana modal-->
-        <asp:Label ID="lblEstado" Text="" runat="server" />
+
 <!-- Grilla LIBROS -->
                 <asp:GridView ID="grillaAutores" runat="server" CssClass="tabla" AutoGenerateColumns="False" AllowPaging="True" PagerStyle-CssClass="pgr" EmptyDataText="No se encontró ningún elemento asociado a la búsqueda solicitada." ShowHeaderWhenEmpty="True" OnSelectedIndexChanged="grillaAutores_SelectedIndexChanged" OnPageIndexChanging="grillaAutores_PageIndexChanging" OnRowCommand="grillaAutores_RowCommand" OnRowDeleting="grillaAutores_RowDeleting" PageSize="5" >
                 <Columns>

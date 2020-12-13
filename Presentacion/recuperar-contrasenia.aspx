@@ -9,31 +9,29 @@
     <p>Ingresa en el siguiente formulario el correo electrónico que tengas asociado a tu usuario, de esta manera podremos enviarte los datos correspondientes para iniciar sesión.</p>
 </div>
 
- <!-- Ventana Modal -->
 
-<div class="modal fade" id="confirmacionRestauracion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+
+<div class="">
+    <form runat="server" class="contenedor-cuenta">
+        <!-- Modal -->
+<div class="modal fade" id="modalRecuperarContrasenia" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Acción exitosa</h5>
+    <div class="modal-content m-contenido">
+      <div class="modal-header m-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-          <i class="fas fa-check-circle"></i>
-        <p>La contraseña ha sido enviado con éxito. Revise su correo electrónico.</p>
+          <i class="far fa-paper-plane m-icono"></i>
+       <p>La contraseña ha sido enviada a tu correo.</p>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+            
     </div>
   </div>
 </div>
-
-
-<div class="">
-    <form runat="server" class="contenedor-cuenta">
+<!--Fin Ventana modal-->
         <!--Formulario Inicio Sesión-->
         <div class="formulario-iniciar-sesion">
             <fieldset>
