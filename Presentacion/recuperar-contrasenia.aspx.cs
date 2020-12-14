@@ -13,7 +13,7 @@ namespace Presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+     
         }
 
         protected void btnRecuperarContrasenia_Click(object sender, EventArgs e)
@@ -29,6 +29,8 @@ namespace Presentacion
                 solicitudContrasenia.DetalleUsuario = usuarioMail;
                 mailRestauracion.EnviarMail(solicitudContrasenia, "restauracion");
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "ConfirmacionRestauracion", "$('#modalRecuperarContrasenia').modal({show:true});", true);
+                lblErrorEmailRecuperacion.Text = "";
+                tboxEmailRecuperacion.Text = "";
             }
 
             else {

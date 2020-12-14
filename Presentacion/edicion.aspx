@@ -7,7 +7,7 @@
         <div class="descripcion-seccion">
             <p>La palabra edición hace referencia a dos etapas complementarias de un mismo proceso. Se denomina edición, al trabajo, junto con el autor, de formular la estética del libro, la longitud de los capítulos, la importancia de las ilustraciones si fueran necesarias y su correcta presentación. </p>
             <p>Y también se llama edición al seguimiento y control de todas las instancias de confección del libro, desde la primera corrección, pasando por las galeras, hasta la etapa de liquidación de derechos.</p>
-            <p>Es el editor/a quien acompaña y asiste al autor en todas las etapas, oficiando a su vez de representante.</p>
+            <p>Es el editor/a quien acompaña y asiste al autor en todas las etapas, oficiando a su vez de representante. Para poder contactarnos haga click <a href="contacto.aspx">aquí</a> y complete el siguiente formulario.</p>
         </div>
         <h2 class="subtitulo">Nuestros servicios</h2>
     <div class="edicion-servicios">
