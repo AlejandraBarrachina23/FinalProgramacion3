@@ -14,6 +14,7 @@ namespace Presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             Usuario usuarioActivo = (Usuario)Session["UsuarioLogeado"];
+            AutorNegocio unAutor = new AutorNegocio();
 
             if (Session["UsuarioLogeado"] != null && usuarioActivo.TipoUsuario)
             {
@@ -29,7 +30,6 @@ namespace Presentacion
 
             if (!IsPostBack) { 
                 
-                AutorNegocio unAutor = new AutorNegocio();
                 Session["ListadoAutores"] = unAutor.ListarAutores();
                 grillaAutores.DataSource = Session["ListadoAutores"];
                 grillaAutores.DataBind();
@@ -259,7 +259,7 @@ namespace Presentacion
             List<Autor> ListadoAutores = (List<Autor>)Session["ListadoAutores"];
 
 
-            if (tboxBusqueda.Text == "")
+            if (tboxBusqueda.Text != "")
             {
                 ordenarAutores(ddlFiltros, ListadoAutores);
             }
