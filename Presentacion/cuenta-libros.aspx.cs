@@ -71,7 +71,7 @@ namespace Presentacion
             }
         }
 
-    
+
 
         protected void grillaLibros_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -91,7 +91,7 @@ namespace Presentacion
                 GridViewRow rowSeleccionada = grillaLibros.SelectedRow;
                 string ISBN = rowSeleccionada.Cells[0].Text;
                 LibroSeleccionado = unLibroNegocio.LibroSeleccionado(ISBN);
-             
+
                 //CARGO TEXTBOX
                 tboxIsbn.Text = LibroSeleccionado.ISBN.ToString();
                 tboxTitulo.Text = LibroSeleccionado.Titulo.ToString();
@@ -142,7 +142,7 @@ namespace Presentacion
 
         protected void grillaLibros_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-          
+
             //VERIFICO QUE COMANDO ACTIVO EL EVENTO PARA PODER DESPLEGAR LA VENTANA EMERGENTE ASOCIADA
 
             if (e.CommandName == "Select")
@@ -154,17 +154,17 @@ namespace Presentacion
 
             }
 
-            if (e.CommandName == "Delete") 
+            if (e.CommandName == "Delete")
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "EliminarModal", "$('#exampleModalCenter').modal({show:true});", true);
             }
 
 
         }
-            
+
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-       
+
             ScriptManager.RegisterStartupScript(this, this.GetType(), "AbrirModal", "$('#mymodal').modal({show:true});", true);
             LimpiarFormulario();
             tboxIsbn.Enabled = true;
@@ -175,7 +175,7 @@ namespace Presentacion
 
         protected void btnAceptar_Click1(object sender, EventArgs e)
         {
-            
+
             tboxIsbn.Enabled = true;
             /*HttpPostedFile -> La HttpFileCollection clase proporciona acceso a todos los archivos que se cargan 
             desde un cliente como una colección de archivos.*/
@@ -183,7 +183,7 @@ namespace Presentacion
             //CAPTURA DE LA IMAGEN DEL FILE UPLOAD
             lblISBN.Text = "";
             lblErrorImagen.Text = "";
-            
+
             HttpPostedFile imagenCargada = fupImagenPortada.PostedFile;
             LibroNegocio unLibroNegocio = new LibroNegocio();
 
@@ -204,7 +204,8 @@ namespace Presentacion
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "AbrirModal", "$('#mymodal').modal({show:true});", true);
                 }
 
-                else {
+                else
+                {
 
                     unNuevoLibro.setearLibro(tboxIsbn.Text, tboxTitulo.Text, Convert.ToInt32(ddlFormatos.SelectedItem.Value), tboxSinopsis.Text, Convert.ToInt32(AnioEdicion.Text),
                     Convert.ToInt32(ddlAutores.SelectedItem.Value), Convert.ToInt32(ddlEditorial.SelectedItem.Value), imgPortada.ImageUrl);
@@ -212,12 +213,13 @@ namespace Presentacion
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "modalAccionesCompleta", "$('#modalAccionCompletada').modal({show:true});", true);
                     grillaLibros.DataSource = unLibroNegocio.ListadoLibros();
                     grillaLibros.DataBind();
-                    
+
                 }
 
             }
 
-            else {
+            else
+            {
 
                 lblErrorImagen.Text = "La imagen no cumple con las condiciones";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "AbrirModal", "$('#mymodal').modal({show:true});", true);
@@ -228,35 +230,37 @@ namespace Presentacion
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-         
+
             lblISBN.Text = "";
             lblErrorImagen.Text = "";
-            
+
             HttpPostedFile imagenCargada = fupImagenPortada.PostedFile;
             LibroNegocio unLibroNegocio = new LibroNegocio();
             Libro unNuevoLibro = new Libro();
             //cumple condiciones o es la por defecto
 
             if (VerificarUpload(imagenCargada))
-            { 
+            {
                 unNuevoLibro.setearLibro(tboxIsbn.Text, tboxTitulo.Text, Convert.ToInt32(ddlFormatos.SelectedItem.Value), tboxSinopsis.Text, Convert.ToInt32(AnioEdicion.Text),
                 Convert.ToInt32(ddlAutores.SelectedItem.Value), Convert.ToInt32(ddlEditorial.SelectedItem.Value), imgPortada.ImageUrl);
 
                 unLibroNegocio.ModificarLibro(unNuevoLibro);
             }
 
-            else if (VerificarImagen(imagenCargada)){
+            else if (VerificarImagen(imagenCargada))
+            {
 
                 //ASIGNO A LA RUTA DE LA IMAGEN 
                 imgPortada.ImageUrl = guardarImagen(imagenCargada, tboxIsbn.Text);
-              
+
                 unNuevoLibro.setearLibro(tboxIsbn.Text, tboxTitulo.Text, Convert.ToInt32(ddlFormatos.SelectedItem.Value), tboxSinopsis.Text, Convert.ToInt32(AnioEdicion.Text),
                 Convert.ToInt32(ddlAutores.SelectedItem.Value), Convert.ToInt32(ddlEditorial.SelectedItem.Value), imgPortada.ImageUrl);
                 unLibroNegocio.ModificarLibro(unNuevoLibro);
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "modalAccionesCompletaModificar", "$('#modalAccionCompletada').modal({show:true});", true);
             }
 
-            else {
+            else
+            {
 
                 lblErrorImagen.Text = "La imagen no cumple con las condiciones";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "AbrirModal", "$('#mymodal').modal({show:true});", true);
@@ -268,7 +272,8 @@ namespace Presentacion
 
         }
 
-        protected string guardarImagen(HttpPostedFile imagenCargada, string nombreImagen) {
+        protected string guardarImagen(HttpPostedFile imagenCargada, string nombreImagen)
+        {
 
             string ruta = "";
 
@@ -278,7 +283,8 @@ namespace Presentacion
                 ruta = "~/img/portadas/" + "imagen-no-disponible" + ".png";
 
             }
-            else {
+            else
+            {
 
                 //NOMBRE DE LA IMAGEN
                 string NombreArchivo = Path.GetFileName(imagenCargada.FileName);
@@ -289,12 +295,13 @@ namespace Presentacion
                 //RUTA DE IMAGEN
                 ruta = "~/img/portadas/" + nombreImagen + fileExtension;
             }
-            
+
             return ruta;
 
         }
 
-        protected bool VerificarImagen(HttpPostedFile imagenCargada) {
+        protected bool VerificarImagen(HttpPostedFile imagenCargada)
+        {
 
             //NOMBRE DE LA IMAGEN
             string NombreArchivo = Path.GetFileName(imagenCargada.FileName);
@@ -311,13 +318,15 @@ namespace Presentacion
         }
 
         //VALIDACIONES
-        protected bool VerificarTamanioImagen(double tamanioImagen, double tamanioPermitido) {
+        protected bool VerificarTamanioImagen(double tamanioImagen, double tamanioPermitido)
+        {
 
             if (tamanioImagen > tamanioPermitido) return false;
             else return true;
         }
 
-        protected bool VerificarExtensionImagen(string extensionImagen) {
+        protected bool VerificarExtensionImagen(string extensionImagen)
+        {
 
             if (extensionImagen.ToLower() == ".jpg" || extensionImagen.ToLower() == ".png" ||
                 extensionImagen.ToLower() == ".jpeg" || extensionImagen.ToLower() == ".bmp") return true;
@@ -325,14 +334,16 @@ namespace Presentacion
             else return false;
         }
 
-        protected bool VerificarUpload(HttpPostedFile imagenCargada) {
+        protected bool VerificarUpload(HttpPostedFile imagenCargada)
+        {
 
             if (imagenCargada.ContentLength == 0) return true;
             else return false;
-            
+
         }
 
-        private void LimpiarFormulario() {
+        private void LimpiarFormulario()
+        {
 
             LimpiarCombobox();
             LimpiarImagen();
@@ -346,7 +357,7 @@ namespace Presentacion
             {
                 tbox.Text = "";
             }
-           
+
         }
 
         private void LimpiarCombobox()
@@ -363,7 +374,8 @@ namespace Presentacion
             imgPortada.ImageUrl = "~/img/imagen-no-disponible.png";
         }
 
-        private void ResetearDDL() {
+        private void ResetearDDL()
+        {
 
             foreach (DropDownList ddl in modal.Controls.OfType<DropDownList>())
             {
@@ -383,21 +395,21 @@ namespace Presentacion
         protected void ddlFiltroLibros_SelectedIndexChanged(object sender, EventArgs e)
         {
             LibroNegocio unLibroNegocio = new LibroNegocio();
-            List<Libro> ListadoLibros = new List<Libro>();
-            ListadoLibros = unLibroNegocio.ListadoLibros();
-           
+            List<Libro> ListadoLibros = (List<Libro>)Session["ListadoLibros"];
 
-            if (ddlFiltroLibros.SelectedIndex == 1)
+            if (tboxBusqueda.Text != "")
             {
-                Session["ListadoLibros"] = ListadoLibros.OrderBy(x => x.Titulo).ToList<Libro>();
-                grillaLibros.DataSource = Session["ListadoLibros"];
-                grillaLibros.DataBind();
+
+                ordenarLibros(ddlFiltroLibros, ListadoLibros);
+
             }
-            else if (ddlFiltroLibros.SelectedIndex == 2)
+
+            else
             {
-                Session["ListadoLibros"] = ListadoLibros.OrderBy(x => x.Autor.Nombre).ToList<Libro>();
-                grillaLibros.DataSource = Session["ListadoLibros"];
-                grillaLibros.DataBind();
+
+                ListadoLibros = unLibroNegocio.ListadoLibros();
+                ordenarLibros(ddlFiltroLibros, ListadoLibros);
+
             }
 
         }
@@ -407,9 +419,27 @@ namespace Presentacion
             LibroNegocio unLibroNegocio = new LibroNegocio();
             List<Libro> ListadoAutores = new List<Libro>();
             ListadoAutores = unLibroNegocio.ListadoLibros();
-            Session["ListadoLibros"]=ListadoAutores.FindAll(x => x.Titulo.ToLower().Contains(tboxBusqueda.Text.ToLower()));
+            Session["ListadoLibros"] = ListadoAutores.FindAll(x => x.Titulo.ToLower().Contains(tboxBusqueda.Text.ToLower()));
             grillaLibros.DataSource = Session["ListadoLibros"];
             grillaLibros.DataBind();
+        }
+
+        protected void ordenarLibros(DropDownList ddlLibros, List<Libro> ListadoLibros)
+        {
+
+
+            if (ddlLibros.SelectedIndex == 1)
+            {
+                Session["ListadoLibros"] = ListadoLibros.OrderBy(x => x.Titulo).ToList<Libro>();
+                grillaLibros.DataSource = Session["ListadoLibros"];
+                grillaLibros.DataBind();
+            }
+            else if (ddlLibros.SelectedIndex == 2)
+            {
+                Session["ListadoLibros"] = ListadoLibros.OrderBy(x => x.Autor.Nombre).ToList<Libro>();
+                grillaLibros.DataSource = Session["ListadoLibros"];
+                grillaLibros.DataBind();
+            }
         }
     }
 }

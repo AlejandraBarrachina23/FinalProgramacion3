@@ -1364,6 +1364,14 @@ body {
   margin-bottom: 2rem;
 }
 
+.link-ediciones {
+  text-decoration: none;
+}
+
+.link-ediciones:hover {
+  text-decoration: none;
+}
+
 .btn-busqueda {
   margin: 0 auto;
   margin-left: 1rem;

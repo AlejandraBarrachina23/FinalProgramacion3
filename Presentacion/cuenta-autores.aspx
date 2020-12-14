@@ -32,7 +32,7 @@
             </div>
             <div class="orden">
                 <label for="prdenar-libros">Ordernar</label>
-                <asp:DropDownList ID="cboxOrdenarLibros" runat="server" class="cbox-busqueda" OnSelectedIndexChanged="cboxOrdenarLibros_SelectedIndexChanged" AutoPostBack="True">
+                <asp:DropDownList ID="ddlFiltros" runat="server" class="cbox-busqueda" OnSelectedIndexChanged="cboxOrdenarLibros_SelectedIndexChanged" AutoPostBack="True">
                     <asp:ListItem Value="0">Selecciona una opción</asp:ListItem>
                     <asp:ListItem Value="1">Nombre</asp:ListItem>
                     <asp:ListItem Value="2">Apellido</asp:ListItem>

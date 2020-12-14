@@ -15,7 +15,7 @@
                   <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
-            <div class="splide__track">
+            <a class="link-ediciones" href="libros.aspx"><div class="splide__track">
                 <ul class="splide__list">
   <%
      
@@ -23,6 +23,7 @@
 
       foreach (var unLibro in unLibroNegocio.ListarUltimasEdiciones())
       { %>
+                    
             <li class="splide__slide">
                 <div class="libros-item">
                 <div class="libro-imagen">
@@ -34,11 +35,13 @@
                 </div>
                 </div>
             </li>
+                   
       <%}
           
            %>
             </ul>
         </div>
+            </a>
  </div>
     </main>
 <!--Fin Ultimos lanzamiento-->

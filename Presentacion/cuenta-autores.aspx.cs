@@ -256,27 +256,18 @@ namespace Presentacion
         protected void cboxOrdenarLibros_SelectedIndexChanged(object sender, EventArgs e)
         {
             AutorNegocio unAutorNegocio = new AutorNegocio();
-            List<Autor> ListadoAutores = new List<Autor>();
-            ListadoAutores = unAutorNegocio.ListarAutores();
+            List<Autor> ListadoAutores = (List<Autor>)Session["ListadoAutores"];
 
-            if (cboxOrdenarLibros.SelectedIndex == 1)
+
+            if (tboxBusqueda.Text == "")
             {
-                Session["ListadoAutores"] = ListadoAutores.OrderBy(x => x.Nombre).ToList<Autor>();
-                grillaAutores.DataSource = Session["ListadoAutores"];
-                grillaAutores.DataBind();
+                ordenarAutores(ddlFiltros, ListadoAutores);
             }
-            else if (cboxOrdenarLibros.SelectedIndex == 2)
-            {
-                
-                Session["ListadoAutores"] = ListadoAutores.OrderBy(x => x.Apellido).ToList<Autor>();
-                grillaAutores.DataSource = Session["ListadoAutores"];
-                grillaAutores.DataBind();
-            }
-            else if (cboxOrdenarLibros.SelectedIndex == 3)
-            {
-                Session["ListadoAutores"] = ListadoAutores.OrderBy(x => x.Email).ToList<Autor>();
-                grillaAutores.DataSource = Session["ListadoAutores"];
-                grillaAutores.DataBind();
+
+            else {
+
+                ListadoAutores = unAutorNegocio.ListarAutores();
+                ordenarAutores(ddlFiltros, ListadoAutores);
             }
         }
 
@@ -285,9 +276,34 @@ namespace Presentacion
             AutorNegocio unAutorNegocio = new AutorNegocio();
             List<Autor> ListadoAutores = new List<Autor>();
             ListadoAutores = unAutorNegocio.ListarAutores();
-            grillaAutores.DataSource = ListadoAutores.FindAll(x => x.Nombre.ToLower().Contains(tboxBusqueda.Text.ToLower()));
+            Session["ListadoAutores"] = ListadoAutores.FindAll(x => x.Nombre.ToLower().Contains(tboxBusqueda.Text.ToLower()));
+            grillaAutores.DataSource = Session["ListadoAutores"];
             grillaAutores.DataBind();
             
+        }
+
+        protected void ordenarAutores(DropDownList ddlFiltro, List<Autor> ListadoAutores)
+        {
+
+            if (ddlFiltro.SelectedIndex == 1)
+            {
+                Session["ListadoAutores"] = ListadoAutores.OrderBy(x => x.Nombre).ToList<Autor>();
+                grillaAutores.DataSource = Session["ListadoAutores"];
+                grillaAutores.DataBind();
+            }
+            else if (ddlFiltro.SelectedIndex == 2)
+            {
+                Session["ListadoAutores"] = ListadoAutores.OrderBy(x => x.Apellido).ToList<Autor>();
+                grillaAutores.DataSource = Session["ListadoAutores"];
+                grillaAutores.DataBind();
+            }
+
+            else if (ddlFiltro.SelectedIndex == 3)
+            {
+                Session["ListadoAutores"] = ListadoAutores.OrderBy(x => x.Email).ToList<Autor>();
+                grillaAutores.DataSource = Session["ListadoAutores"];
+                grillaAutores.DataBind();
+            }
         }
     }
     
