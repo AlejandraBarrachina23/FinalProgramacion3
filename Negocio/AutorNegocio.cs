@@ -132,5 +132,21 @@ namespace Negocio
             AccederDatos.CerrarConexion();
             return unAutor;
         }
+
+        public int VerificarMail(string Email, string CodigoAutor)
+        {
+
+            AccederDatos.AbrirConexion();
+            AccederDatos.DefinirProcedimientoAlmacenado("SP_VerificarEmailAutor");
+            AccederDatos.Comando.Parameters.Clear();
+            AccederDatos.Comando.Parameters.AddWithValue("@email", Email);
+            AccederDatos.Comando.Parameters.AddWithValue("@CodigoAutor", CodigoAutor);
+            var respuesta = AccederDatos.ejecutarAccionReturn();
+            AccederDatos.CerrarConexion();
+            return respuesta;
+
+        }
+
+
     }
 }

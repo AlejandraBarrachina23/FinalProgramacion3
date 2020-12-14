@@ -48,46 +48,58 @@
 <section class="contenedor-mediano">
     <h2>Servicios</h2>
     <div class="servicios">
-        <a href="edicion.aspx"><div class="servicio-icono"><i class="fas fa-tools"></i></div></a>
+        <div class="servicio-icono"><i class="fas fa-tools"></i></div>
+        <a href="edicion.aspx">    
             <div class="servicio-descripcion">
                 <h3>Edición</h3>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
             </div>
+        </a>
     </div>
     <div class="servicios">
-        <a href="edicion.aspx"><div class="servicio-icono"><i class="fas fa-highlighter"></i></div></a>
-        <div class="servicio-descripcion">
-            <h3>Corrección</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-        </div>
+        <div class="servicio-icono"><i class="fas fa-highlighter"></i></div>
+        <a href="edicion.aspx">
+            <div class="servicio-descripcion">
+             <h3>Corrección</h3>
+             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+            </div>
+        </a>
     </div>
     <div class="servicios">
-        <a href="edicion.aspx"><div class="servicio-icono"><i class="fas fa-palette"></i></div></a>
-        <div class="servicio-descripcion">
-            <h3>Diseño y armado</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-        </div>
+       <div class="servicio-icono"><i class="fas fa-palette"></i></div>
+        <a href="edicion.aspx">
+            <div class="servicio-descripcion">
+                <h3>Diseño y armado</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+            </div>
+        </a>
     </div>
     <div class="servicios">
-        <a href="edicion.aspx"><div class="servicio-icono"><i class="fas fa-book"></i></div></a>
-        <div class="servicio-descripcion">
-            <h3>Impresión</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-        </div>
+        <div class="servicio-icono"><i class="fas fa-book"></i></div>
+        <a href="edicion.aspx">
+            <div class="servicio-descripcion">
+                <h3>Impresión</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+            </div>
+        </a>
     </div>
     <div class="servicios">
-        <a href="ghostwriter.aspx"><div class="servicio-icono"><i class="fas fa-ghost"></i></div></a>
-        <div class="servicio-descripcion">
-            <h3>Ghostwriter</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-        </div>
+        <div class="servicio-icono"><i class="fas fa-ghost"></i></div>
+        <a href="ghostwriter.aspx">
+            <div class="servicio-descripcion">
+                <h3>Ghostwriter</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+            </div>
+        </a>
     </div>
     <div class="servicios">
-        <a href="talleres.aspx"><div class="servicio-icono"><i class="fas fa-pen-nib"></i></div></a>
+        <div class="servicio-icono"><i class="fas fa-pen-nib"></i></div>
+        <a href="talleres.aspx">
         <div class="servicio-descripcion">
             <h3>Talleres</h3>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
         </div>
+        </a>
     </div>
 </section>
 
@@ -202,7 +214,7 @@
                 <i class="fas fa-map-marker-alt"></i><p>Maipu 2045, San Fernando</p>
             </div>
             <div class="contacto-item">
-                <i class="fab fa-whatsapp"></i><p>+54 11 2250 4318</p>
+                <a href="https://bit.ly/EdicionesElemento" target="_blank"><i class="fab fa-whatsapp"></i><p>+54 11 2250 4318</p></a>
             </div>
         </address>
     </div>

@@ -28,8 +28,10 @@ namespace Presentacion
             }
 
             if (!IsPostBack) { 
+                
                 AutorNegocio unAutor = new AutorNegocio();
-                grillaAutores.DataSource = unAutor.ListarAutores();
+                Session["ListadoAutores"] = unAutor.ListarAutores();
+                grillaAutores.DataSource = Session["ListadoAutores"];
                 grillaAutores.DataBind();
             }
 
@@ -71,7 +73,7 @@ namespace Presentacion
             lblEstado.Text = e.NewPageIndex.ToString();
             
             grillaAutores.PageIndex = e.NewPageIndex;
-            grillaAutores.DataSource = unAutorNegocio.ListarAutores();
+            grillaAutores.DataSource = Session["ListadoAutores"];
             grillaAutores.DataBind();
         }
 
@@ -79,6 +81,7 @@ namespace Presentacion
         {
             //TOMO EL VALOR DEL LIBRO A ELIMINAR
             lblAutorEliminar.Text = e.Values[1].ToString();
+            lblAutorApellidoEliminar.Text = e.Values[2].ToString();
             lblCodigoAutorEliminar.Text = e.Values[0].ToString();
 
 
@@ -95,6 +98,7 @@ namespace Presentacion
                 btnModificar.Visible = true;
                 btnAceptar.Visible = false;
                 lblErrorNombreAutor.Text = "";
+                lblErrorEmail.Text = "";
 
             }
 
@@ -107,6 +111,8 @@ namespace Presentacion
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
+            lblErrorNombreAutor.Text = "";
+            lblErrorEmail.Text = "";
             AutorNegocio unAutor = new AutorNegocio();
             ScriptManager.RegisterStartupScript(this, this.GetType(), "AbrirModal", "$('#mymodal').modal({show:true});", true);
             LimpiarFormulario();
@@ -118,7 +124,7 @@ namespace Presentacion
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-
+            
             AutorNegocio unAutorNegocio = new AutorNegocio();
             Autor unNuevoAutor = new Autor();
             unNuevoAutor.Nombre = tboxNombre.Text;
@@ -126,17 +132,29 @@ namespace Presentacion
             unNuevoAutor.Celular = tboxCelular.Text;
             unNuevoAutor.Email = tboxEmail.Text;
 
-            unAutorNegocio.AgregarAutor(unNuevoAutor);
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "modalAccionesCompletaActores", "$('#modalAccionCompletadaActores').modal({show:true});", true);
+            if (unAutorNegocio.VerificarMail(unNuevoAutor.Email, tboxCodigoAutor.Text) != 1)
+            {
 
-            grillaAutores.DataSource = unAutorNegocio.ListarAutores();
-            grillaAutores.DataBind();
+                unAutorNegocio.AgregarAutor(unNuevoAutor);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "modalAccionesCompletaActores", "$('#modalAccionCompletadaActores').modal({show:true});", true);
+
+                grillaAutores.DataSource = unAutorNegocio.ListarAutores();
+                grillaAutores.DataBind();
+            }
+
+            else {
+
+                lblErrorEmail.Text = "El mail ingresado ya esta en uso";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "AbrirModal", "$('#mymodal').modal({show:true});", true);
+            }
+    
 
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-            lblErrorNombreAutor.Text = "";
+            
+
             AutorNegocio unAutorNegocio = new AutorNegocio();
             Autor unAutor = new Autor();
             unAutor.CodigoAutor = Convert.ToInt32(tboxCodigoAutor.Text);
@@ -151,10 +169,21 @@ namespace Presentacion
             if (!VerificarAutor(ListadoAutoresDisponibles, autorIngresado, unAutor.CodigoAutor))
             {
 
-                unAutorNegocio.ModificarAutor(unAutor);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "modalAccionesCompletaActores", "$('#modalAccionCompletadaActores').modal({show:true});", true);
-                grillaAutores.DataSource = unAutorNegocio.ListarAutores();
-                grillaAutores.DataBind();
+                if (unAutorNegocio.VerificarMail(unAutor.Email, tboxCodigoAutor.Text) != 1)
+                {
+
+                    unAutorNegocio.ModificarAutor(unAutor);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "modalAccionesCompletaActores", "$('#modalAccionCompletadaActores').modal({show:true});", true);
+                    grillaAutores.DataSource = unAutorNegocio.ListarAutores();
+                    grillaAutores.DataBind();
+                }
+
+                else {
+
+                    lblErrorEmail.Text = "El mail ingresado ya esta en uso";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "AbrirModal", "$('#mymodal').modal({show:true});", true);
+                }
+               
             }
 
             else
@@ -230,19 +259,23 @@ namespace Presentacion
             List<Autor> ListadoAutores = new List<Autor>();
             ListadoAutores = unAutorNegocio.ListarAutores();
 
-            if (cboxOrdenarLibros.SelectedIndex == 0)
+            if (cboxOrdenarLibros.SelectedIndex == 1)
             {
-                grillaAutores.DataSource = ListadoAutores.OrderBy(x => x.Nombre).ToList<Autor>();
+                Session["ListadoAutores"] = ListadoAutores.OrderBy(x => x.Nombre).ToList<Autor>();
+                grillaAutores.DataSource = Session["ListadoAutores"];
                 grillaAutores.DataBind();
             }
-            else if (cboxOrdenarLibros.SelectedIndex == 1)
+            else if (cboxOrdenarLibros.SelectedIndex == 2)
             {
-                grillaAutores.DataSource = ListadoAutores.OrderBy(x => x.Apellido).ToList<Autor>();
+                
+                Session["ListadoAutores"] = ListadoAutores.OrderBy(x => x.Apellido).ToList<Autor>();
+                grillaAutores.DataSource = Session["ListadoAutores"];
                 grillaAutores.DataBind();
             }
-            else
+            else if (cboxOrdenarLibros.SelectedIndex == 3)
             {
-                grillaAutores.DataSource = ListadoAutores.OrderBy(x => x.Email).ToList<Autor>();
+                Session["ListadoAutores"] = ListadoAutores.OrderBy(x => x.Email).ToList<Autor>();
+                grillaAutores.DataSource = Session["ListadoAutores"];
                 grillaAutores.DataBind();
             }
         }

@@ -43,6 +43,46 @@ body {
     margin-bottom:2rem;
 }
 
+.btn-busqueda{
+
+    margin:0 auto;
+    margin-left: 1rem;
+}
+
+.cbox-busqueda{
+
+    padding: 0.5rem;
+}
+
+.recuperar-pass{
+
+    margin: 0 auto;
+}
+
+.btn-completo{
+
+    margin-left:auto;
+}
+
+
+.modal-footer .btn-eliminar{
+
+    margin: 0;
+    padding: 1.3rem;
+    width: 15rem;
+    margin-left: 1rem;
+
+}
+
+.modal-advertencia{
+
+    font-size: 1.5rem;
+    line-height: 1.5;
+    font-family: 'Roboto';
+    text-align: center;
+    margin-top:1rem;
+}
+
 .busqueda{
 
     display: flex;
@@ -109,7 +149,15 @@ img {
     font-size:1.4rem;
     box-shadow: 10px 10px 8px -10px rgba(0,0,0,0.75);
     border:none;
+    cursor:pointer;
         
+}
+
+.btn:hover{
+
+    background-color:$colorGrisOscuro;
+    color:#fff;
+    transition: background-color ease 0.5s;
 }
 
 .btn-transparente{
@@ -444,6 +492,23 @@ h3{
             font-weight: 500;
         }
     }
+   
+    .sinopsis-libro{
+        
+
+        overflow-y: scroll;
+        height: 30rem;
+    }
+
+
+}
+
+.modal-izquierda{
+
+    img{
+        
+        margin:0 auto;
+    }
 }
 
 .subtitulo{
@@ -500,6 +565,7 @@ h3{
     transition:0.6s;
     transition-property: bottom;
     visibility: visible;
+  
 }
 
 
@@ -565,12 +631,13 @@ font-size:1.5rem;
     display: flex;
     justify-content: space-around;
     align-items:center;
-    margin:2rem;
+    margin:1rem;
     font-size:1.3rem;
     font-family: $fuenteTitulos;
     color:$colorGrisOscuro;
     font-weight: 500;
     
+        
     .cbox-filtro{
         padding:0.5rem;
     }

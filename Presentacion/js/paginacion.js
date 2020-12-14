@@ -59,10 +59,6 @@ function PaginationButton(page, items) {
     return button;
 }
 
-/*SetupPagination(cantidadLibros, pagination_element, row);
-DisplayList(cantidadLibros, cantidadLibros, row, current_page);*/
-
-
 //MOSTRAR EL DETALLE DE LOS LIBROS
 const items = document.querySelectorAll('.resumen');
 let modalTitulo = document.getElementById('modal-titulo');
@@ -70,6 +66,8 @@ let modalAutor = document.getElementById('modal-autor');
 let modalImagen = document.getElementById('modal-imagen');
 let modalAnio = document.getElementById('modal-anio');
 let modalSinopsis = document.getElementById('modal-sinopsis');
+
+window.addEventListener('load', ordenamiento);
 
 items.forEach(item => {
     item.addEventListener('click', function (event) {
@@ -79,6 +77,7 @@ items.forEach(item => {
         modalAnio.textContent = "Año: " + item.parentElement.parentElement.lastElementChild.children[3].textContent;
         modalSinopsis.textContent = item.parentElement.parentElement.lastElementChild.children[2].textContent;
         modalImagen.src = item.parentElement.firstElementChild.src;
+     
 
     })
 })
@@ -140,6 +139,8 @@ function ordenamiento() {
 
 busqueda.addEventListener('keyup', filtroBusqueda);
 ddlListOrden.addEventListener('change', ordenamiento);
+
+
 
 
 

@@ -35,7 +35,7 @@
                 </div>
                 <asp:Label ID="lblEstadoLogeo" class="Error" runat="server" Text=""></asp:Label>    
                 <a href="recuperar-contrasenia.aspx"><p>Olvide mi contraseña</p></a>
-                <asp:Button ID="btnIniciarSesion" Text="Iniciar Sesión" runat="server" CssClass="btn" OnClick="btnIniciarSesion_Click" OnClientClick="return ValidarInicioSesion();"/>
+                <asp:Button ID="btnIniciarSesion" Text="Iniciar Sesión" runat="server" CssClass="btn btn-completo" OnClick="btnIniciarSesion_Click" OnClientClick="return ValidarInicioSesion();"/>
             </fieldset>
         </div>
 

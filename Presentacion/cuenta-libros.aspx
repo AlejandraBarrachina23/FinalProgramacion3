@@ -33,7 +33,7 @@
             <div class="busqueda">
                 <label for="">Búsqueda</label>
                 <asp:TextBox ID="tboxBusqueda" runat="server"></asp:TextBox>
-                <asp:Button ID="btnBusqueda" CssClass="btn btn-dtgrid" runat="server" Text="Button" OnClick="btnBusqueda_Click" />
+                <asp:Button ID="btnBusqueda" CssClass="btn btn-busqueda" runat="server" Text="Buscar" OnClick="btnBusqueda_Click" />
             </div>
             <div class="orden">
                 <label for="prdenar-libros">Ordernar</label>
@@ -48,7 +48,7 @@
         
 <!-- Modal EDITAR-CREAR -->
             
-            <asp:Button ID="Button1" runat="server" type="button" Text="Nuevo libro" OnClick="btnAgregar_Click" CssClass="btn" data-toggle="modal" data-target=".bd-example-modal-lg" />              
+            <asp:Button ID="Button1" runat="server" type="button" Text="Nuevo libro" OnClick="btnAgregar_Click" CssClass="btn btn-dtgrid" data-toggle="modal" data-target=".bd-example-modal-lg" />              
               
                     
                 <div id="mymodal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -118,18 +118,18 @@
                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                      <div class="modal-header  m-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <div class="modal-body">
-                          <p>¿Está seguro que desea eliminar "<asp:Label ID="lblTituloEliminar" runat="server" Text=""></asp:Label>"?</p>
+                          <p class="modal-advertencia">¿Está seguro que desea eliminar "<asp:Label ID="lblTituloEliminar" runat="server" Text=""></asp:Label>"?</p>
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                          <asp:Button ID="btnEliminar" runat="server" class="btn btn-primary" Text="Confirmar" OnClick="btnEliminar_Click1"/>
+                          <asp:Button ID="btnEliminar" runat="server" class="btn btn-primary btn-eliminar" Text="Confirmar" OnClick="btnEliminar_Click1"/>
                       </div>
                     </div>
                   </div>

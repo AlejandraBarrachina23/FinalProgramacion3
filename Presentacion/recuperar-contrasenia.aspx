@@ -33,7 +33,7 @@
 </div>
 <!--Fin Ventana modal-->
         <!--Formulario Inicio Sesión-->
-        <div class="formulario-iniciar-sesion">
+        <div class="formulario-iniciar-sesion recuperar-pass">
             <fieldset>
                 <h3>Ingresa tu correo electrónico</h3>
                 <div class="fieldset-datos">
@@ -46,7 +46,7 @@
                     <asp:Label ID="lblErrorEmailRecuperacion" runat="server" Text="" class="Error"></asp:Label>
                     </div>
                 </div>
-                <asp:Button ID="btnRecuperarContrasenia" Text="Enviar" runat="server" CssClass="btn" OnClick="btnRecuperarContrasenia_Click"/>
+                <asp:Button ID="btnRecuperarContrasenia" Text="Enviar" runat="server" CssClass="btn btn-completo" OnClick="btnRecuperarContrasenia_Click"/>
             </fieldset>
         </div>
     </form>              

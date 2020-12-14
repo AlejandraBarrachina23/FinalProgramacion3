@@ -79,7 +79,7 @@
       </div>
       <div class="modal-body">
         <i class="far fa-check-circle m-icono"></i>
-       <p>Tu consulta fue enviada exitosamente</p>
+       <p>Tu usuario fue modificado exitosamente.</p>
       </div>
             
     </div>

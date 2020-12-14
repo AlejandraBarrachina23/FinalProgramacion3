@@ -102,6 +102,17 @@ address{
     }
 }
 
+.contacto-item{
+
+    a{
+        
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+
+}
+
 @media (max-width:$breakPointTabletVertical){
 
     
@@ -153,6 +164,8 @@ address{
 
         display: flex;
         flex-direction: column;
+
+        
     }
 
     

@@ -48,7 +48,9 @@ namespace Presentacion
                 ddlEditorial.DataBind();
 
                 //CARGO GRID -> LIBROS
-                grillaLibros.DataSource = unLibroNegocio.ListadoLibros();
+
+                Session["ListadoLibros"] = unLibroNegocio.ListadoLibros();
+                grillaLibros.DataSource = Session["ListadoLibros"];
                 grillaLibros.DataBind();
 
             }
@@ -121,7 +123,7 @@ namespace Presentacion
 
             LibroNegocio unLibroNegocio = new LibroNegocio();
             grillaLibros.PageIndex = e.NewPageIndex;
-            grillaLibros.DataSource = unLibroNegocio.ListadoLibros();
+            grillaLibros.DataSource = Session["ListadoLibros"];
             grillaLibros.DataBind();
         }
 
@@ -383,15 +385,18 @@ namespace Presentacion
             LibroNegocio unLibroNegocio = new LibroNegocio();
             List<Libro> ListadoLibros = new List<Libro>();
             ListadoLibros = unLibroNegocio.ListadoLibros();
+           
 
             if (ddlFiltroLibros.SelectedIndex == 1)
             {
-                grillaLibros.DataSource = ListadoLibros.OrderBy(x => x.Titulo).ToList<Libro>();
+                Session["ListadoLibros"] = ListadoLibros.OrderBy(x => x.Titulo).ToList<Libro>();
+                grillaLibros.DataSource = Session["ListadoLibros"];
                 grillaLibros.DataBind();
             }
             else if (ddlFiltroLibros.SelectedIndex == 2)
             {
-                grillaLibros.DataSource = ListadoLibros.OrderBy(x => x.Autor.Nombre).ToList<Libro>();
+                Session["ListadoLibros"] = ListadoLibros.OrderBy(x => x.Autor.Nombre).ToList<Libro>();
+                grillaLibros.DataSource = Session["ListadoLibros"];
                 grillaLibros.DataBind();
             }
 
@@ -402,7 +407,8 @@ namespace Presentacion
             LibroNegocio unLibroNegocio = new LibroNegocio();
             List<Libro> ListadoAutores = new List<Libro>();
             ListadoAutores = unLibroNegocio.ListadoLibros();
-            grillaLibros.DataSource = ListadoAutores.FindAll(x => x.Titulo.ToLower().Contains(tboxBusqueda.Text.ToLower()));
+            Session["ListadoLibros"]=ListadoAutores.FindAll(x => x.Titulo.ToLower().Contains(tboxBusqueda.Text.ToLower()));
+            grillaLibros.DataSource = Session["ListadoLibros"];
             grillaLibros.DataBind();
         }
     }

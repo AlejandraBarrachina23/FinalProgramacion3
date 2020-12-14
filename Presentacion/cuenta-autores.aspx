@@ -28,14 +28,15 @@
             <div class="busqueda">
                 <label for="">Búsqueda</label>
                 <asp:TextBox ID="tboxBusqueda" runat="server" OnTextChanged="tboxBusqueda_TextChanged"></asp:TextBox>
-                <asp:Button ID="Button1" class="btn btn-dtgrid" runat="server" Text="Buscar" />
+                <asp:Button ID="Button1" class="btn btn-busqueda" runat="server" Text="Buscar" />
             </div>
             <div class="orden">
-                <label for="prdenar-libros">Ordernar por</label>
-                <asp:DropDownList ID="cboxOrdenarLibros" runat="server" OnSelectedIndexChanged="cboxOrdenarLibros_SelectedIndexChanged" AutoPostBack="True">
-                    <asp:ListItem Value="0">Nombre Autor</asp:ListItem>
-                    <asp:ListItem Value="1">Apellido Autor</asp:ListItem>
-                    <asp:ListItem Value="2">Email Autor</asp:ListItem>
+                <label for="prdenar-libros">Ordernar</label>
+                <asp:DropDownList ID="cboxOrdenarLibros" runat="server" class="cbox-busqueda" OnSelectedIndexChanged="cboxOrdenarLibros_SelectedIndexChanged" AutoPostBack="True">
+                    <asp:ListItem Value="0">Selecciona una opción</asp:ListItem>
+                    <asp:ListItem Value="1">Nombre</asp:ListItem>
+                    <asp:ListItem Value="2">Apellido</asp:ListItem>
+                    <asp:ListItem Value="3">Email</asp:ListItem>
                 </asp:DropDownList>
             </div>
         </div>
@@ -97,18 +98,20 @@
                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                      <div class="modal-header m-header">
+                        
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <div class="modal-body">
-                          <p>¿Está seguro que desea eliminar "<asp:Label ID="lblAutorEliminar" runat="server" Text=""></asp:Label>"?</p>
+                          <p class="modal-advertencia">¿Está seguro que desea eliminar "<asp:Label ID="lblAutorEliminar" runat="server" Text=""></asp:Label>
+                              <asp:Label ID="lblAutorApellidoEliminar" runat="server" />
+                              "?</p>
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                          <asp:Button ID="btnEliminar" runat="server" class="btn btn-primary" Text="Confirmar" OnClick="btnEliminar_Click"/>
+                          <asp:Button ID="btnEliminar" runat="server" class="btn btn-primary btn-eliminar" Text="Confirmar" OnClick="btnEliminar_Click"/>
                       </div>
                     </div>
                   </div>
@@ -135,9 +138,9 @@
 </div>
 
     <!--Fin Ventana modal-->
-
+<asp:Label ID="lblEstado" Text="" runat="server" Visible="false"/>
 <!-- Grilla LIBROS -->
-                <asp:GridView ID="grillaAutores" runat="server" CssClass="tabla" AutoGenerateColumns="False" AllowPaging="True" PagerStyle-CssClass="pgr" EmptyDataText="No se encontró ningún elemento asociado a la búsqueda solicitada." ShowHeaderWhenEmpty="True" OnSelectedIndexChanged="grillaAutores_SelectedIndexChanged" OnPageIndexChanging="grillaAutores_PageIndexChanging" OnRowCommand="grillaAutores_RowCommand" OnRowDeleting="grillaAutores_RowDeleting" PageSize="5" >
+                <asp:GridView ID="grillaAutores" runat="server" CssClass="tabla" AutoGenerateColumns="False" AllowPaging="True" PagerStyle-CssClass="pgr" EmptyDataText="No se encontró ningún elemento asociado a la búsqueda solicitada." ShowHeaderWhenEmpty="True" OnSelectedIndexChanged="grillaAutores_SelectedIndexChanged" OnPageIndexChanging="grillaAutores_PageIndexChanging" OnRowCommand="grillaAutores_RowCommand" OnRowDeleting="grillaAutores_RowDeleting" >
                 <Columns>
                     <asp:BoundField DataField="CodigoAutor" HeaderText="Código" />
                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" />

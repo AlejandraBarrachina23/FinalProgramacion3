@@ -46,7 +46,9 @@
 
     img{
 
-        max-width: 5rem;
+        max-width: 6rem;
+        margin-left:auto;
+        margin-top:4rem;
         
     }
 }
@@ -112,6 +114,13 @@
             height: 2.5rem;
             color:rgb(37, 37, 37);
         }
+
+        button{
+
+            outline:none;
+            background:none;
+            border:none;
+        }
     }
 }
 
@@ -128,6 +137,8 @@
     .carta{
 
         padding:2.5rem 3rem;
+    
+  
     }
 
     

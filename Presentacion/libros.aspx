@@ -77,7 +77,7 @@
                         <i class="fas fa-star"></i>
                     </div>
                     <br />
-                    <p id="modal-sinopsis"></p>
+                    <p id="modal-sinopsis" class="sinopsis-libro"></p>
                     <hr />
                     <p id="modal-autor">Adrián Ortiz</p> 
                     <p id="modal-anio">2018 </p>
