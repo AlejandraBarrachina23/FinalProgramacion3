@@ -23,7 +23,7 @@
                     <div class="redes-sociales">
                         <h3>Contacto</h3>
                         <button title="47463241"><i class="fas fa-phone"></i></button>
-                        <a href="https://bit.ly/EdicionesElemento"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://bit.ly/EdicionesElemento" target="_blank"><i class="fab fa-whatsapp"></i></a>
                         <button title="adrianacabrera@gmail.com"><i class="fas fa-envelope-open-text"></i></button>
                     </div>
                 </div>

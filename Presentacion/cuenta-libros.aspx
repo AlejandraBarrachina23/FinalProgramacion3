@@ -103,7 +103,7 @@
                                                 <asp:FileUpload ID="fupImagenPortada" runat="server"  />
                                                 <asp:Label ID="lblErrorImagen" CssClass="Error" runat="server" Text=""></asp:Label>
                                             </div>
-                                             <asp:Button ID="btnModificar" CssClass="btn" runat="server" Text="Modificar" OnClick="btnModificar_Click"/>
+                                             <asp:Button ID="btnModificar" CssClass="btn" runat="server" Text="Modificar" OnClick="btnModificar_Click" OnClientClick="return validarABML();"/>
                                              <asp:Button ID="btnAceptar" CssClass="btn" runat="server" Text="Agregar" OnClick="btnAceptar_Click1" OnClientClick="return validarABML();"/>
                                         </div>
                                     </fieldset>

@@ -98,11 +98,11 @@
                         <div class="form-item-radio">             
                             <div class="radio-item">
                                 <input type="radio" id="radio-imagenes-si" name="rbtnImagenes" value="Si">
-                                <label for="radio-celular">Sí</label>
+                                <label for="radio-imagenes-si">Sí</label>
                             </div>
                             <div class="radio-item">
                                 <input type="radio" id="radio-imagenes-no" name="rbtnImagenes" value="No">
-                                <label for="radio-mail">No</label>
+                                <label for="radio-imagenes-no">No</label>
                             </div>
                         </div>
                     </div>

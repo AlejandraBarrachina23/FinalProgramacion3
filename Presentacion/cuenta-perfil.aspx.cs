@@ -50,7 +50,7 @@ namespace Presentacion
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            btnAceptar.Visible = false;
+           
            
             Usuario usuarioModificado = new Usuario();
             UsuarioNegocio unUsuarioNegocio = new UsuarioNegocio();
@@ -70,6 +70,7 @@ namespace Presentacion
                 unUsuarioNegocio.ModificarUsuario(usuarioModificado);
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "ModalModificarUsuario", "$('#modalUsuarioModificacion').modal({show:true});", true);
                 DeshabilitarHabilitarTextBoxes(false);
+                btnAceptar.Visible = false;
             }
 
             else {
@@ -82,6 +83,7 @@ namespace Presentacion
         {
 
             if (estado) HabilitarTextBox(); else DeshabilitarTextBox();
+            lblErrorEmail.Text = "";
 
         }
 

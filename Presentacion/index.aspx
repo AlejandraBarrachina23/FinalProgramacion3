@@ -273,7 +273,7 @@
 
             function notificacion() {
 
-                if (tboxNombre.value !== "" && tboxCorreo !== "" && tboxMensaje !== "" && tboxCorreo.value.includes('@')) {
+                if (tboxNombre.value !== "" && tboxCorreo.value !== "" && tboxMensaje.value !== "" && tboxCorreo.value.includes('@')) {
 
                     $('#modalMailEnviado').modal({ show: true });
                 }
