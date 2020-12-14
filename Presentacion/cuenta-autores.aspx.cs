@@ -14,7 +14,7 @@ namespace Presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             Usuario usuarioActivo = (Usuario)Session["UsuarioLogeado"];
-            AutorNegocio unAutor = new AutorNegocio();
+            
 
             if (Session["UsuarioLogeado"] != null && usuarioActivo.TipoUsuario)
             {
@@ -28,8 +28,9 @@ namespace Presentacion
                 Response.Redirect("error404.aspx");
             }
 
-            if (!IsPostBack) { 
-                
+            if (!IsPostBack) {
+
+                AutorNegocio unAutor = new AutorNegocio();
                 Session["ListadoAutores"] = unAutor.ListarAutores();
                 grillaAutores.DataSource = Session["ListadoAutores"];
                 grillaAutores.DataBind();
